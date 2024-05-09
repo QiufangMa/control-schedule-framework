@@ -9,25 +9,25 @@ number:
 date:
 consensus: true
 v: 3
-# area: AREA
-# workgroup: WG Working Group
+area: AREA
+workgroup: WG Working Group
 keyword:
  - next generation
  - unicorn
  - sparkling distributed ledger
 venue:
-#  group: WG
-#  type: Working Group
-#  mail: WG@example.com
-#  arch: https://example.com/WG
-  github: "QiufangMa/scheduled-resources-framework"
-  latest: "https://QiufangMa.github.io/scheduled-resources-framework/draft-XXX-scheduled-resources-framework.html"
+  group: WG
+  type: Working Group
+  mail: WG@example.com
+  arch: https://example.com/WG
+  github: USER/REPO
+  latest: https://example.com/LATEST
 
 author:
  -
-    fullname: "m00519082"
+    fullname: Your Name Here
     organization: Your Organization Here
-    email: "maqiufang1@huawei.com"
+    email: your.email@example.com
 
 normative:
 
