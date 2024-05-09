@@ -66,6 +66,34 @@ TODO Introduction
 
 # Architecture
 
+{{arch}} provides the architecture for scheduled resources.
+
+~~~~
++---------------------------------------------------+
+|                                                   |
+|          Scheduled Resources Requester            |
+|                                                   |
++----------+----------------------------------------+
+           |                                 ^
+           |Schedule-based configuration     | Status Report
+           |                                 |
++----------+---------------------------------+------------+
+| +--------V--------+ Status Update +--------+--------+   |
+| |Schedule Trigger +--------------->   Schedule DB   |   |
+| +--------+--------+               +-----------------+   |
+|          |                                              |
+|          |                                              |
+|          |Repeated configuration                        |
+|          |                                              |
+|          V                                              |
+| +-----------------+                                     |
+| | Task Executor   |                                     |
+| +-----------------+                                     |
+|                          Scheduled Resources Responder  |
++---------------------------------------------------------+
+~~~~
+{: #arch title="An Architecture for Schedule Management" artwork-align="center"}
+
 ## Components
 
 ## Functional Interfaces
