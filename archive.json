@@ -1,0 +1,81 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2024-05-12T00:51:01.491883+00:00",
+  "repo": "QiufangMa/scheduled-resources-framework",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOL5G4NM5u9YbB",
+      "title": "add architecture figure",
+      "url": "https://github.com/QiufangMa/scheduled-resources-framework/pull/1",
+      "state": "OPEN",
+      "author": "QiufangMa",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-05-09T07:39:46Z",
+      "updatedAt": "2024-05-09T07:39:46Z",
+      "baseRepository": "QiufangMa/scheduled-resources-framework",
+      "baseRefName": "main",
+      "baseRefOid": "18deb68c0032f5b266855ffa2363dc9d842fb568",
+      "headRepository": "QiufangMa/scheduled-resources-framework",
+      "headRefName": "patch-1",
+      "headRefOid": "eba9d77e8db83cafa2b02c7d37a1128c559d1a15",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
