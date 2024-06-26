@@ -1,17 +1,17 @@
-# TODO - Your title
+# A Framework for the Control Scheduling of Network Resources
 
-This is the working area for the individual Internet-Draft, "TODO - Your title".
+This is the working area for the individual Internet-Draft, "A Framework for the Control Scheduling of Network Resources".
 
-* [Editor's Copy](https://QiufangMa.github.io/scheduled-resources-framework/#go.draft-XXX-scheduled-resources-framework.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-XXX-scheduled-resources-framework)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-XXX-scheduled-resources-framework)
-* [Compare Editor's Copy to Individual Draft](https://QiufangMa.github.io/scheduled-resources-framework/#go.draft-XXX-scheduled-resources-framework.diff)
+* [Editor's Copy](https://QiufangMa.github.io/control-schedule-framework/#go.draft-wqk-opsawg-control-schedule-framework.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-wqk-opsawg-control-schedule-framework)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-wqk-opsawg-control-schedule-framework)
+* [Compare Editor's Copy to Individual Draft](https://QiufangMa.github.io/control-schedule-framework/#go.draft-wqk-opsawg-control-schedule-framework.diff)
 
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/QiufangMa/scheduled-resources-framework/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/QiufangMa/control-schedule-framework/blob/main/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
