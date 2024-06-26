@@ -123,6 +123,7 @@ reduce conflicts, and optimize the use of network resources, thereby
 enhancing the performance and reliability of their networks.
 
 ## Background
+
 There is an existing framework {{?RFC8413}} for the use of scheduled resources.
 This document outlines a framework detailing the architecture for supporting
 the scheduled reservation of Traffic Engineering (TE) resources. It focuses
@@ -142,11 +143,12 @@ network access control policies based on group identity.
 
 Combined, {{?I-D.ietf-netmod-schedule-yang}} and {{?I-D.ietf-opsawg-ucl-acl}} provide
 powerful tools for the control and scheduling of network resources for several
-use cases, including key examples outlined in this document.  
+use cases, including key examples outlined in this document.
 
 # Functional components
 
 ##Scheduled Service Requester
+
 The entity requesting a resource schedule change can vary widely. For example,
 a network administrator may seek to restrict or limit access to specific network
 resources based on day or time to optimize performance and enhance security.
@@ -156,9 +158,10 @@ restrictions on network resources in response to changing network conditions,
 ensuring service continuity and compliance with operational policies. Automated
 systems and AI-driven components can also request dynamic adjustments based on
 real-time data, facilitating predictive maintenance and optimizing resource
-usage to maintain peak network efficiency.   
+usage to maintain peak network efficiency.
 
 ##Scheduled Service Responder
+
 The function of this central component is responsibility for managing and coordinating
 all network scheduling activities. There are several sub-components within this entity,
 including:
@@ -188,17 +191,17 @@ management system or the network device itself.
           |   +---------+                     +---------+   |
           |   |         |                     |         |   |
           |   | Schedule|                     | Conflict|   |
-          |   | Manager |                     | Resolver|   |          
+          |   | Manager |                     | Resolver|   |
           |   |         |                     |         |   |
           |   +---------+                     +---------+   |
-          |                                                 |   
+          |                                                 |
           |   +---------+                     +---------+   |
           |   |         |                     |         |   |
           |   | Resource|                     | Policy  |   |
-          |   | Manager |                     | Engine  |   |          
+          |   | Manager |                     | Engine  |   |
           |   |         |                     |         |   |
           |   +---------+                     +---------+   |
-          |                                                 |   
+          |                                                 |
           +----------------------+--------------------------+
                                  |
                                  |
@@ -210,9 +213,10 @@ management system or the network device itself.
 ~~~~
 
 ## Functional Interfaces
+
 To support the scheduling of network resources effectively, several
 functional interfaces are are required. These interfaces facilitate
-communication between different components of the network scheduling  
+communication between different components of the network scheduling
 system, ensuring seamless integration and operation, these include:
 
  * Schedule Service Requestor API: Schedule resource creation,
@@ -237,7 +241,7 @@ required:
 
  * Network Resource Inventory: A comprehensive list of deployed network
    resources that are not currently in service, but may be availble if
-   enabled.  
+   enabled.
 
  * Current Network Utilization: Real-time data on the current usage of
    network resources, including bandwidth consumption, CPU load,
@@ -257,6 +261,7 @@ performance, and ensure service reliability.
 
 
 ## Synchronization
+
 It will be critical to ensure all network schedule entaties, including
 controllers and management systems are synchronized to a common time
 reference. Several methods are availible to achieve this.
@@ -268,7 +273,7 @@ reference. Several methods are availible to achieve this.
 
 [Qiufang] Need some text. Actually, in a future version of the document
 we could also blend in a discussion on Event Condition Action (ECA).
-Actual, I'm [Dan] also happy to contribute here too.   
+Actual, I'm [Dan] also happy to contribute here too.
 
 # Applicable Models, Interfaces and Dependencies
 
