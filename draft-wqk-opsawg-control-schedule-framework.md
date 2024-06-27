@@ -259,27 +259,68 @@ administrators and automated systems can make well-informed scheduling
 decisions that optimize resource utilization, maintain network
 performance, and ensure service reliability.
 
-
 ## Synchronization
 
 It will be critical to ensure all network schedule entaties, including
 controllers and management systems are synchronized to a common time
 reference. Several methods are availible to achieve this.
 
-
 ## State Management
+
+The scheduling state is maintained in the schedule manager, which is responsible
+for the creation, deletion, modification, and query of scheduling information.
+Goupings "schedule-status" and "schedule-status-with-name" in the "ietf-schedule"
+yang module {{?I-D.ietf-netmod-schedule-yang}} define common parameters for scheduling
+management/status exposure.
 
 ## Policy and Enforcement
 
-[Qiufang] Need some text. Actually, in a future version of the document
-we could also blend in a discussion on Event Condition Action (ECA).
-Actual, I'm [Dan] also happy to contribute here too.
+Policies are a set of rules to administer, manage, and control access to network
+resources. For example, the following shows an example of a scheduled ACL policy:
+
+~~~~
+drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00Z
+~~~~
+
+A set of scheduling policies and rules are maintained in the policy engine,
+which is responsible for the policy enforcement. Policies are triggered to execute
+at a certain time based on the scheduling prameters. Each policy might be executed
+multiple times, depending on the its scheduling type (one-shot vs. recurrence).
 
 # Applicable Models, Interfaces and Dependencies
 
-## YANG Models
+## YANG Data Models {#schedule-modules}
 
-[Qiufang] Need to outline the applicable YANG models and dependencies.
+This document is not intended to define any YANG modules, but shows how existing
+schedule-related YANG modules could fit into this framework. The following provides
+a list of applicable YANG modules that can be used to exchange data between schedule
+service requester and responder:
+
+ * The "ietf-ucl-acl" YANG module defined in {{?I-D.ietf-opsawg-ucl-acl}} augments
+   the IETF ACL model {{?RFC8519}} with schedule parameters to allow each access
+   control entry (ACE) to be activated based on date and time conditions.
+
+ * The "ietf-tvr-node" YANG module in {{?I-D.ietf-tvr-schedule-yang}} which works
+   as a device model, is designed to manage a single node with scheduled
+   attributes (e.g., powered on/off).
+
+ * The "ietf-tvr-topology" YANG module in {{?I-D.ietf-tvr-schedule-yang}} is designed
+   to manage the network topology with time-varying attributes
+   (e.g., node/link availability, link bandwidth or delay).
+
+ * The "ietf-oam-unitary-test" in {{?I-D.contreras-opsawg-scheduling-oam-tests}}
+   is defined to perform scheduled network diagnosis using
+   (Operations, Administration, and Maintenance) OAM unitary test.
+
+ * The "ietf-oam-test-sequence" in {{?I-D.contreras-opsawg-scheduling-oam-tests}}
+   is defined to perform a collection of OAM unitary tests based on date and time
+   constraints.
+
+Additionally, {{?I-D.ietf-netmod-schedule-yang}} defines "ietf-schedule" YANG
+module for scheduling that works as common building blocks for YANG modules
+described in {{schedule-modules}}. The module doesn't define any
+protocol-accessible nodes but a set of reusable groupings applicable to be used
+in any scheduling contexts.
 
 ## Other Dependencies
 
