@@ -2,10 +2,10 @@
 
 
 
-WG Working Group                                              Y. N. Here
+OPSAWG                                                        Y. N. Here
 Internet-Draft                                    Your Organization Here
-Intended status: Informational                              26 June 2024
-Expires: 28 December 2024
+Intended status: Informational                              27 June 2024
+Expires: 29 December 2024
 
 
       A Framework for the Control Scheduling of Network Resources
@@ -30,7 +30,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 December 2024.
+   This Internet-Draft will expire on 29 December 2024.
 
 Copyright Notice
 
@@ -62,7 +62,7 @@ Table of Contents
      4.4.  State Management
      4.5.  Policy and Enforcement
    5.  Applicable Models, Interfaces and Dependencies
-     5.1.  YANG Models
+     5.1.  YANG Data Models
      5.2.  Other Dependencies
    6.  Use Cases with detailed Code Examples
      6.1.  Scheduling OAM Tests (Attestation)
@@ -332,18 +332,66 @@ Table of Contents
 
 4.4.  State Management
 
+   The scheduling state is maintained in the schedule manager, which is
+   responsible for the creation, deletion, modification, and query of
+   scheduling information.  Goupings "schedule-status" and "schedule-
+   status-with-name" in the "ietf-schedule" yang module
+   [I-D.ietf-netmod-schedule-yang] define common parameters for
+   scheduling management/status exposure.
+
 4.5.  Policy and Enforcement
 
-   [Qiufang] Need some text.  Actually, in a future version of the
-   document we could also blend in a discussion on Event Condition
-   Action (ECA).  Actual, I'm [Dan] also happy to contribute here too.
+   Policies are a set of rules to administer, manage, and control access
+   to network resources.  For example, the following shows an example of
+   a scheduled ACL policy:
+
+drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00Z
+
+   A set of scheduling policies and rules are maintained in the policy
+   engine, which is responsible for the policy enforcement.  Policies
+   are triggered to execute at a certain time based on the scheduling
+   prameters.  Each policy might be executed multiple times, depending
+   on the its scheduling type (one-shot vs. recurrence).
 
 5.  Applicable Models, Interfaces and Dependencies
 
-5.1.  YANG Models
+5.1.  YANG Data Models
 
-   [Qiufang] Need to outline the applicable YANG models and
-   dependencies.
+   This document is not intended to define any YANG modules, but shows
+   how existing schedule-related YANG modules could fit into this
+   framework.  The following provides a list of applicable YANG modules
+   that can be used to exchange data between schedule service requester
+   and responder:
+
+   *  The "ietf-ucl-acl" YANG module defined in
+      [I-D.ietf-opsawg-ucl-acl] augments the IETF ACL model [RFC8519]
+      with schedule parameters to allow each access control entry (ACE)
+      to be activated based on date and time conditions.
+
+   *  The "ietf-tvr-node" YANG module in [I-D.ietf-tvr-schedule-yang]
+      which works as a device model, is designed to manage a single node
+      with scheduled attributes (e.g., powered on/off).
+
+   *  The "ietf-tvr-topology" YANG module in
+      [I-D.ietf-tvr-schedule-yang] is designed to manage the network
+      topology with time-varying attributes (e.g., node/link
+      availability, link bandwidth or delay).
+
+   *  The "ietf-oam-unitary-test" in
+      [I-D.contreras-opsawg-scheduling-oam-tests] is defined to perform
+      scheduled network diagnosis using (Operations, Administration, and
+      Maintenance) OAM unitary test.
+
+   *  The "ietf-oam-test-sequence" in
+      [I-D.contreras-opsawg-scheduling-oam-tests] is defined to perform
+      a collection of OAM unitary tests based on date and time
+      constraints.
+
+   Additionally, [I-D.ietf-netmod-schedule-yang] defines "ietf-schedule"
+   YANG module for scheduling that works as common building blocks for
+   YANG modules described in Section 5.1.  The module doesn't define any
+   protocol-accessible nodes but a set of reusable groupings applicable
+   to be used in any scheduling contexts.
 
 5.2.  Other Dependencies
 
@@ -362,7 +410,23 @@ Table of Contents
 
 6.2.  Time Variant Networking (Energy Efficient)
 
-   [Dan] Tidal Example
+   [Dan] Tidal Example The tidal network means the volume of traffic in
+   the network changes periodically like the ocean tide.  This changes
+   are mainly affected by human activities.  Therefore, this tidal
+   effect is obvious in human-populated areas, such as campuses and
+   airport.
+
+   In the context of a tidal network, If the network maintains all the
+   devices up to guarantee the maximum throughput all the time, a lot of
+   power will be wasted.  The energy-saving methods may include the
+   deactivation of some or all components of network nodes.  These
+   activities have the potential to alter network topology and impact
+   data routing in a variety of ways.  Ports on network nodes can be
+   selectively disabled or enabled based on traffic patterns, thereby
+   reducing the energy consumption of nodes during periods of low
+   network traffic.
+
+   Applicable YANG Models[TBD]
 
 7.  Manageability Considerations
 
@@ -391,6 +455,14 @@ Table of Contents
 
 10.2.  Informative References
 
+   [I-D.contreras-opsawg-scheduling-oam-tests]
+              Contreras, L. M. and V. Lopez, "A YANG Data Model for
+              Network Diagnosis by scheduling sequences of OAM tests",
+              Work in Progress, Internet-Draft, draft-contreras-opsawg-
+              scheduling-oam-tests-01, 10 July 2023,
+              <https://datatracker.ietf.org/doc/html/draft-contreras-
+              opsawg-scheduling-oam-tests-01>.
+
    [I-D.ietf-netmod-schedule-yang]
               Ma, Q., Wu, Q., Boucadair, M., and D. King, "A Common YANG
               Data Model for Scheduling", Work in Progress, Internet-
@@ -406,10 +478,22 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
               ucl-acl-05>.
 
+   [I-D.ietf-tvr-schedule-yang]
+              Qu, Y., Lindem, A., Kinzie, E., Fedyk, D., and M.
+              Blanchet, "YANG Data Model for Scheduled Attributes", Work
+              in Progress, Internet-Draft, draft-ietf-tvr-schedule-yang-
+              00, 16 April 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-tvr-schedule-yang-00>.
+
    [RFC8413]  Zhuang, Y., Wu, Q., Chen, H., and A. Farrel, "Framework
               for Scheduled Use of Resources", RFC 8413,
               DOI 10.17487/RFC8413, July 2018,
               <https://www.rfc-editor.org/rfc/rfc8413>.
+
+   [RFC8519]  Jethanandani, M., Agarwal, S., Huang, L., and D. Blair,
+              "YANG Data Model for Network Access Control Lists (ACLs)",
+              RFC 8519, DOI 10.17487/RFC8519, March 2019,
+              <https://www.rfc-editor.org/rfc/rfc8519>.
 
 Acknowledgments
 
