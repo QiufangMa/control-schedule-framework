@@ -339,16 +339,16 @@ this is a useful document the working group would like to work on.
 ## Time Variant Networking (Energy Efficient)
 
 [Dan] Tidal Example
-The tidal network means the volume of traffic in the network changes 
-periodically like the ocean tide. This changes are mainly affected by 
-human activities. Therefore, this tidal effect is obvious in human-populated 
+The tidal network means the volume of traffic in the network changes
+periodically like the ocean tide. This changes are mainly affected by
+human activities. Therefore, this tidal effect is obvious in human-populated
 areas, such as campuses and airport.
 
-In the context of a tidal network, If the network maintains all the devices 
-up to guarantee the maximum throughput all the time, a lot of power will be 
-wasted. The energy-saving methods may include the deactivation of some or all 
-components of network nodes. These activities have the potential to alter 
-network topology and impact data routing in a variety of ways.  Ports on 
+In the context of a tidal network, If the network maintains all the devices
+up to guarantee the maximum throughput all the time, a lot of power will be
+wasted. The energy-saving methods may include the deactivation of some or all
+components of network nodes. These activities have the potential to alter
+network topology and impact data routing in a variety of ways.  Ports on
 network nodes can be selectively disabled or enabled based on traffic patterns,
 thereby reducing the energy consumption of nodes during periods of low network
 traffic.
