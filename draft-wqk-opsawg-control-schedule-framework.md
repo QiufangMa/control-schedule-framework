@@ -131,19 +131,19 @@ on the conceptual and architectural aspects, without delving into
 specific protocols or protocol extensions required to implement this
 service.
 
-More recently, the development of {{?I-D.ietf-netmod-schedule-yang}}, which
-provides a common schedule YANG module is designed to be applicable for
-scheduling purposes such as event, policy, services, or resources based on date
-and time.
+More recently, several specifications include a provision for scheduling.
+Examples of such specifications are (but not limited to) {{?I-D.ietf-opsawg-ucl-acl}},
+{{?I-D.contreras-opsawg-scheduling-oam-tests}}, and {{?I-D.united-tvr-schedule-yang}}.
+The development of {{?I-D.ietf-netmod-schedule-yang}} is intended to be served
+as common building blocks and provides a common schedule YANG module that can be
+reused in scheduling contexts such as event, policy, services, or resources based
+on date and time.
 
-Along with with the common schedule YANG module, the document
-{{?I-D.ietf-opsawg-ucl-acl}} introduces a YANG data model for policy-based network
-access control. This model ensures consistent and efficient enforcement of
-network access control policies based on group identity.
-
-Combined, {{?I-D.ietf-netmod-schedule-yang}} and {{?I-D.ietf-opsawg-ucl-acl}} provide
-powerful tools for the control and scheduling of network resources for several
-use cases, including key examples outlined in this document.
+Combined, {{?I-D.ietf-netmod-schedule-yang}} and other documents built on top of
+it (e.g., {{?I-D.ietf-opsawg-ucl-acl}}, {{?I-D.contreras-opsawg-scheduling-oam-tests}},
+and {{?I-D.united-tvr-schedule-yang}}) provide powerful capabilities for the control and
+scheduling of network resources for several use cases, including key examples
+outlined in this document.
 
 # Functional components
 
@@ -298,16 +298,16 @@ this is a useful document the working group would like to work on.
 ## Time Variant Networking (Energy Efficient)
 
 [Dan] Tidal Example
-The tidal network means the volume of traffic in the network changes 
-periodically like the ocean tide. This changes are mainly affected by 
-human activities. Therefore, this tidal effect is obvious in human-populated 
+The tidal network means the volume of traffic in the network changes
+periodically like the ocean tide. This changes are mainly affected by
+human activities. Therefore, this tidal effect is obvious in human-populated
 areas, such as campuses and airport.
 
-In the context of a tidal network, If the network maintains all the devices 
-up to guarantee the maximum throughput all the time, a lot of power will be 
-wasted. The energy-saving methods may include the deactivation of some or all 
-components of network nodes. These activities have the potential to alter 
-network topology and impact data routing in a variety of ways.  Ports on 
+In the context of a tidal network, If the network maintains all the devices
+up to guarantee the maximum throughput all the time, a lot of power will be
+wasted. The energy-saving methods may include the deactivation of some or all
+components of network nodes. These activities have the potential to alter
+network topology and impact data routing in a variety of ways.  Ports on
 network nodes can be selectively disabled or enabled based on traffic patterns,
 thereby reducing the energy consumption of nodes during periods of low network
 traffic.
