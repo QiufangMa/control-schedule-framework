@@ -287,27 +287,67 @@ Actual, I'm [Dan] also happy to contribute here too.
 
 # Use Cases with detailed Code Examples
 
-[Qiufang] We just need one or two examples for first version. We can
-provide detailed code examples to be added in future versions, assuming
-this is a useful document the working group would like to work on.
-
 ## Scheduling OAM Tests (Attestation)
 
-[Qiufang] Scheduled OAM Test Example
+Operations, Administration, and Maintenance (OAM) are important networking functions
+for network monitoring and troubleshooting, as well as service-level agreements
+and performance monitoring. Some actions might need to be executed repeatedly or
+at a specific future time to carry out diagnostics. Scheduling-based OAM tools
+are able to invoke a specific OAM unitary test or a sequence of OAM tests based
+on some time-varying parameters, e.g., at a precise future time or repeatedly
+occcur at specific intervals.
+
+Suppose the following fictional module is used:
+~~~~
+module example-oam-tests {
+  yang-version 1.1;
+  namespace "urn:example:oam-tests";
+  prefix "ex-oam";
+
+  import ietf-schedule {
+    prefix "schedule";
+  }
+  list oam-test {
+    key "test-name";
+    leaf test-name {
+      type string;
+    }
+    uses schedule:recurrence-utc;
+  }
+}
+~~~~
+
+The following indicates the example of a scheduling OAM traceroute test that is
+executed at 3:00 AM, every other day, from December 1, 2025 in UTC.
+The JSON encoding is used only for illustration purposes.
+~~~~
+{
+    "example-oam-tests:oam-test": [
+        {
+            "test-name": "traceroute",
+            "recurrence-first": {
+                "utc-start-time": "2025-12-01T03:00:00Z"
+            },
+            "frequency": "ietf-schedule:daily", 
+            "interval": 2
+        }
+    ]
+}
+~~~~
 
 ## Time Variant Networking (Energy Efficient)
 
 [Dan] Tidal Example
-The tidal network means the volume of traffic in the network changes 
-periodically like the ocean tide. This changes are mainly affected by 
-human activities. Therefore, this tidal effect is obvious in human-populated 
+The tidal network means the volume of traffic in the network changes
+periodically like the ocean tide. This changes are mainly affected by
+human activities. Therefore, this tidal effect is obvious in human-populated
 areas, such as campuses and airport.
 
-In the context of a tidal network, If the network maintains all the devices 
-up to guarantee the maximum throughput all the time, a lot of power will be 
-wasted. The energy-saving methods may include the deactivation of some or all 
-components of network nodes. These activities have the potential to alter 
-network topology and impact data routing in a variety of ways.  Ports on 
+In the context of a tidal network, If the network maintains all the devices
+up to guarantee the maximum throughput all the time, a lot of power will be
+wasted. The energy-saving methods may include the deactivation of some or all
+components of network nodes. These activities have the potential to alter
+network topology and impact data routing in a variety of ways.  Ports on
 network nodes can be selectively disabled or enabled based on traffic patterns,
 thereby reducing the energy consumption of nodes during periods of low network
 traffic.
