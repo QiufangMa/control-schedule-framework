@@ -328,7 +328,7 @@ The JSON encoding is used only for illustration purposes.
             "recurrence-first": {
                 "utc-start-time": "2025-12-01T03:00:00Z"
             },
-            "frequency": "ietf-schedule:daily", 
+            "frequency": "ietf-schedule:daily",
             "interval": 2
         }
     ]
