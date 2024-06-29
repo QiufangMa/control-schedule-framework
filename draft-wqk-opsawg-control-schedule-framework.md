@@ -29,8 +29,12 @@ informative:
 
 --- abstract
 
-TODO Abstract
-
+This document presents a comprehensive framework that elucidates various
+scheduled resource scenarios and identifies the entities involved in
+requesting resource schedule changes. It also addresses additional
+challenges such as conflict resolution, priority handling, and
+synchronization of scheduled tasks, ultimately enhancing the
+reliability and performance of network services.
 
 --- middle
 
@@ -41,7 +45,7 @@ resources within network environments, utilizing the IETF YANG models
 designed for scheduling of network resources.
 
 The framework aims to show how the emerging IETF data models can streamline
-the management and  orchestration of network events, policies, services,
+the management and orchestration of network events, policies, services,
 and resources based on precise date and time parameters. By leveraging the
 defined YANG modules, this framework facilitates interoperable and
 efficient scheduling mechanisms that enhance the predictability,
@@ -81,10 +85,6 @@ requesting resource schedule changes. It also addresses additional
 challenges such as conflict resolution, priority handling, and
 synchronization of scheduled tasks, ultimately enhancing the
 reliability and performance of network services.
-
-# Conventions and Definitions
-
-{::boilerplate bcp14-tagged}
 
 ## Problem Statement
 
@@ -145,47 +145,23 @@ and {{?I-D.united-tvr-schedule-yang}}) provide powerful capabilities for the con
 scheduling of network resources for several use cases, including key examples
 outlined in this document.
 
-# Functional components
+# Conventions and Definitions
 
-##Scheduled Service Requester
-
-The entity requesting a resource schedule change can vary widely. For example,
-a network administrator may seek to restrict or limit access to specific network
-resources based on day or time to optimize performance and enhance security.
-
-Additionally, higher-layer OSS (Operations Support System) components may impose
-restrictions on network resources in response to changing network conditions,
-ensuring service continuity and compliance with operational policies. Automated
-systems and AI-driven components can also request dynamic adjustments based on
-real-time data, facilitating predictive maintenance and optimizing resource
-usage to maintain peak network efficiency.
-
-##Scheduled Service Responder
-
-The function of this central component is responsibility for managing and coordinating
-all network scheduling activities. There are several sub-components within this entity,
-including:
-
- * Resource Manager: Manages the network resources that are subject to scheduling.
- * Schedule Manager: Handles creation, modification, and deletion of schedules.
- * Conflict Resolver: Detects and resolves scheduling conflicts based on predefined
-   policies and priorities.
- * Policy Engine: Enforces scheduling policies and rules, ensuring compliance with
-   organizational requirements.
-
-Examples of a schedule service responder may be a network controller, network
-management system or the network device itself.
+{::boilerplate bcp14-tagged}
 
 # Architecture
+
+{{arch}} presents the referenced architecture for the control scheduling of
+network resources.
 
 ~~~~
           +-------------------------------------------------+
           |            Schedule Service Requester           |
-          +-----+------------------------------------+------+
+          +-----+------------------------------------^------+
                 |                                    |
                 |Request                             |Response
                 |                                    |
-          +-----+------------------------------------+------+
+          +-----v------------------------------------+------+
           |            Schedule Service Responder           |
           |                                                 |
           |   +---------+                     +---------+   |
@@ -207,10 +183,42 @@ management system or the network device itself.
                                  |
                                  |
                                  |
-  +------------------------------+---------------------------------+
-  |              Network Resources and Inventory                   |
-  +----------------------------------------------------------------+
+     +-----------------------------+-----------------------------+
+     |              Network Resources and Inventory              |
+     +-----------------------------------------------------------+
 ~~~~
+{: #arch title="An Architecture for the Scheduled Network Scenarios" artwork-align="center"}
+
+## Functional components
+
+### Scheduled Service Requester
+
+The entity requesting a resource schedule change can vary widely. For example,
+a network administrator may seek to restrict or limit access to specific network
+resources based on day or time to optimize performance and enhance security.
+
+Additionally, higher-layer OSS (Operations Support System) components may impose
+restrictions on network resources in response to changing network conditions,
+ensuring service continuity and compliance with operational policies. Automated
+systems and AI-driven components can also request dynamic adjustments based on
+real-time data, facilitating predictive maintenance and optimizing resource
+usage to maintain peak network efficiency.
+
+### Scheduled Service Responder
+
+The function of this central component is responsibility for managing and coordinating
+all network scheduling activities. There are several sub-components within this entity,
+including:
+
+ * Resource Manager: Manages the network resources that are subject to scheduling.
+ * Schedule Manager: Handles creation, modification, and deletion of schedules.
+ * Conflict Resolver: Detects and resolves scheduling conflicts based on predefined
+   policies and priorities.
+ * Policy Engine: Enforces scheduling policies and rules, ensuring compliance with
+   organizational requirements.
+
+Examples of a schedule service responder may be a network controller, network
+management system or the network device itself.
 
 ## Functional Interfaces
 
@@ -219,11 +227,11 @@ functional interfaces are are required. These interfaces facilitate
 communication between different components of the network scheduling
 system, ensuring seamless integration and operation, these include:
 
- * Schedule Service Requestor API: Schedule resource creation,
+ * Schedule Service Requestor and Responder API: Schedule resource creation,
    modification, and deletion requests and responses. Querying of
    current and upcoming schedules, conflict and alert notifications.
 
- * Schedule Service Responder to Network API: Manages interactions with
+ * Schedule Service Responder and Network API: Manages interactions with
    the network resources and inventory systems. Capable of querying
    available resources, allocating and deallocating resources based on
    current schedule plan, and monitoring resource utilization.
@@ -259,12 +267,6 @@ administrators and automated systems can make well-informed scheduling
 decisions that optimize resource utilization, maintain network
 performance, and ensure service reliability.
 
-## Synchronization
-
-It will be critical to ensure all network schedule entaties, including
-controllers and management systems are synchronized to a common time
-reference. Several methods are availible to achieve this.
-
 ## State Management
 
 The scheduling state is maintained in the schedule manager, which is responsible
@@ -286,6 +288,12 @@ A set of scheduling policies and rules are maintained in the policy engine,
 which is responsible for the policy enforcement. Policies are triggered to execute
 at a certain time based on the scheduling prameters. Each policy might be executed
 multiple times, depending on the its scheduling type (one-shot vs. recurrence).
+
+## Synchronization
+
+It will be critical to ensure all network schedule entaties, including
+controllers and management systems are synchronized to a common time
+reference. Several methods are availible to achieve this.
 
 # Applicable Models, Interfaces and Dependencies
 
@@ -361,6 +369,7 @@ module example-oam-tests {
 The following indicates the example of a scheduling OAM traceroute test that is
 executed at 3:00 AM, every other day, from December 1, 2025 in UTC.
 The JSON encoding is used only for illustration purposes.
+
 ~~~~
 {
     "example-oam-tests:oam-test": [
@@ -378,7 +387,6 @@ The JSON encoding is used only for illustration purposes.
 
 ## Time Variant Networking (Energy Efficient)
 
-[Dan] Tidal Example
 The tidal network means the volume of traffic in the network changes
 periodically like the ocean tide. This changes are mainly affected by
 human activities. Therefore, this tidal effect is obvious in human-populated
@@ -392,8 +400,6 @@ network topology and impact data routing in a variety of ways.  Ports on
 network nodes can be selectively disabled or enabled based on traffic patterns,
 thereby reducing the energy consumption of nodes during periods of low network
 traffic.
-
-Applicable YANG Models[TBD]
 
 # Manageability Considerations
 
