@@ -347,6 +347,7 @@ on some time-varying parameters, e.g., at a precise future time or repeatedly
 occcur at specific intervals.
 
 Suppose the following fictional module is used:
+
 ~~~~
 module example-oam-tests {
   yang-version 1.1;
