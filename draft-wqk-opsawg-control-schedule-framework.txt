@@ -422,13 +422,24 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
    based on some time-varying parameters, e.g., at a precise future time
    or repeatedly occcur at specific intervals.
 
-   Suppose the following fictional module is used: ~~~~ module example-
-   oam-tests { yang-version 1.1; namespace "urn:example:oam-tests";
-   prefix "ex-oam";
+   Suppose the following fictional module is used:
 
-   import ietf-schedule { prefix "schedule"; } list oam-test { key
-   "test-name"; leaf test-name { type string; } uses
-   schedule:recurrence-utc; } } ~~~~
+   module example-oam-tests {
+     yang-version 1.1;
+     namespace "urn:example:oam-tests";
+     prefix "ex-oam";
+
+     import ietf-schedule {
+       prefix "schedule";
+     }
+     list oam-test {
+       key "test-name";
+       leaf test-name {
+         type string;
+       }
+       uses schedule:recurrence-utc;
+     }
+   }
 
    The following indicates the example of a scheduling OAM traceroute
    test that is executed at 3:00 AM, every other day, from December 1,
