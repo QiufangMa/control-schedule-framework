@@ -7,7 +7,12 @@
 <title>A Framework for the Control Scheduling of Network Resources</title>
 <meta content="Your Name Here" name="author">
 <meta content="
-       TODO Abstract 
+       This document presents a comprehensive framework that elucidates various
+scheduled resource scenarios and identifies the entities involved in
+requesting resource schedule changes. It also addresses additional
+challenges such as conflict resolution, priority handling, and
+synchronization of scheduled tasks, ultimately enhancing the
+reliability and performance of network services. 
     " name="description">
 <meta content="xml2rfc 3.21.0" name="generator">
 <meta content="schedule" name="keyword">
@@ -1031,7 +1036,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Here</td>
-<td class="center">Expires 29 December 2024</td>
+<td class="center">Expires 31 December 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1044,12 +1049,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-wqk-opsawg-control-schedule-framework-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-06-27" class="published">27 June 2024</time>
+<time datetime="2024-06-29" class="published">29 June 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-12-29">29 December 2024</time></dd>
+<dd class="expires"><time datetime="2024-12-31">31 December 2024</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1062,7 +1067,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">A Framework for the Control Scheduling of Network Resources</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">TODO Abstract<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document presents a comprehensive framework that elucidates various
+scheduled resource scenarios and identifies the entities involved in
+requesting resource schedule changes. It also addresses additional
+challenges such as conflict resolution, priority handling, and
+synchronization of scheduled tasks, ultimately enhancing the
+reliability and performance of network services.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1083,7 +1093,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 29 December 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 31 December 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1114,96 +1124,96 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <nav class="toc"><ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
-                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-problem-statement" class="internal xref">Problem Statement</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-problem-statement" class="internal xref">Problem Statement</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
-                <p id="section-toc.1-1.2.2.2.1" class="keepWithNext"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-background" class="internal xref">Background</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.2">
+                <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="auto internal xref">1.2</a>.  <a href="#name-background" class="internal xref">Background</a></p>
 </li>
             </ul>
 </li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
+</li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-functional-components" class="internal xref">Functional components</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-architecture" class="internal xref">Architecture</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-scheduled-service-requester" class="internal xref">Scheduled Service Requester</a></p>
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-functional-components" class="internal xref">Functional components</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
+                    <p id="section-toc.1-1.3.2.1.2.1.1"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-scheduled-service-requester" class="internal xref">Scheduled Service Requester</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.2">
+                    <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="auto internal xref">3.1.2</a>.  <a href="#name-scheduled-service-responder" class="internal xref">Scheduled Service Responder</a></p>
+</li>
+                </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-scheduled-service-responder" class="internal xref">Scheduled Service Responder</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-functional-interfaces" class="internal xref">Functional Interfaces</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-data-sources" class="internal xref">Data Sources</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-state-management" class="internal xref">State Management</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
+                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-policy-and-enforcement" class="internal xref">Policy and Enforcement</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6">
+                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="auto internal xref">3.6</a>.  <a href="#name-synchronization" class="internal xref">Synchronization</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-architecture" class="internal xref">Architecture</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-applicable-models-interface" class="internal xref">Applicable Models, Interfaces and Dependencies</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-functional-interfaces" class="internal xref">Functional Interfaces</a></p>
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-yang-data-models" class="internal xref">YANG Data Models</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-data-sources" class="internal xref">Data Sources</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-synchronization" class="internal xref">Synchronization</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
-                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-state-management" class="internal xref">State Management</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.5">
-                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="auto internal xref">4.5</a>.  <a href="#name-policy-and-enforcement" class="internal xref">Policy and Enforcement</a></p>
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-other-dependencies" class="internal xref">Other Dependencies</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-applicable-models-interface" class="internal xref">Applicable Models, Interfaces and Dependencies</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-use-cases-with-detailed-cod" class="internal xref">Use Cases with detailed Code Examples</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-yang-data-models" class="internal xref">YANG Data Models</a></p>
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-scheduling-oam-tests-attest" class="internal xref">Scheduling OAM Tests (Attestation)</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-other-dependencies" class="internal xref">Other Dependencies</a></p>
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-time-variant-networking-ene" class="internal xref">Time Variant Networking (Energy Efficient)</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-use-cases-with-detailed-cod" class="internal xref">Use Cases with detailed Code Examples</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-scheduling-oam-tests-attest" class="internal xref">Scheduling OAM Tests (Attestation)</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-time-variant-networking-ene" class="internal xref">Time Variant Networking (Energy Efficient)</a></p>
-</li>
-            </ul>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-manageability-consideration" class="internal xref">Manageability Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-manageability-consideration" class="internal xref">Manageability Considerations</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-references" class="internal xref">References</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
-                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
-                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
 </li>
         </ul>
 </nav>
@@ -1218,7 +1228,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 resources within network environments, utilizing the IETF YANG models
 designed for scheduling of network resources.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">The framework aims to show how the emerging IETF data models can streamline
-the management and  orchestration of network events, policies, services,
+the management and orchestration of network events, policies, services,
 and resources based on precise date and time parameters. By leveraging the
 defined YANG modules, this framework facilitates interoperable and
 efficient scheduling mechanisms that enhance the predictability,
@@ -1265,6 +1275,68 @@ requesting resource schedule changes. It also addresses additional
 challenges such as conflict resolution, priority handling, and
 synchronization of scheduled tasks, ultimately enhancing the
 reliability and performance of network services.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<div id="problem-statement">
+<section id="section-1.1">
+        <h3 id="name-problem-statement">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-problem-statement" class="section-name selfRef">Problem Statement</a>
+        </h3>
+<p id="section-1.1-1">In modern network environments, the efficient and coordinated use of resources
+is paramount for maintaining optimal performance and reliability. Networks are
+increasingly complex, supporting a wide array of services and applications that
+require precise timing and resource allocation. Despite advancements in network
+technology, there is a notable lack of standardized mechanisms for scheduling
+resources based on specific date and time parameters. This gap often leads to
+inefficiencies, conflicts, and suboptimal utilization of network capabilities.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">Currently, network administrators rely on disparate and often proprietary tools
+to manage scheduling for various network activities such as maintenance events,
+policy enforcement, and resource allocation. These tools frequently operate in
+isolation, lacking interoperability and integration with other network management
+systems. As a result, administrators face significant challenges in coordinating
+schedules, resolving conflicts, and ensuring that critical tasks are executed
+without disruption. The absence of a unified scheduling framework exacerbates
+these issues, leading to increased operational overhead and potential service
+degradation.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-3">Furthermore, the dynamic nature of modern networks demands a flexible and adaptive
+scheduling solution that can respond to changing conditions and requirements.
+Existing scheduling approaches are often rigid and static, unable to accommodate
+the fluid demands of network services and applications. This rigidity hinders the
+ability to optimize resource use and respond proactively to network events,
+ultimately impacting the overall efficiency and effectiveness of network
+operations.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+<p id="section-1.1-4">To address these challenges, there is a clear need for a standardized framework
+that can provide a cohesive approach to scheduling network resources. Such a
+framework should leverage existing YANG models to ensure compatibility and ease
+of integration with current network management practices. By standardizing the
+scheduling process, network operators can achieve greater predictability,
+reduce conflicts, and optimize the use of network resources, thereby
+enhancing the performance and reliability of their networks.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="background">
+<section id="section-1.2">
+        <h3 id="name-background">
+<a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-background" class="section-name selfRef">Background</a>
+        </h3>
+<p id="section-1.2-1">There is an existing framework <span>[<a href="#RFC8413" class="cite xref">RFC8413</a>]</span> for the use of scheduled resources.
+This document outlines a framework detailing the architecture for supporting
+the scheduled reservation of Traffic Engineering (TE) resources. It focuses
+on the conceptual and architectural aspects, without delving into
+specific protocols or protocol extensions required to implement this
+service.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
+<p id="section-1.2-2">More recently, several specifications include a provision for scheduling.
+Examples of such specifications are (but not limited to) <span>[<a href="#I-D.ietf-opsawg-ucl-acl" class="cite xref">I-D.ietf-opsawg-ucl-acl</a>]</span>,
+<span>[<a href="#I-D.contreras-opsawg-scheduling-oam-tests" class="cite xref">I-D.contreras-opsawg-scheduling-oam-tests</a>]</span>, and <span>[<a href="#I-D.united-tvr-schedule-yang" class="cite xref">I-D.united-tvr-schedule-yang</a>]</span>.
+The development of <span>[<a href="#I-D.ietf-netmod-schedule-yang" class="cite xref">I-D.ietf-netmod-schedule-yang</a>]</span> is intended to be served
+as common building blocks and provides a common schedule YANG module that can be
+reused in scheduling contexts such as event, policy, services, or resources based
+on date and time.<a href="#section-1.2-2" class="pilcrow">¶</a></p>
+<p id="section-1.2-3">Combined, <span>[<a href="#I-D.ietf-netmod-schedule-yang" class="cite xref">I-D.ietf-netmod-schedule-yang</a>]</span> and other documents built on top of
+it (e.g., <span>[<a href="#I-D.ietf-opsawg-ucl-acl" class="cite xref">I-D.ietf-opsawg-ucl-acl</a>]</span>, <span>[<a href="#I-D.contreras-opsawg-scheduling-oam-tests" class="cite xref">I-D.contreras-opsawg-scheduling-oam-tests</a>]</span>,
+and <span>[<a href="#I-D.united-tvr-schedule-yang" class="cite xref">I-D.united-tvr-schedule-yang</a>]</span>) provide powerful capabilities for the control and
+scheduling of network resources for several use cases, including key examples
+outlined in this document.<a href="#section-1.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1276,134 +1348,26 @@ reliability and performance of network services.<a href="#section-1-6" class="pi
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<div id="problem-statement">
-<section id="section-2.1">
-        <h3 id="name-problem-statement">
-<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-problem-statement" class="section-name selfRef">Problem Statement</a>
-        </h3>
-<p id="section-2.1-1">In modern network environments, the efficient and coordinated use of resources
-is paramount for maintaining optimal performance and reliability. Networks are
-increasingly complex, supporting a wide array of services and applications that
-require precise timing and resource allocation. Despite advancements in network
-technology, there is a notable lack of standardized mechanisms for scheduling
-resources based on specific date and time parameters. This gap often leads to
-inefficiencies, conflicts, and suboptimal utilization of network capabilities.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
-<p id="section-2.1-2">Currently, network administrators rely on disparate and often proprietary tools
-to manage scheduling for various network activities such as maintenance events,
-policy enforcement, and resource allocation. These tools frequently operate in
-isolation, lacking interoperability and integration with other network management
-systems. As a result, administrators face significant challenges in coordinating
-schedules, resolving conflicts, and ensuring that critical tasks are executed
-without disruption. The absence of a unified scheduling framework exacerbates
-these issues, leading to increased operational overhead and potential service
-degradation.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
-<p id="section-2.1-3">Furthermore, the dynamic nature of modern networks demands a flexible and adaptive
-scheduling solution that can respond to changing conditions and requirements.
-Existing scheduling approaches are often rigid and static, unable to accommodate
-the fluid demands of network services and applications. This rigidity hinders the
-ability to optimize resource use and respond proactively to network events,
-ultimately impacting the overall efficiency and effectiveness of network
-operations.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
-<p id="section-2.1-4">To address these challenges, there is a clear need for a standardized framework
-that can provide a cohesive approach to scheduling network resources. Such a
-framework should leverage existing YANG models to ensure compatibility and ease
-of integration with current network management practices. By standardizing the
-scheduling process, network operators can achieve greater predictability,
-reduce conflicts, and optimize the use of network resources, thereby
-enhancing the performance and reliability of their networks.<a href="#section-2.1-4" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="background">
-<section id="section-2.2">
-        <h3 id="name-background">
-<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-background" class="section-name selfRef">Background</a>
-        </h3>
-<p id="section-2.2-1">There is an existing framework <span>[<a href="#RFC8413" class="cite xref">RFC8413</a>]</span> for the use of scheduled resources.
-This document outlines a framework detailing the architecture for supporting
-the scheduled reservation of Traffic Engineering (TE) resources. It focuses
-on the conceptual and architectural aspects, without delving into
-specific protocols or protocol extensions required to implement this
-service.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
-<p id="section-2.2-2">More recently, the development of <span>[<a href="#I-D.ietf-netmod-schedule-yang" class="cite xref">I-D.ietf-netmod-schedule-yang</a>]</span>, which
-provides a common schedule YANG module is designed to be applicable for
-scheduling purposes such as event, policy, services, or resources based on date
-and time.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
-<p id="section-2.2-3">Along with with the common schedule YANG module, the document
-<span>[<a href="#I-D.ietf-opsawg-ucl-acl" class="cite xref">I-D.ietf-opsawg-ucl-acl</a>]</span> introduces a YANG data model for policy-based network
-access control. This model ensures consistent and efficient enforcement of
-network access control policies based on group identity.<a href="#section-2.2-3" class="pilcrow">¶</a></p>
-<p id="section-2.2-4">Combined, <span>[<a href="#I-D.ietf-netmod-schedule-yang" class="cite xref">I-D.ietf-netmod-schedule-yang</a>]</span> and <span>[<a href="#I-D.ietf-opsawg-ucl-acl" class="cite xref">I-D.ietf-opsawg-ucl-acl</a>]</span> provide
-powerful tools for the control and scheduling of network resources for several
-use cases, including key examples outlined in this document.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="functional-components">
-<section id="section-3">
-      <h2 id="name-functional-components">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-functional-components" class="section-name selfRef">Functional components</a>
-      </h2>
-<div id="scheduled-service-requester">
-<section id="section-3.1">
-        <h3 id="name-scheduled-service-requester">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-scheduled-service-requester" class="section-name selfRef">Scheduled Service Requester</a>
-        </h3>
-<p id="section-3.1-1">The entity requesting a resource schedule change can vary widely. For example,
-a network administrator may seek to restrict or limit access to specific network
-resources based on day or time to optimize performance and enhance security.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">Additionally, higher-layer OSS (Operations Support System) components may impose
-restrictions on network resources in response to changing network conditions,
-ensuring service continuity and compliance with operational policies. Automated
-systems and AI-driven components can also request dynamic adjustments based on
-real-time data, facilitating predictive maintenance and optimizing resource
-usage to maintain peak network efficiency.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="scheduled-service-responder">
-<section id="section-3.2">
-        <h3 id="name-scheduled-service-responder">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-scheduled-service-responder" class="section-name selfRef">Scheduled Service Responder</a>
-        </h3>
-<p id="section-3.2-1">The function of this central component is responsibility for managing and coordinating
-all network scheduling activities. There are several sub-components within this entity,
-including:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3.2-2.1">
-            <p id="section-3.2-2.1.1">Resource Manager: Manages the network resources that are subject to scheduling.<a href="#section-3.2-2.1.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-3.2-2.2">
-            <p id="section-3.2-2.2.1">Schedule Manager: Handles creation, modification, and deletion of schedules.<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-3.2-2.3">
-            <p id="section-3.2-2.3.1">Conflict Resolver: Detects and resolves scheduling conflicts based on predefined
-policies and priorities.<a href="#section-3.2-2.3.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-3.2-2.4">
-            <p id="section-3.2-2.4.1">Policy Engine: Enforces scheduling policies and rules, ensuring compliance with
-organizational requirements.<a href="#section-3.2-2.4.1" class="pilcrow">¶</a></p>
-</li>
-        </ul>
-<p id="section-3.2-3">Examples of a schedule service responder may be a network controller, network
-management system or the network device itself.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
-</section>
-</div>
 </section>
 </div>
 <div id="architecture">
-<section id="section-4">
+<section id="section-3">
       <h2 id="name-architecture">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-architecture" class="section-name selfRef">Architecture</a>
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-architecture" class="section-name selfRef">Architecture</a>
       </h2>
-<div class="alignLeft art-text artwork" id="section-4-1">
+<p id="section-3-1"><a href="#arch" class="auto internal xref">Figure 1</a> presents the referenced architecture for the control scheduling of
+network resources.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<span id="name-an-architecture-for-the-sch"></span><div id="arch">
+<figure id="figure-1">
+        <div class="alignCenter art-text artwork" id="section-3-2.1">
 <pre>
           +-------------------------------------------------+
           |            Schedule Service Requester           |
-          +-----+------------------------------------+------+
+          +-----+------------------------------------^------+
                 |                                    |
                 |Request                             |Response
                 |                                    |
-          +-----+------------------------------------+------+
+          +-----v------------------------------------+------+
           |            Schedule Service Responder           |
           |                                                 |
           |   +---------+                     +---------+   |
@@ -1425,247 +1389,340 @@ management system or the network device itself.<a href="#section-3.2-3" class="p
                                  |
                                  |
                                  |
-  +------------------------------+---------------------------------+
-  |              Network Resources and Inventory                   |
-  +----------------------------------------------------------------+
-</pre><a href="#section-4-1" class="pilcrow">¶</a>
+     +-----------------------------+-----------------------------+
+     |              Network Resources and Inventory              |
+     +-----------------------------------------------------------+
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-an-architecture-for-the-sch" class="selfRef">An Architecture for the Scheduled Network Scenarios</a>
+        </figcaption></figure>
+</div>
+<div id="functional-components">
+<section id="section-3.1">
+        <h3 id="name-functional-components">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-functional-components" class="section-name selfRef">Functional components</a>
+        </h3>
+<div id="scheduled-service-requester">
+<section id="section-3.1.1">
+          <h4 id="name-scheduled-service-requester">
+<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-scheduled-service-requester" class="section-name selfRef">Scheduled Service Requester</a>
+          </h4>
+<p id="section-3.1.1-1">The entity requesting a resource schedule change can vary widely. For example,
+a network administrator may seek to restrict or limit access to specific network
+resources based on day or time to optimize performance and enhance security.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-2">Additionally, higher-layer OSS (Operations Support System) components may impose
+restrictions on network resources in response to changing network conditions,
+ensuring service continuity and compliance with operational policies. Automated
+systems and AI-driven components can also request dynamic adjustments based on
+real-time data, facilitating predictive maintenance and optimizing resource
+usage to maintain peak network efficiency.<a href="#section-3.1.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="scheduled-service-responder">
+<section id="section-3.1.2">
+          <h4 id="name-scheduled-service-responder">
+<a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-scheduled-service-responder" class="section-name selfRef">Scheduled Service Responder</a>
+          </h4>
+<p id="section-3.1.2-1">The function of this central component is responsibility for managing and coordinating
+all network scheduling activities. There are several sub-components within this entity,
+including:<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1.2-2.1">
+              <p id="section-3.1.2-2.1.1">Resource Manager: Manages the network resources that are subject to scheduling.<a href="#section-3.1.2-2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.2-2.2">
+              <p id="section-3.1.2-2.2.1">Schedule Manager: Handles creation, modification, and deletion of schedules.<a href="#section-3.1.2-2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.2-2.3">
+              <p id="section-3.1.2-2.3.1">Conflict Resolver: Detects and resolves scheduling conflicts based on predefined
+policies and priorities.<a href="#section-3.1.2-2.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.2-2.4">
+              <p id="section-3.1.2-2.4.1">Policy Engine: Enforces scheduling policies and rules, ensuring compliance with
+organizational requirements.<a href="#section-3.1.2-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-3.1.2-3">Examples of a schedule service responder may be a network controller, network
+management system or the network device itself.<a href="#section-3.1.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
 </div>
 <div id="functional-interfaces">
-<section id="section-4.1">
+<section id="section-3.2">
         <h3 id="name-functional-interfaces">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-functional-interfaces" class="section-name selfRef">Functional Interfaces</a>
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-functional-interfaces" class="section-name selfRef">Functional Interfaces</a>
         </h3>
-<p id="section-4.1-1">To support the scheduling of network resources effectively, several
+<p id="section-3.2-1">To support the scheduling of network resources effectively, several
 functional interfaces are are required. These interfaces facilitate
 communication between different components of the network scheduling
-system, ensuring seamless integration and operation, these include:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+system, ensuring seamless integration and operation, these include:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.1-2.1">
-            <p id="section-4.1-2.1.1">Schedule Service Requestor API: Schedule resource creation,
+<li class="normal" id="section-3.2-2.1">
+            <p id="section-3.2-2.1.1">Schedule Service Requestor and Responder API: Schedule resource creation,
 modification, and deletion requests and responses. Querying of
-current and upcoming schedules, conflict and alert notifications.<a href="#section-4.1-2.1.1" class="pilcrow">¶</a></p>
+current and upcoming schedules, conflict and alert notifications.<a href="#section-3.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-4.1-2.2">
-            <p id="section-4.1-2.2.1">Schedule Service Responder to Network API: Manages interactions with
+          <li class="normal" id="section-3.2-2.2">
+            <p id="section-3.2-2.2.1">Schedule Service Responder and Network API: Manages interactions with
 the network resources and inventory systems. Capable of querying
 available resources, allocating and deallocating resources based on
-current schedule plan, and monitoring resource utilization.<a href="#section-4.1-2.2.1" class="pilcrow">¶</a></p>
+current schedule plan, and monitoring resource utilization.<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="data-sources">
-<section id="section-4.2">
+<section id="section-3.3">
         <h3 id="name-data-sources">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-data-sources" class="section-name selfRef">Data Sources</a>
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-data-sources" class="section-name selfRef">Data Sources</a>
         </h3>
-<p id="section-4.2-1">When scheduling network resources, a variety of data sources are
+<p id="section-3.3-1">When scheduling network resources, a variety of data sources are
 required to accurately assess the network state and make informed
 scheduling decisions. Here are examples data sources that will be
-required:<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+required:<a href="#section-3.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.2-2.1">
-            <p id="section-4.2-2.1.1">Network Topology Information: Connection details about the physical
+<li class="normal" id="section-3.3-2.1">
+            <p id="section-3.3-2.1.1">Network Topology Information: Connection details about the physical
 and logical layout of the network, including nodes, ports/links,
-and interconnections.<a href="#section-4.2-2.1.1" class="pilcrow">¶</a></p>
+and interconnections.<a href="#section-3.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-4.2-2.2">
-            <p id="section-4.2-2.2.1">Network Resource Inventory: A comprehensive list of deployed network
+          <li class="normal" id="section-3.3-2.2">
+            <p id="section-3.3-2.2.1">Network Resource Inventory: A comprehensive list of deployed network
 resources that are not currently in service, but may be availble if
-enabled.<a href="#section-4.2-2.2.1" class="pilcrow">¶</a></p>
+enabled.<a href="#section-3.3-2.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-4.2-2.3">
-            <p id="section-4.2-2.3.1">Current Network Utilization: Real-time data on the current usage of
+          <li class="normal" id="section-3.3-2.3">
+            <p id="section-3.3-2.3.1">Current Network Utilization: Real-time data on the current usage of
 network resources, including bandwidth consumption, CPU load,
-memory usage, and power consumption.<a href="#section-4.2-2.3.1" class="pilcrow">¶</a></p>
+memory usage, and power consumption.<a href="#section-3.3-2.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-4.2-2.4">
-            <p id="section-4.2-2.4.1">Historic Network Utilization: Past data on the current usage of network
+          <li class="normal" id="section-3.3-2.4">
+            <p id="section-3.3-2.4.1">Historic Network Utilization: Past data on the current usage of network
 resources, including bandwidth consumption, CPU load, memory usage,
-and power consumption.<a href="#section-4.2-2.4.1" class="pilcrow">¶</a></p>
+and power consumption.<a href="#section-3.3-2.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-4.2-2.5">
-            <p id="section-4.2-2.5.1">Scheduled Maintenance and Planned Outages: Information on planned
-maintenance activities, scheduled downtimes, and service windows.<a href="#section-4.2-2.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.3-2.5">
+            <p id="section-3.3-2.5.1">Scheduled Maintenance and Planned Outages: Information on planned
+maintenance activities, scheduled downtimes, and service windows.<a href="#section-3.3-2.5.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-4.2-3">It is critical to leverage these diverse data sources, so network
+<p id="section-3.3-3">It is critical to leverage these diverse data sources, so network
 administrators and automated systems can make well-informed scheduling
 decisions that optimize resource utilization, maintain network
-performance, and ensure service reliability.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="synchronization">
-<section id="section-4.3">
-        <h3 id="name-synchronization">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-synchronization" class="section-name selfRef">Synchronization</a>
-        </h3>
-<p id="section-4.3-1">It will be critical to ensure all network schedule entaties, including
-controllers and management systems are synchronized to a common time
-reference. Several methods are availible to achieve this.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+performance, and ensure service reliability.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="state-management">
-<section id="section-4.4">
+<section id="section-3.4">
         <h3 id="name-state-management">
-<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-state-management" class="section-name selfRef">State Management</a>
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-state-management" class="section-name selfRef">State Management</a>
         </h3>
-<p id="section-4.4-1">The scheduling state is maintained in the schedule manager, which is responsible
+<p id="section-3.4-1">The scheduling state is maintained in the schedule manager, which is responsible
 for the creation, deletion, modification, and query of scheduling information.
 Goupings "schedule-status" and "schedule-status-with-name" in the "ietf-schedule"
 yang module <span>[<a href="#I-D.ietf-netmod-schedule-yang" class="cite xref">I-D.ietf-netmod-schedule-yang</a>]</span> define common parameters for scheduling
-management/status exposure.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+management/status exposure.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="policy-and-enforcement">
-<section id="section-4.5">
+<section id="section-3.5">
         <h3 id="name-policy-and-enforcement">
-<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-policy-and-enforcement" class="section-name selfRef">Policy and Enforcement</a>
+<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-policy-and-enforcement" class="section-name selfRef">Policy and Enforcement</a>
         </h3>
-<p id="section-4.5-1">Policies are a set of rules to administer, manage, and control access to network
-resources. For example, the following shows an example of a scheduled ACL policy:<a href="#section-4.5-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-4.5-2">
+<p id="section-3.5-1">Policies are a set of rules to administer, manage, and control access to network
+resources. For example, the following shows an example of a scheduled ACL policy:<a href="#section-3.5-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3.5-2">
 <pre>
 drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00Z
-</pre><a href="#section-4.5-2" class="pilcrow">¶</a>
+</pre><a href="#section-3.5-2" class="pilcrow">¶</a>
 </div>
-<p id="section-4.5-3">A set of scheduling policies and rules are maintained in the policy engine,
+<p id="section-3.5-3">A set of scheduling policies and rules are maintained in the policy engine,
 which is responsible for the policy enforcement. Policies are triggered to execute
 at a certain time based on the scheduling prameters. Each policy might be executed
-multiple times, depending on the its scheduling type (one-shot vs. recurrence).<a href="#section-4.5-3" class="pilcrow">¶</a></p>
+multiple times, depending on the its scheduling type (one-shot vs. recurrence).<a href="#section-3.5-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="synchronization">
+<section id="section-3.6">
+        <h3 id="name-synchronization">
+<a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-synchronization" class="section-name selfRef">Synchronization</a>
+        </h3>
+<p id="section-3.6-1">It will be critical to ensure all network schedule entaties, including
+controllers and management systems are synchronized to a common time
+reference. Several methods are availible to achieve this.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="applicable-models-interfaces-and-dependencies">
-<section id="section-5">
+<section id="section-4">
       <h2 id="name-applicable-models-interface">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-applicable-models-interface" class="section-name selfRef">Applicable Models, Interfaces and Dependencies</a>
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-applicable-models-interface" class="section-name selfRef">Applicable Models, Interfaces and Dependencies</a>
       </h2>
 <div id="schedule-modules">
-<section id="section-5.1">
+<section id="section-4.1">
         <h3 id="name-yang-data-models">
-<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-yang-data-models" class="section-name selfRef">YANG Data Models</a>
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-yang-data-models" class="section-name selfRef">YANG Data Models</a>
         </h3>
-<p id="section-5.1-1">This document is not intended to define any YANG modules, but shows how existing
+<p id="section-4.1-1">This document is not intended to define any YANG modules, but shows how existing
 schedule-related YANG modules could fit into this framework. The following provides
 a list of applicable YANG modules that can be used to exchange data between schedule
-service requester and responder:<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+service requester and responder:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.1-2.1">
-            <p id="section-5.1-2.1.1">The "ietf-ucl-acl" YANG module defined in <span>[<a href="#I-D.ietf-opsawg-ucl-acl" class="cite xref">I-D.ietf-opsawg-ucl-acl</a>]</span> augments
+<li class="normal" id="section-4.1-2.1">
+            <p id="section-4.1-2.1.1">The "ietf-ucl-acl" YANG module defined in <span>[<a href="#I-D.ietf-opsawg-ucl-acl" class="cite xref">I-D.ietf-opsawg-ucl-acl</a>]</span> augments
 the IETF ACL model <span>[<a href="#RFC8519" class="cite xref">RFC8519</a>]</span> with schedule parameters to allow each access
-control entry (ACE) to be activated based on date and time conditions.<a href="#section-5.1-2.1.1" class="pilcrow">¶</a></p>
+control entry (ACE) to be activated based on date and time conditions.<a href="#section-4.1-2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-5.1-2.2">
-            <p id="section-5.1-2.2.1">The "ietf-tvr-node" YANG module in <span>[<a href="#I-D.ietf-tvr-schedule-yang" class="cite xref">I-D.ietf-tvr-schedule-yang</a>]</span> which works
+          <li class="normal" id="section-4.1-2.2">
+            <p id="section-4.1-2.2.1">The "ietf-tvr-node" YANG module in <span>[<a href="#I-D.ietf-tvr-schedule-yang" class="cite xref">I-D.ietf-tvr-schedule-yang</a>]</span> which works
 as a device model, is designed to manage a single node with scheduled
-attributes (e.g., powered on/off).<a href="#section-5.1-2.2.1" class="pilcrow">¶</a></p>
+attributes (e.g., powered on/off).<a href="#section-4.1-2.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-5.1-2.3">
-            <p id="section-5.1-2.3.1">The "ietf-tvr-topology" YANG module in <span>[<a href="#I-D.ietf-tvr-schedule-yang" class="cite xref">I-D.ietf-tvr-schedule-yang</a>]</span> is designed
+          <li class="normal" id="section-4.1-2.3">
+            <p id="section-4.1-2.3.1">The "ietf-tvr-topology" YANG module in <span>[<a href="#I-D.ietf-tvr-schedule-yang" class="cite xref">I-D.ietf-tvr-schedule-yang</a>]</span> is designed
 to manage the network topology with time-varying attributes
-(e.g., node/link availability, link bandwidth or delay).<a href="#section-5.1-2.3.1" class="pilcrow">¶</a></p>
+(e.g., node/link availability, link bandwidth or delay).<a href="#section-4.1-2.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-5.1-2.4">
-            <p id="section-5.1-2.4.1">The "ietf-oam-unitary-test" in <span>[<a href="#I-D.contreras-opsawg-scheduling-oam-tests" class="cite xref">I-D.contreras-opsawg-scheduling-oam-tests</a>]</span>
+          <li class="normal" id="section-4.1-2.4">
+            <p id="section-4.1-2.4.1">The "ietf-oam-unitary-test" in <span>[<a href="#I-D.contreras-opsawg-scheduling-oam-tests" class="cite xref">I-D.contreras-opsawg-scheduling-oam-tests</a>]</span>
 is defined to perform scheduled network diagnosis using
-(Operations, Administration, and Maintenance) OAM unitary test.<a href="#section-5.1-2.4.1" class="pilcrow">¶</a></p>
+(Operations, Administration, and Maintenance) OAM unitary test.<a href="#section-4.1-2.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-5.1-2.5">
-            <p id="section-5.1-2.5.1">The "ietf-oam-test-sequence" in <span>[<a href="#I-D.contreras-opsawg-scheduling-oam-tests" class="cite xref">I-D.contreras-opsawg-scheduling-oam-tests</a>]</span>
+          <li class="normal" id="section-4.1-2.5">
+            <p id="section-4.1-2.5.1">The "ietf-oam-test-sequence" in <span>[<a href="#I-D.contreras-opsawg-scheduling-oam-tests" class="cite xref">I-D.contreras-opsawg-scheduling-oam-tests</a>]</span>
 is defined to perform a collection of OAM unitary tests based on date and time
-constraints.<a href="#section-5.1-2.5.1" class="pilcrow">¶</a></p>
+constraints.<a href="#section-4.1-2.5.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-5.1-3">Additionally, <span>[<a href="#I-D.ietf-netmod-schedule-yang" class="cite xref">I-D.ietf-netmod-schedule-yang</a>]</span> defines "ietf-schedule" YANG
+<p id="section-4.1-3">Additionally, <span>[<a href="#I-D.ietf-netmod-schedule-yang" class="cite xref">I-D.ietf-netmod-schedule-yang</a>]</span> defines "ietf-schedule" YANG
 module for scheduling that works as common building blocks for YANG modules
-described in <a href="#schedule-modules" class="auto internal xref">Section 5.1</a>. The module doesn't define any
+described in <a href="#schedule-modules" class="auto internal xref">Section 4.1</a>. The module doesn't define any
 protocol-accessible nodes but a set of reusable groupings applicable to be used
-in any scheduling contexts.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+in any scheduling contexts.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="other-dependencies">
-<section id="section-5.2">
+<section id="section-4.2">
         <h3 id="name-other-dependencies">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-other-dependencies" class="section-name selfRef">Other Dependencies</a>
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-other-dependencies" class="section-name selfRef">Other Dependencies</a>
         </h3>
-<p id="section-5.2-1">[Qiufang] and [Dan]<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-1">[Qiufang] and [Dan]<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="use-cases-with-detailed-code-examples">
-<section id="section-6">
+<section id="section-5">
       <h2 id="name-use-cases-with-detailed-cod">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-use-cases-with-detailed-cod" class="section-name selfRef">Use Cases with detailed Code Examples</a>
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-use-cases-with-detailed-cod" class="section-name selfRef">Use Cases with detailed Code Examples</a>
       </h2>
-<p id="section-6-1">[Qiufang] We just need one or two examples for first version. We can
-provide detailed code examples to be added in future versions, assuming
-this is a useful document the working group would like to work on.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <div id="scheduling-oam-tests-attestation">
-<section id="section-6.1">
+<section id="section-5.1">
         <h3 id="name-scheduling-oam-tests-attest">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-scheduling-oam-tests-attest" class="section-name selfRef">Scheduling OAM Tests (Attestation)</a>
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-scheduling-oam-tests-attest" class="section-name selfRef">Scheduling OAM Tests (Attestation)</a>
         </h3>
-<p id="section-6.1-1">[Qiufang] Scheduled OAM Test Example<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-1">Operations, Administration, and Maintenance (OAM) are important networking functions
+for network monitoring and troubleshooting, as well as service-level agreements
+and performance monitoring. Some actions might need to be executed repeatedly or
+at a specific future time to carry out diagnostics. Scheduling-based OAM tools
+are able to invoke a specific OAM unitary test or a sequence of OAM tests based
+on some time-varying parameters, e.g., at a precise future time or repeatedly
+occcur at specific intervals.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">Suppose the following fictional module is used:
+~~~~
+module example-oam-tests {
+  yang-version 1.1;
+  namespace "urn:example:oam-tests";
+  prefix "ex-oam";<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">import ietf-schedule {
+    prefix "schedule";
+  }
+  list oam-test {
+    key "test-name";
+    leaf test-name {
+      type string;
+    }
+    uses schedule:recurrence-utc;
+  }
+}
+~~~~<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1-4">The following indicates the example of a scheduling OAM traceroute test that is
+executed at 3:00 AM, every other day, from December 1, 2025 in UTC.
+The JSON encoding is used only for illustration purposes.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.1-5">
+<pre>
+{
+    "example-oam-tests:oam-test": [
+        {
+            "test-name": "traceroute",
+            "recurrence-first": {
+                "utc-start-time": "2025-12-01T03:00:00Z"
+            },
+            "frequency": "ietf-schedule:daily",
+            "interval": 2
+        }
+    ]
+}
+</pre><a href="#section-5.1-5" class="pilcrow">¶</a>
+</div>
 </section>
 </div>
 <div id="time-variant-networking-energy-efficient">
-<section id="section-6.2">
+<section id="section-5.2">
         <h3 id="name-time-variant-networking-ene">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-time-variant-networking-ene" class="section-name selfRef">Time Variant Networking (Energy Efficient)</a>
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-time-variant-networking-ene" class="section-name selfRef">Time Variant Networking (Energy Efficient)</a>
         </h3>
-<p id="section-6.2-1">[Dan] Tidal Example
-The tidal network means the volume of traffic in the network changes
+<p id="section-5.2-1">The tidal network means the volume of traffic in the network changes
 periodically like the ocean tide. This changes are mainly affected by
 human activities. Therefore, this tidal effect is obvious in human-populated
-areas, such as campuses and airport.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.2-2">In the context of a tidal network, If the network maintains all the devices
+areas, such as campuses and airport.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">In the context of a tidal network, If the network maintains all the devices
 up to guarantee the maximum throughput all the time, a lot of power will be
 wasted. The energy-saving methods may include the deactivation of some or all
 components of network nodes. These activities have the potential to alter
 network topology and impact data routing in a variety of ways.  Ports on
 network nodes can be selectively disabled or enabled based on traffic patterns,
 thereby reducing the energy consumption of nodes during periods of low network
-traffic.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
-<p id="section-6.2-3">Applicable YANG Models[TBD]<a href="#section-6.2-3" class="pilcrow">¶</a></p>
+traffic.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="manageability-considerations">
-<section id="section-7">
+<section id="section-6">
       <h2 id="name-manageability-consideration">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-manageability-consideration" class="section-name selfRef">Manageability Considerations</a>
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-manageability-consideration" class="section-name selfRef">Manageability Considerations</a>
       </h2>
-<p id="section-7-1">[Dan] Basic management and operational considerations for 00 version.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">[Dan] Basic management and operational considerations for 00 version.<a href="#section-6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
-<section id="section-8">
+<section id="section-7">
       <h2 id="name-security-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-8-1">[Dan] Basic security text for 00 version.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">[Dan] Basic security text for 00 version.<a href="#section-7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-9">
+<section id="section-8">
       <h2 id="name-iana-considerations">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-9-1">This document has no IANA actions.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<p id="section-8-1">This document has no IANA actions.<a href="#section-8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<section id="section-10">
+<section id="section-9">
       <h2 id="name-references">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
 <div id="sec-normative-references">
-<section id="section-10.1">
+<section id="section-9.1">
         <h3 id="name-normative-references">
-<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
@@ -1680,9 +1737,9 @@ traffic.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-informative-references">
-<section id="section-10.2">
+<section id="section-9.2">
         <h3 id="name-informative-references">
-<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="I-D.contreras-opsawg-scheduling-oam-tests">[I-D.contreras-opsawg-scheduling-oam-tests]</dt>
@@ -1700,6 +1757,10 @@ traffic.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
 <dt id="I-D.ietf-tvr-schedule-yang">[I-D.ietf-tvr-schedule-yang]</dt>
         <dd>
 <span class="refAuthor">Qu, Y.</span>, <span class="refAuthor">Lindem, A.</span>, <span class="refAuthor">Kinzie, E.</span>, <span class="refAuthor">Fedyk, D.</span>, and <span class="refAuthor">M. Blanchet</span>, <span class="refTitle">"YANG Data Model for Scheduled Attributes"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-tvr-schedule-yang-00</span>, <time datetime="2024-04-16" class="refDate">16 April 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-tvr-schedule-yang-00">https://datatracker.ietf.org/doc/html/draft-ietf-tvr-schedule-yang-00</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.united-tvr-schedule-yang">[I-D.united-tvr-schedule-yang]</dt>
+        <dd>
+<span class="refAuthor">Qu, Y.</span>, <span class="refAuthor">Lindem, A.</span>, <span class="refAuthor">Kinzie, E.</span>, <span class="refAuthor">Fedyk, D.</span>, and <span class="refAuthor">M. Blanchet</span>, <span class="refTitle">"YANG Data Model for Scheduled Attributes"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-united-tvr-schedule-yang-01</span>, <time datetime="2024-03-03" class="refDate">3 March 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-united-tvr-schedule-yang-01">https://datatracker.ietf.org/doc/html/draft-united-tvr-schedule-yang-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8413">[RFC8413]</dt>
         <dd>
