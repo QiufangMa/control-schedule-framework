@@ -131,19 +131,19 @@ on the conceptual and architectural aspects, without delving into
 specific protocols or protocol extensions required to implement this
 service.
 
-More recently, the development of {{?I-D.ietf-netmod-schedule-yang}}, which
-provides a common schedule YANG module is designed to be applicable for
-scheduling purposes such as event, policy, services, or resources based on date
-and time.
+More recently, several specifications include a provision for scheduling.
+Examples of such specifications are (but not limited to) {{?I-D.ietf-opsawg-ucl-acl}},
+{{?I-D.contreras-opsawg-scheduling-oam-tests}}, and {{?I-D.united-tvr-schedule-yang}}.
+The development of {{?I-D.ietf-netmod-schedule-yang}} is intended to be served
+as common building blocks and provides a common schedule YANG module that can be
+reused in scheduling contexts such as event, policy, services, or resources based
+on date and time.
 
-Along with with the common schedule YANG module, the document
-{{?I-D.ietf-opsawg-ucl-acl}} introduces a YANG data model for policy-based network
-access control. This model ensures consistent and efficient enforcement of
-network access control policies based on group identity.
-
-Combined, {{?I-D.ietf-netmod-schedule-yang}} and {{?I-D.ietf-opsawg-ucl-acl}} provide
-powerful tools for the control and scheduling of network resources for several
-use cases, including key examples outlined in this document.
+Combined, {{?I-D.ietf-netmod-schedule-yang}} and other documents built on top of
+it (e.g., {{?I-D.ietf-opsawg-ucl-acl}}, {{?I-D.contreras-opsawg-scheduling-oam-tests}},
+and {{?I-D.united-tvr-schedule-yang}}) provide powerful capabilities for the control and
+scheduling of network resources for several use cases, including key examples
+outlined in this document.
 
 # Functional components
 
