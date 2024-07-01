@@ -4,8 +4,8 @@
 
 OPSAWG                                                        Y. N. Here
 Internet-Draft                                    Your Organization Here
-Intended status: Informational                              29 June 2024
-Expires: 31 December 2024
+Intended status: Informational                               1 July 2024
+Expires: 2 January 2025
 
 
       A Framework for the Control Scheduling of Network Resources
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 December 2024.
+   This Internet-Draft will expire on 2 January 2025.
 
 Copyright Notice
 
@@ -407,7 +407,49 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
 
 4.2.  Other Dependencies
 
-   [Qiufang] and [Dan]
+   This sections presents some outstanding dependencies that need to be
+   considered when deploying the scheduling mechanism.  This may not be
+   exhaustive.
+
+   ### Access Control
+
+   Access control ensures only authorized control entities can have
+   access to schedule information, including querying, creation,
+   modification, and deletion of schedules.  Unauthorized access may
+   lead to unintended consequences.
+
+   The Network Access Control Model (NACM) [RFC8341] provides standard
+   mechanisms to restrict access for particular uses to a preconfigured
+   subset of all available NETCONF or RESTCONF protocol operations and
+   content.
+
+   ### Atomic Operations
+
+   Atomic operations are guarateed to be either executed completely or
+   not executed at all.  Deployments based on scheduling must ensure
+   schedule changes based on recurrence rules are applied as atomic
+   transactions.  Either all changes are successfully applied, or none
+   at all.  For example, a network policy may be scheduled to be active
+   every Tuesday in January of 2025.  If the schedule is changed to
+   every Wednesday in January 2025, the recurrence set is changed from
+   January 7, 14, 21, 28 to January 1, 8, 15, 22, 29.  If some
+   occurrences can not be applied successfully (e.g., January 1 cannot
+   be scheduled because of conflict), the others in the recurrence set
+   will not be applied as well.
+
+   In addition, the scheduling management of network events, policies,
+   services, and resources may involve operations that are performed at
+   particular future time(s).  Multiple operations might be involved for
+   each instance in the recurrence set, either all operations are
+   successfully performed, or none at all.
+
+   ### Rollback Mechanism
+
+   Rollback mechanism is useful to ensure that in case of an error, the
+   system can revert back to its previous state.  Deployments are
+   required to save the checkpoints (manually or automatically) of
+   network scheduling activities that can be used for rollback when
+   necessary, to maintain network stability.
 
 5.  Use Cases with detailed Code Examples
 
@@ -422,13 +464,24 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
    based on some time-varying parameters, e.g., at a precise future time
    or repeatedly occcur at specific intervals.
 
-   Suppose the following fictional module is used: ~~~~ module example-
-   oam-tests { yang-version 1.1; namespace "urn:example:oam-tests";
-   prefix "ex-oam";
+   Suppose the following fictional module is used:
 
-   import ietf-schedule { prefix "schedule"; } list oam-test { key
-   "test-name"; leaf test-name { type string; } uses
-   schedule:recurrence-utc; } } ~~~~
+   module example-oam-tests {
+     yang-version 1.1;
+     namespace "urn:example:oam-tests";
+     prefix "ex-oam";
+
+     import ietf-schedule {
+       prefix "schedule";
+     }
+     list oam-test {
+       key "test-name";
+       leaf test-name {
+         type string;
+       }
+       uses schedule:recurrence-utc;
+     }
+   }
 
    The following indicates the example of a scheduling OAM traceroute
    test that is executed at 3:00 AM, every other day, from December 1,
@@ -529,6 +582,11 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
               yang-01, 3 March 2024,
               <https://datatracker.ietf.org/doc/html/draft-united-tvr-
               schedule-yang-01>.
+
+   [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
+              Access Control Model", STD 91, RFC 8341,
+              DOI 10.17487/RFC8341, March 2018,
+              <https://www.rfc-editor.org/rfc/rfc8341>.
 
    [RFC8413]  Zhuang, Y., Wu, Q., Chen, H., and A. Farrel, "Framework
               for Scheduled Use of Resources", RFC 8413,
