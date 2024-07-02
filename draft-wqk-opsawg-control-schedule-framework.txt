@@ -73,6 +73,7 @@ Table of Contents
      5.1.  Scheduling OAM Tests (Attestation)
      5.2.  Time Variant Networking (Energy Efficient)
    6.  Manageability Considerations
+     6.1.  Multiple Schedule Service Requesters
    7.  Security Considerations
    8.  IANA Considerations
    9.  References
@@ -274,8 +275,8 @@ Table of Contents
    *  Resource Manager: Manages the network resources that are subject
       to scheduling.
 
-   *  Schedule Manager: Handles creation, modification, and deletion of
-      schedules.
+   *  Schedule Manager: Handles creation, modification, deletion, and
+      querying of schedules.
 
    *  Conflict Resolver: Detects and resolves scheduling conflicts based
       on predefined policies and priorities.
@@ -520,7 +521,16 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
 
 6.  Manageability Considerations
 
-   [Dan] Basic management and operational considerations for 00 version.
+6.1.  Multiple Schedule Service Requesters
+
+   This document does not make any assumption about the number of
+   schedule service requester entities that interact with schedule
+   service responder.  This means that multiple schedule service
+   requesters may send requests to the responder to schedule the same
+   network resources, which may lead to conflicts.  If scheduling
+   conflicts occur, some predefined policies or priorities may be useful
+   to reflect how schedules from different sources should be
+   prioritized.
 
 7.  Security Considerations
 

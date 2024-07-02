@@ -1191,6 +1191,11 @@ reliability and performance of network services.<a href="#section-abstract-1" cl
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-manageability-consideration" class="internal xref">Manageability Considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-multiple-schedule-service-r" class="internal xref">Multiple Schedule Service Requesters</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
@@ -1432,7 +1437,7 @@ including:<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
               <p id="section-3.1.2-2.1.1">Resource Manager: Manages the network resources that are subject to scheduling.<a href="#section-3.1.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.1.2-2.2">
-              <p id="section-3.1.2-2.2.1">Schedule Manager: Handles creation, modification, and deletion of schedules.<a href="#section-3.1.2-2.2.1" class="pilcrow">¶</a></p>
+              <p id="section-3.1.2-2.2.1">Schedule Manager: Handles creation, modification, deletion, and querying of schedules.<a href="#section-3.1.2-2.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.1.2-2.3">
               <p id="section-3.1.2-2.3.1">Conflict Resolver: Detects and resolves scheduling conflicts based on predefined
@@ -1726,7 +1731,19 @@ traffic.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
       <h2 id="name-manageability-consideration">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-manageability-consideration" class="section-name selfRef">Manageability Considerations</a>
       </h2>
-<p id="section-6-1">[Dan] Basic management and operational considerations for 00 version.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<div id="multiple-schedule-service-requesters">
+<section id="section-6.1">
+        <h3 id="name-multiple-schedule-service-r">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-multiple-schedule-service-r" class="section-name selfRef">Multiple Schedule Service Requesters</a>
+        </h3>
+<p id="section-6.1-1">This document does not make any assumption about the number of schedule service
+requester entities that interact with schedule service responder. This means that
+multiple schedule service requesters may send requests to the responder to schedule
+the same network resources, which may lead to conflicts. If scheduling conflicts
+occur, some predefined policies or priorities may be useful to reflect how
+schedules from different sources should be prioritized.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="security-considerations">
