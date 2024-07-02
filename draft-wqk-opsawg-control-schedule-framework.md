@@ -211,7 +211,7 @@ all network scheduling activities. There are several sub-components within this 
 including:
 
  * Resource Manager: Manages the network resources that are subject to scheduling.
- * Schedule Manager: Handles creation, modification, and deletion of schedules.
+ * Schedule Manager: Handles creation, modification, deletion, and querying of schedules.
  * Conflict Resolver: Detects and resolves scheduling conflicts based on predefined
    policies and priorities.
  * Policy Engine: Enforces scheduling policies and rules, ensuring compliance with
@@ -439,7 +439,14 @@ traffic.
 
 # Manageability Considerations
 
-[Dan] Basic management and operational considerations for 00 version.
+## Multiple Schedule Service Requesters
+
+This document does not make any assumption about the number of schedule service
+requester entities that interact with schedule service responder. This means that
+multiple schedule service requesters may send requests to the responder to schedule
+the same network resources, which may lead to conflicts. If scheduling conflicts
+occur, some predefined policies or priorities may be useful to reflect how
+schedules from different sources should be prioritized.
 
 # Security Considerations
 
