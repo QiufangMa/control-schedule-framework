@@ -332,7 +332,42 @@ in any scheduling contexts.
 
 ## Other Dependencies
 
-[Qiufang] and [Dan]
+This sections presents some outstanding dependencies that need to be considered
+when deploying the scheduling mechanism. This may not be exhaustive.
+
+ ### Access Control
+
+Access control ensures only authorized control entities can have access to schedule
+information, including querying, creation, modification, and deletion of schedules.
+Unauthorized access may lead to unintended consequences.
+
+The Network Access Control Model (NACM) {{?RFC8341}} provides standard mechanisms
+to restrict access for particular uses to a preconfigured subset of all available
+NETCONF or RESTCONF protocol operations and content.
+
+ ### Atomic Operations
+
+Atomic operations are guarateed to be either executed completely or not executed
+at all. Deployments based on scheduling must ensure schedule changes based on
+recurrence rules are applied as atomic transactions. Either all changes are
+successfully applied, or none at all. For example, a network policy may be
+scheduled to be active every Tuesday in January of 2025. If the schedule is changed
+to every Wednesday in January 2025, the recurrence set is changed from
+January 7, 14, 21, 28 to January 1, 8, 15, 22, 29. If some occurrences can
+not be applied successfully (e.g., January 1 cannot be scheduled because of conflict),
+the others in the recurrence set will not be applied as well.
+
+In addition, the scheduling management of network events, policies, services, and
+resources may involve operations that are performed at particular future time(s).
+Multiple operations might be involved for each instance in the recurrence set,
+either all operations are successfully performed, or none at all.
+
+ ### Rollback Mechanism
+
+Rollback mechanism is useful to ensure that in case of an error, the system can
+revert back to its previous state. Deployments are required to save the
+checkpoints (manually or automatically) of network scheduling activities that
+can be used for rollback when necessary, to maintain network stability.
 
 # Use Cases with detailed Code Examples
 
