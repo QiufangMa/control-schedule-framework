@@ -1246,7 +1246,7 @@ deploying control mechanisms for scheduling of network resources, including:<a h
           <p id="section-1-5.2.1">How to apply policy and detect and resolve conflicts?<a href="#section-1-5.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-5.3">
-          <p id="section-1-5.3.1">Ensuring synchronization of scheduled resources across distributed systems<a href="#section-1-5.3.1" class="pilcrow">¶</a></p>
+          <p id="section-1-5.3.1">Ensuring synchronization of scheduled resources across distributed systems.<a href="#section-1-5.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-5.4">
           <p id="section-1-5.4.1">Establishing a scalable and resilient scheduling system.<a href="#section-1-5.4.1" class="pilcrow">¶</a></p>
@@ -1258,15 +1258,15 @@ with numerous resources and scheduling requests?<a href="#section-1-5.5.1" class
         <li class="normal" id="section-1-5.6">
           <p id="section-1-5.6.1">How to ensure the scheduling system remains operational and can recover from
 failures or disruptions, providing redundancy, failover mechanisms, and
-robust error handling.<a href="#section-1-5.6.1" class="pilcrow">¶</a></p>
+robust error handling?<a href="#section-1-5.6.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-5.7">
-          <p id="section-1-5.7.1">Security scheduled resources<a href="#section-1-5.7.1" class="pilcrow">¶</a></p>
+          <p id="section-1-5.7.1">How to secure scheduled resources?<a href="#section-1-5.7.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-5.8">
           <p id="section-1-5.8.1">What mechanisms and policies could be applied to protect scheduling data
 and operations from unauthorized access and ensuring that only authorized
-entities can create, modify, or view schedules?<a href="#section-1-5.8.1" class="pilcrow">¶</a></p>
+entities can create, modify, or retrieve schedules?<a href="#section-1-5.8.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-1-6">This document presents a comprehensive framework that elucidates various
@@ -1455,7 +1455,7 @@ management system or the network device itself.<a href="#section-3.1.2-3" class=
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-functional-interfaces" class="section-name selfRef">Functional Interfaces</a>
         </h3>
 <p id="section-3.2-1">To support the scheduling of network resources effectively, several
-functional interfaces are are required. These interfaces facilitate
+functional interfaces are required. These interfaces facilitate
 communication between different components of the network scheduling
 system, ensuring seamless integration and operation, these include:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -1490,7 +1490,7 @@ and interconnections.<a href="#section-3.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.3-2.2">
             <p id="section-3.3-2.2.1">Network Resource Inventory: A comprehensive list of deployed network
-resources that are not currently in service, but may be availble if
+resources that are not currently in service, but may be available if
 enabled.<a href="#section-3.3-2.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.3-2.3">
@@ -1521,7 +1521,7 @@ performance, and ensure service reliability.<a href="#section-3.3-3" class="pilc
         </h3>
 <p id="section-3.4-1">The scheduling state is maintained in the schedule manager, which is responsible
 for the creation, deletion, modification, and query of scheduling information.
-Goupings "schedule-status" and "schedule-status-with-name" in the "ietf-schedule"
+Groupings "schedule-status" and "schedule-status-with-name" in the "ietf-schedule"
 yang module <span>[<a href="#I-D.ietf-netmod-schedule-yang" class="cite xref">I-D.ietf-netmod-schedule-yang</a>]</span> define common parameters for scheduling
 management/status exposure.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
 </section>
@@ -1540,7 +1540,7 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
 </div>
 <p id="section-3.5-3">A set of scheduling policies and rules are maintained in the policy engine,
 which is responsible for the policy enforcement. Policies are triggered to execute
-at a certain time based on the scheduling prameters. Each policy might be executed
+at a certain time based on the scheduling parameters. Each policy might be executed
 multiple times, depending on the its scheduling type (one-shot vs. recurrence).<a href="#section-3.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1549,9 +1549,9 @@ multiple times, depending on the its scheduling type (one-shot vs. recurrence).<
         <h3 id="name-synchronization">
 <a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-synchronization" class="section-name selfRef">Synchronization</a>
         </h3>
-<p id="section-3.6-1">It will be critical to ensure all network schedule entaties, including
+<p id="section-3.6-1">It will be critical to ensure all network schedule entities, including
 controllers and management systems are synchronized to a common time
-reference. Several methods are availible to achieve this.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
+reference. Several methods are available to achieve this.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1619,7 +1619,7 @@ Unauthorized access may lead to unintended consequences.<a href="#section-4.2-3"
 to restrict access for particular uses to a preconfigured subset of all available
 NETCONF or RESTCONF protocol operations and content.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 <p id="section-4.2-5">### Atomic Operations<a href="#section-4.2-5" class="pilcrow">¶</a></p>
-<p id="section-4.2-6">Atomic operations are guarateed to be either executed completely or not executed
+<p id="section-4.2-6">Atomic operations are guaranteed to be either executed completely or not executed
 at all. Deployments based on scheduling must ensure schedule changes based on
 recurrence rules are applied as atomic transactions. Either all changes are
 successfully applied, or none at all. For example, a network policy may be
@@ -1657,7 +1657,7 @@ and performance monitoring. Some actions might need to be executed repeatedly or
 at a specific future time to carry out diagnostics. Scheduling-based OAM tools
 are able to invoke a specific OAM unitary test or a sequence of OAM tests based
 on some time-varying parameters, e.g., at a precise future time or repeatedly
-occcur at specific intervals.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+occur at specific intervals.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.1-2">Suppose the following fictional module is used:<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5.1-3">
 <pre>
