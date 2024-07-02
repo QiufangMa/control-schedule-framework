@@ -183,9 +183,9 @@ network resources.
                                  |
                                  |
                                  |
-     +-----------------------------+-----------------------------+
-     |              Network Resources and Inventory              |
-     +-----------------------------------------------------------+
+     +---------------------------+-----------------------------+
+     |              Network Resources and Inventory            |
+     +---------------------------------------------------------+
 ~~~~
 {: #arch title="An Architecture for the Scheduled Network Scenarios" artwork-align="center"}
 
