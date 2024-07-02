@@ -62,7 +62,7 @@ deploying control mechanisms for scheduling of network resources, including:
 
  * How to apply policy and detect and resolve conflicts?
 
- * Ensuring synchronization of scheduled resources across distributed systems
+ * Ensuring synchronization of scheduled resources across distributed systems.
 
  * Establishing a scalable and resilient scheduling system.
 
@@ -71,13 +71,13 @@ deploying control mechanisms for scheduling of network resources, including:
 
  * How to ensure the scheduling system remains operational and can recover from
    failures or disruptions, providing redundancy, failover mechanisms, and
-   robust error handling.
+   robust error handling?
 
- * Security scheduled resources
+ * How to secure scheduled resources?
 
  * What mechanisms and policies could be applied to protect scheduling data
    and operations from unauthorized access and ensuring that only authorized
-   entities can create, modify, or view schedules?
+   entities can create, modify, or retrieve schedules?
 
 This document presents a comprehensive framework that elucidates various
 scheduled resource scenarios and identifies the entities involved in
@@ -223,7 +223,7 @@ management system or the network device itself.
 ## Functional Interfaces
 
 To support the scheduling of network resources effectively, several
-functional interfaces are are required. These interfaces facilitate
+functional interfaces are required. These interfaces facilitate
 communication between different components of the network scheduling
 system, ensuring seamless integration and operation, these include:
 
@@ -248,7 +248,7 @@ required:
    and interconnections.
 
  * Network Resource Inventory: A comprehensive list of deployed network
-   resources that are not currently in service, but may be availble if
+   resources that are not currently in service, but may be available if
    enabled.
 
  * Current Network Utilization: Real-time data on the current usage of
@@ -271,7 +271,7 @@ performance, and ensure service reliability.
 
 The scheduling state is maintained in the schedule manager, which is responsible
 for the creation, deletion, modification, and query of scheduling information.
-Goupings "schedule-status" and "schedule-status-with-name" in the "ietf-schedule"
+Groupings "schedule-status" and "schedule-status-with-name" in the "ietf-schedule"
 yang module {{?I-D.ietf-netmod-schedule-yang}} define common parameters for scheduling
 management/status exposure.
 
@@ -286,14 +286,14 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
 
 A set of scheduling policies and rules are maintained in the policy engine,
 which is responsible for the policy enforcement. Policies are triggered to execute
-at a certain time based on the scheduling prameters. Each policy might be executed
+at a certain time based on the scheduling parameters. Each policy might be executed
 multiple times, depending on the its scheduling type (one-shot vs. recurrence).
 
 ## Synchronization
 
-It will be critical to ensure all network schedule entaties, including
+It will be critical to ensure all network schedule entities, including
 controllers and management systems are synchronized to a common time
-reference. Several methods are availible to achieve this.
+reference. Several methods are available to achieve this.
 
 # Applicable Models, Interfaces and Dependencies
 
@@ -347,7 +347,7 @@ NETCONF or RESTCONF protocol operations and content.
 
  ### Atomic Operations
 
-Atomic operations are guarateed to be either executed completely or not executed
+Atomic operations are guaranteed to be either executed completely or not executed
 at all. Deployments based on scheduling must ensure schedule changes based on
 recurrence rules are applied as atomic transactions. Either all changes are
 successfully applied, or none at all. For example, a network policy may be
@@ -379,7 +379,7 @@ and performance monitoring. Some actions might need to be executed repeatedly or
 at a specific future time to carry out diagnostics. Scheduling-based OAM tools
 are able to invoke a specific OAM unitary test or a sequence of OAM tests based
 on some time-varying parameters, e.g., at a precise future time or repeatedly
-occcur at specific intervals.
+occur at specific intervals.
 
 Suppose the following fictional module is used:
 
