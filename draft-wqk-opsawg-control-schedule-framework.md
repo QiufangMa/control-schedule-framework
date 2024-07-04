@@ -59,6 +59,13 @@ challenges such as conflict resolution, priority handling, and
 synchronization of scheduled tasks, ultimately enhancing the
 reliability and performance of network services.
 
+Key use cases highlight how the framework may be used for scheduled resource
+scenarios. The document highlights the required data models and protocols to
+provide function. The required IETF YANG model is described where possible,
+and the specific code needed for function or to report information is also
+provided. In future versions of this document, an appendix will also provide
+JSON running code examples.
+
 --- middle
 
 # Introduction
@@ -108,6 +115,9 @@ requesting resource schedule changes. It also addresses additional
 challenges such as conflict resolution, priority handling, and
 synchronization of scheduled tasks, ultimately enhancing the
 reliability and performance of network services.
+
+[Editors Note] In future versions of this document, an appendix will also
+provide JSON running code examples.
 
 ## Problem Statement
 
