@@ -182,6 +182,15 @@ outlined in this document.
 
 {::boilerplate bcp14-tagged}
 
+# Terminology
+
+The following terminology is used in this document. 
+
+Schedule Service Requester: 
+Schedule Service Responder:
+Schedule Manager: 
+Policy Engine: 
+
 # Architecture
 
 {{arch}} presents the referenced architecture for the control scheduling of
