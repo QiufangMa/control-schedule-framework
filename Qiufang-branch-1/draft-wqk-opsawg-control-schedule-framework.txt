@@ -2,10 +2,14 @@
 
 
 
-OPSAWG                                                        Y. N. Here
-Internet-Draft                                    Your Organization Here
-Intended status: Informational                               2 July 2024
-Expires: 3 January 2025
+OPSAWG                                                        Q. Ma, Ed.
+Internet-Draft                                                     Q. Wu
+Intended status: Informational                                    Huawei
+Expires: 5 January 2025                                     D. King, Ed.
+                                                    Lancaster University
+                                                                L. Zhang
+                                                                  Huawei
+                                                             4 July 2024
 
 
       A Framework for the Control Scheduling of Network Resources
@@ -35,7 +39,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 January 2025.
+   This Internet-Draft will expire on 5 January 2025.
 
 Copyright Notice
 
@@ -80,7 +84,7 @@ Table of Contents
      9.1.  Normative References
      9.2.  Informative References
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -361,10 +365,12 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
 
 3.6.  Synchronization
 
-   It will be critical to ensure all network schedule entities,
-   including controllers and management systems are synchronized to a
-   common time reference.  Several methods are available to achieve
-   this.
+   It is critical to ensure all network schedule entities, including
+   controllers and management systems are synchronized to a common time
+   reference.  System instability and unpredictability might be caused
+   if there is any time inconsistencies between entities that request/
+   respond to policies or events based on time-varying parameters.
+   Several methods are available to achieve this.
 
 4.  Applicable Models, Interfaces and Dependencies
 
@@ -534,7 +540,13 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
 
 7.  Security Considerations
 
-   [Dan] Basic security text for 00 version.
+   Time synchronization may potentially lead to security threats, e.g.,
+   attackers may modify the system time and it thus causes time
+   inconsistencies and affects the normal functionalities for managing
+   and coordinating network scheduling activities.  In addition, care
+   must be taken when defining recurrences occurring very often and
+   frequent that can be an additional source of attacks by keeping the
+   system permanently busy with the management of scheduling.
 
 8.  IANA Considerations
 
@@ -612,8 +624,32 @@ Acknowledgments
 
    TODO acknowledge.
 
-Author's Address
+Authors' Addresses
 
-   Your Name Here
-   Your Organization Here
-   Email: your.email@example.com
+   Qiufang Ma (editor)
+   Huawei
+   101 Software Avenue, Yuhua District
+   Nanjing, Jiangsu
+   210012
+   China
+   Email: maqiufang1@huawei.com
+
+
+   Qin Wu
+   Huawei
+   101 Software Avenue, Yuhua District
+   Nanjing, Jiangsu
+   210012
+   China
+   Email: bill.wu@huawei.com
+
+
+   Daniel King (editor)
+   Lancaster University
+   United Kingdom
+   Email: d.king@lancaster.ac.uk
+
+
+   Li Zhang
+   Huawei
+   Email: zhangli344@huawei.com
