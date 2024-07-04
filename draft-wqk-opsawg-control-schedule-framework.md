@@ -17,10 +17,33 @@ keyword:
  - YANG module
 
 author:
- -
-    fullname: Your Name Here
-    organization: Your Organization Here
-    email: your.email@example.com
+-
+   fullname: Qiufang Ma
+   organization: Huawei
+   role: editor
+   street: 101 Software Avenue, Yuhua District
+   city: Nanjing, Jiangsu
+   code: 210012
+   country: China
+   email: maqiufang1@huawei.com
+-
+   fullname: Qin Wu
+   organization: Huawei
+   street: 101 Software Avenue, Yuhua District
+   city: Nanjing, Jiangsu
+   code: 210012
+   country: China
+   email: bill.wu@huawei.com
+-
+  fullname: Daniel King
+  organization: Lancaster University
+  role: editor
+  country: United Kingdom
+  email: d.king@lancaster.ac.uk
+-
+  fullname: Li Zhang
+  organization: Huawei
+  email: zhangli344@huawei.com
 
 normative:
 
@@ -291,9 +314,12 @@ multiple times, depending on the its scheduling type (one-shot vs. recurrence).
 
 ## Synchronization
 
-It will be critical to ensure all network schedule entities, including
+It is critical to ensure all network schedule entities, including
 controllers and management systems are synchronized to a common time
-reference. Several methods are available to achieve this.
+reference. System instability and unpredictability might be caused if
+there is any time inconsistencies between entities that request/respond to
+policies or events based on time-varying parameters. Several methods are
+available to achieve this.
 
 # Applicable Models, Interfaces and Dependencies
 
@@ -450,7 +476,12 @@ schedules from different sources should be prioritized.
 
 # Security Considerations
 
-[Dan] Basic security text for 00 version.
+Time synchronization may potentially lead to security threats, e.g., attackers
+may modify the system time and it thus causes time inconsistencies and affects the
+normal functionalities for managing and coordinating network scheduling activities.
+In addition, care must be taken when defining recurrences occurring very often and
+frequent that can be an additional source of attacks by keeping the
+system permanently busy with the management of scheduling.
 
 # IANA Considerations
 
