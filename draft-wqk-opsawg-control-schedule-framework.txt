@@ -5,11 +5,11 @@
 OPSAWG                                                        Q. Ma, Ed.
 Internet-Draft                                                     Q. Wu
 Intended status: Informational                                    Huawei
-Expires: 5 January 2025                                     D. King, Ed.
+Expires: 6 January 2025                                     D. King, Ed.
                                                     Lancaster University
                                                                 L. Zhang
                                                                   Huawei
-                                                             4 July 2024
+                                                             5 July 2024
 
 
       A Framework for the Control Scheduling of Network Resources
@@ -23,6 +23,14 @@ Abstract
    additional challenges such as conflict resolution, priority handling,
    and synchronization of scheduled tasks, ultimately enhancing the
    reliability and performance of network services.
+
+   Key use cases highlight how the framework may be used for scheduled
+   resource scenarios.  The document highlights the required data models
+   and protocols to provide function.  The required IETF YANG model is
+   described where possible, and the specific code needed for function
+   or to report information is also provided.  In future versions of
+   this document, an appendix will also provide JSON running code
+   examples.
 
 Status of This Memo
 
@@ -39,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 January 2025.
+   This Internet-Draft will expire on 6 January 2025.
 
 Copyright Notice
 
@@ -61,28 +69,29 @@ Table of Contents
      1.1.  Problem Statement
      1.2.  Background
    2.  Conventions and Definitions
-   3.  Architecture
-     3.1.  Functional components
-       3.1.1.  Scheduled Service Requester
-       3.1.2.  Scheduled Service Responder
-     3.2.  Functional Interfaces
-     3.3.  Data Sources
-     3.4.  State Management
-     3.5.  Policy and Enforcement
-     3.6.  Synchronization
-   4.  Applicable Models, Interfaces and Dependencies
-     4.1.  YANG Data Models
-     4.2.  Other Dependencies
-   5.  Use Cases with detailed Code Examples
-     5.1.  Scheduling OAM Tests (Attestation)
-     5.2.  Time Variant Networking (Energy Efficient)
-   6.  Manageability Considerations
-     6.1.  Multiple Schedule Service Requesters
-   7.  Security Considerations
-   8.  IANA Considerations
-   9.  References
-     9.1.  Normative References
-     9.2.  Informative References
+   3.  Terminology
+   4.  Architecture
+     4.1.  Functional components
+       4.1.1.  Scheduled Service Requester
+       4.1.2.  Scheduled Service Responder
+     4.2.  Functional Interfaces
+     4.3.  Data Sources
+     4.4.  State Management
+     4.5.  Policy and Enforcement
+     4.6.  Synchronization
+   5.  Applicable Models, Interfaces and Dependencies
+     5.1.  YANG Data Models
+     5.2.  Other Dependencies
+   6.  Use Cases with detailed Code Examples
+     6.1.  Scheduling OAM Tests (Attestation)
+     6.2.  Time Variant Networking (Energy Efficient)
+   7.  Manageability Considerations
+     7.1.  Multiple Schedule Service Requesters
+   8.  Security Considerations
+   9.  IANA Considerations
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -138,6 +147,9 @@ Table of Contents
    additional challenges such as conflict resolution, priority handling,
    and synchronization of scheduled tasks, ultimately enhancing the
    reliability and performance of network services.
+
+   [Editors Note] In future versions of this document, an appendix will
+   also provide JSON running code examples.
 
 1.1.  Problem Statement
 
@@ -214,7 +226,14 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Architecture
+3.  Terminology
+
+   The following terminology is used in this document.
+
+   Schedule Service Requester: Schedule Service Responder: Schedule
+   Manager: Policy Engine:
+
+4.  Architecture
 
    Figure 1 presents the referenced architecture for the control
    scheduling of network resources.
@@ -253,9 +272,9 @@ Table of Contents
 
        Figure 1: An Architecture for the Scheduled Network Scenarios
 
-3.1.  Functional components
+4.1.  Functional components
 
-3.1.1.  Scheduled Service Requester
+4.1.1.  Scheduled Service Requester
 
    The entity requesting a resource schedule change can vary widely.
    For example, a network administrator may seek to restrict or limit
@@ -270,7 +289,7 @@ Table of Contents
    facilitating predictive maintenance and optimizing resource usage to
    maintain peak network efficiency.
 
-3.1.2.  Scheduled Service Responder
+4.1.2.  Scheduled Service Responder
 
    The function of this central component is responsibility for managing
    and coordinating all network scheduling activities.  There are
@@ -291,7 +310,7 @@ Table of Contents
    Examples of a schedule service responder may be a network controller,
    network management system or the network device itself.
 
-3.2.  Functional Interfaces
+4.2.  Functional Interfaces
 
    To support the scheduling of network resources effectively, several
    functional interfaces are required.  These interfaces facilitate
@@ -309,7 +328,7 @@ Table of Contents
       resources based on current schedule plan, and monitoring resource
       utilization.
 
-3.3.  Data Sources
+4.3.  Data Sources
 
    When scheduling network resources, a variety of data sources are
    required to accurately assess the network state and make informed
@@ -340,7 +359,7 @@ Table of Contents
    scheduling decisions that optimize resource utilization, maintain
    network performance, and ensure service reliability.
 
-3.4.  State Management
+4.4.  State Management
 
    The scheduling state is maintained in the schedule manager, which is
    responsible for the creation, deletion, modification, and query of
@@ -349,7 +368,7 @@ Table of Contents
    [I-D.ietf-netmod-schedule-yang] define common parameters for
    scheduling management/status exposure.
 
-3.5.  Policy and Enforcement
+4.5.  Policy and Enforcement
 
    Policies are a set of rules to administer, manage, and control access
    to network resources.  For example, the following shows an example of
@@ -363,7 +382,7 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
    parameters.  Each policy might be executed multiple times, depending
    on the its scheduling type (one-shot vs. recurrence).
 
-3.6.  Synchronization
+4.6.  Synchronization
 
    It is critical to ensure all network schedule entities, including
    controllers and management systems are synchronized to a common time
@@ -372,9 +391,9 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
    respond to policies or events based on time-varying parameters.
    Several methods are available to achieve this.
 
-4.  Applicable Models, Interfaces and Dependencies
+5.  Applicable Models, Interfaces and Dependencies
 
-4.1.  YANG Data Models
+5.1.  YANG Data Models
 
    This document is not intended to define any YANG modules, but shows
    how existing schedule-related YANG modules could fit into this
@@ -408,11 +427,11 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
 
    Additionally, [I-D.ietf-netmod-schedule-yang] defines "ietf-schedule"
    YANG module for scheduling that works as common building blocks for
-   YANG modules described in Section 4.1.  The module doesn't define any
+   YANG modules described in Section 5.1.  The module doesn't define any
    protocol-accessible nodes but a set of reusable groupings applicable
    to be used in any scheduling contexts.
 
-4.2.  Other Dependencies
+5.2.  Other Dependencies
 
    This sections presents some outstanding dependencies that need to be
    considered when deploying the scheduling mechanism.  This may not be
@@ -458,9 +477,9 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
    network scheduling activities that can be used for rollback when
    necessary, to maintain network stability.
 
-5.  Use Cases with detailed Code Examples
+6.  Use Cases with detailed Code Examples
 
-5.1.  Scheduling OAM Tests (Attestation)
+6.1.  Scheduling OAM Tests (Attestation)
 
    Operations, Administration, and Maintenance (OAM) are important
    networking functions for network monitoring and troubleshooting, as
@@ -508,7 +527,7 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
        ]
    }
 
-5.2.  Time Variant Networking (Energy Efficient)
+6.2.  Time Variant Networking (Energy Efficient)
 
    The tidal network means the volume of traffic in the network changes
    periodically like the ocean tide.  This changes are mainly affected
@@ -525,9 +544,9 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
    reducing the energy consumption of nodes during periods of low
    network traffic.
 
-6.  Manageability Considerations
+7.  Manageability Considerations
 
-6.1.  Multiple Schedule Service Requesters
+7.1.  Multiple Schedule Service Requesters
 
    This document does not make any assumption about the number of
    schedule service requester entities that interact with schedule
@@ -538,7 +557,7 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
    to reflect how schedules from different sources should be
    prioritized.
 
-7.  Security Considerations
+8.  Security Considerations
 
    Time synchronization may potentially lead to security threats, e.g.,
    attackers may modify the system time and it thus causes time
@@ -548,13 +567,13 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
    frequent that can be an additional source of attacks by keeping the
    system permanently busy with the management of scheduling.
 
-8.  IANA Considerations
+9.  IANA Considerations
 
    This document has no IANA actions.
 
-9.  References
+10.  References
 
-9.1.  Normative References
+10.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -565,7 +584,7 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-9.2.  Informative References
+10.2.  Informative References
 
    [I-D.contreras-opsawg-scheduling-oam-tests]
               Contreras, L. M. and V. Lopez, "A YANG Data Model for
