@@ -113,7 +113,7 @@ scenarios. The document presents the required data models and protocols to
 provide function. The applicable IETF YANG modules are described, as well as
 other dependencies that are needed.
 
-[Editorial Note] In future versions of this document, an appendix will also
+[Editors Note] In future versions of this document, an appendix will also
 provide JSON examples.
 
 ## Problem Statement
