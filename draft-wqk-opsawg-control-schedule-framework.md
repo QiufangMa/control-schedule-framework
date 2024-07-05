@@ -53,18 +53,17 @@ informative:
 --- abstract
 
 This document presents a comprehensive framework that elucidates various
-scheduled resource scenarios and identifies the entities involved in
-requesting resource schedule changes. It also addresses additional
-challenges such as conflict resolution, priority handling, and
-synchronization of scheduled tasks, ultimately enhancing the
+scheduling scenarios and identifies the entities involved in
+requesting scheduled changes of network resources or policy/action execution.
+It also addresses additional challenges such as conflict resolution, priority
+handling, and synchronization of scheduled tasks, ultimately enhancing the
 reliability and performance of network services.
 
-Key use cases highlight how the framework may be used for scheduled resource
-scenarios. The document highlights the required data models and protocols to
-provide function. The required IETF YANG model is described where possible,
-and the specific code needed for function or to report information is also
-provided. In future versions of this document, an appendix will also provide
-JSON running code examples.
+Key use cases highlight how the proposed framework can be used for scheduling
+scenarios. The document presents the required data models and protocols to
+provide function. The applicable IETF YANG modules are described, as well as
+other dependencies that are needed. In future versions of this document,
+an appendix will also provide JSON examples.
 
 --- middle
 
@@ -109,15 +108,13 @@ deploying control mechanisms for scheduling of network resources, including:
    and operations from unauthorized access and ensuring that only authorized
    entities can create, modify, or retrieve schedules?
 
-This document presents a comprehensive framework that elucidates various
-scheduled resource scenarios and identifies the entities involved in
-requesting resource schedule changes. It also addresses additional
-challenges such as conflict resolution, priority handling, and
-synchronization of scheduled tasks, ultimately enhancing the
-reliability and performance of network services.
+Key use cases highlight how the proposed framework can be used for scheduling
+scenarios. The document presents the required data models and protocols to
+provide function. The applicable IETF YANG modules are described, as well as
+other dependencies that are needed.
 
 [Editors Note] In future versions of this document, an appendix will also
-provide JSON running code examples.
+provide JSON examples.
 
 ## Problem Statement
 
@@ -184,12 +181,22 @@ outlined in this document.
 
 # Terminology
 
-The following terminology is used in this document.
+The following terminology is used in this document:
 
-Schedule Service Requester:
-Schedule Service Responder:
-Schedule Manager:
-Policy Engine:
+* Schedule Service Requester:
+: The entity making the scheduling requests of network events, policies, services
+  and resources.
+
+* Schedule Service Responder:
+: The entity accepting and reacting the scheduling Requests from Schedule
+  Service Request.
+
+* Schedule Manager:
+: The component managing the scheduling.
+
+* Policy Engine:
+: The component that is responsible for enforcing a set of polices or rules
+  in the network.
 
 # Architecture
 
@@ -380,7 +387,7 @@ in any scheduling contexts.
 This sections presents some outstanding dependencies that need to be considered
 when deploying the scheduling mechanism. This may not be exhaustive.
 
- ### Access Control
+### Access Control
 
 Access control ensures only authorized control entities can have access to schedule
 information, including querying, creation, modification, and deletion of schedules.
@@ -390,7 +397,7 @@ The Network Access Control Model (NACM) {{?RFC8341}} provides standard mechanism
 to restrict access for particular uses to a preconfigured subset of all available
 NETCONF or RESTCONF protocol operations and content.
 
- ### Atomic Operations
+### Atomic Operations
 
 Atomic operations are guaranteed to be either executed completely or not executed
 at all. Deployments based on scheduling must ensure schedule changes based on
@@ -407,12 +414,40 @@ resources may involve operations that are performed at particular future time(s)
 Multiple operations might be involved for each instance in the recurrence set,
 either all operations are successfully performed, or none at all.
 
- ### Rollback Mechanism
+### Rollback Mechanism
 
 Rollback mechanism is useful to ensure that in case of an error, the system can
 revert back to its previous state. Deployments are required to save the
 checkpoints (manually or automatically) of network scheduling activities that
 can be used for rollback when necessary, to maintain network stability.
+
+
+# Manageability Considerations
+
+## Multiple Schedule Service Requesters
+
+This document does not make any assumption about the number of schedule service
+requester entities that interact with schedule service responder. This means that
+multiple schedule service requesters may send requests to the responder to schedule
+the same network resources, which may lead to conflicts. If scheduling conflicts
+occur, some predefined policies or priorities may be useful to reflect how
+schedules from different sources should be prioritized.
+
+# Security Considerations
+
+Time synchronization may potentially lead to security threats, e.g., attackers
+may modify the system time and it thus causes time inconsistencies and affects the
+normal functionalities for managing and coordinating network scheduling activities.
+In addition, care must be taken when defining recurrences occurring very often and
+frequent that can be an additional source of attacks by keeping the
+system permanently busy with the management of scheduling.
+
+# IANA Considerations
+
+This document has no IANA actions.
+
+
+--- back
 
 # Use Cases with detailed Code Examples
 
@@ -481,33 +516,6 @@ network topology and impact data routing in a variety of ways.  Ports on
 network nodes can be selectively disabled or enabled based on traffic patterns,
 thereby reducing the energy consumption of nodes during periods of low network
 traffic.
-
-# Manageability Considerations
-
-## Multiple Schedule Service Requesters
-
-This document does not make any assumption about the number of schedule service
-requester entities that interact with schedule service responder. This means that
-multiple schedule service requesters may send requests to the responder to schedule
-the same network resources, which may lead to conflicts. If scheduling conflicts
-occur, some predefined policies or priorities may be useful to reflect how
-schedules from different sources should be prioritized.
-
-# Security Considerations
-
-Time synchronization may potentially lead to security threats, e.g., attackers
-may modify the system time and it thus causes time inconsistencies and affects the
-normal functionalities for managing and coordinating network scheduling activities.
-In addition, care must be taken when defining recurrences occurring very often and
-frequent that can be an additional source of attacks by keeping the
-system permanently busy with the management of scheduling.
-
-# IANA Considerations
-
-This document has no IANA actions.
-
-
---- back
 
 # Acknowledgments
 {:numbered="false"}
