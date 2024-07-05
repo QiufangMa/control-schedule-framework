@@ -149,8 +149,8 @@ Table of Contents
    and protocols to provide function.  The applicable IETF YANG modules
    are described, as well as other dependencies that are needed.
 
-   [Editorial Note] In future versions of this document, an appendix
-   will also provide JSON examples.
+   [Editors Note] In future versions of this document, an appendix will
+   also provide JSON examples.
 
 1.1.  Problem Statement
 
