@@ -11,17 +11,16 @@
 <meta content="Li Zhang" name="author">
 <meta content="
        This document presents a comprehensive framework that elucidates various
-scheduled resource scenarios and identifies the entities involved in
-requesting resource schedule changes. It also addresses additional
-challenges such as conflict resolution, priority handling, and
-synchronization of scheduled tasks, ultimately enhancing the
+scheduling scenarios and identifies the entities involved in
+requesting scheduled changes of network resources or policy/action execution.
+It also addresses additional challenges such as conflict resolution, priority
+handling, and synchronization of scheduled tasks, ultimately enhancing the
 reliability and performance of network services. 
-       Key use cases highlight how the framework may be used for scheduled resource
-scenarios. The document highlights the required data models and protocols to
-provide function. The required IETF YANG model is described where possible,
-and the specific code needed for function or to report information is also
-provided. In future versions of this document, an appendix will also provide
-JSON running code examples. 
+       Key use cases highlight how the proposed framework can be used for scheduling
+scenarios. The document presents the required data models and protocols to
+provide function. The applicable IETF YANG modules are described, as well as
+other dependencies that are needed. In future versions of this document,
+an appendix will also provide JSON examples. 
     " name="description">
 <meta content="xml2rfc 3.22.0" name="generator">
 <meta content="schedule" name="keyword">
@@ -1090,17 +1089,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document presents a comprehensive framework that elucidates various
-scheduled resource scenarios and identifies the entities involved in
-requesting resource schedule changes. It also addresses additional
-challenges such as conflict resolution, priority handling, and
-synchronization of scheduled tasks, ultimately enhancing the
+scheduling scenarios and identifies the entities involved in
+requesting scheduled changes of network resources or policy/action execution.
+It also addresses additional challenges such as conflict resolution, priority
+handling, and synchronization of scheduled tasks, ultimately enhancing the
 reliability and performance of network services.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">Key use cases highlight how the framework may be used for scheduled resource
-scenarios. The document highlights the required data models and protocols to
-provide function. The required IETF YANG model is described where possible,
-and the specific code needed for function or to report information is also
-provided. In future versions of this document, an appendix will also provide
-JSON running code examples.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">Key use cases highlight how the proposed framework can be used for scheduling
+scenarios. The document presents the required data models and protocols to
+provide function. The applicable IETF YANG modules are described, as well as
+other dependencies that are needed. In future versions of this document,
+an appendix will also provide JSON examples.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1206,50 +1204,61 @@ JSON running code examples.<a href="#section-abstract-2" class="pilcrow">¶</a><
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
                 <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-other-dependencies" class="internal xref">Other Dependencies</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.1">
+                    <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="auto internal xref">5.2.1</a>.  <a href="#name-access-control" class="internal xref">Access Control</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.2">
+                    <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="auto internal xref">5.2.2</a>.  <a href="#name-atomic-operations" class="internal xref">Atomic Operations</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.3">
+                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-rollback-mechanism" class="internal xref">Rollback Mechanism</a></p>
+</li>
+                </ul>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-use-cases-with-detailed-cod" class="internal xref">Use Cases with detailed Code Examples</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-manageability-consideration" class="internal xref">Manageability Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-scheduling-oam-tests-attest" class="internal xref">Scheduling OAM Tests (Attestation)</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-time-variant-networking-ene" class="internal xref">Time Variant Networking (Energy Efficient)</a></p>
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-multiple-schedule-service-r" class="internal xref">Multiple Schedule Service Requesters</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-manageability-consideration" class="internal xref">Manageability Considerations</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-multiple-schedule-service-r" class="internal xref">Multiple Schedule Service Requesters</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
-</li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-references" class="internal xref">References</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-use-cases-with-detailed-cod" class="internal xref">Use Cases with detailed Code Examples</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
-                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+                <p id="section-toc.1-1.10.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-scheduling-oam-tests-attest" class="internal xref">Scheduling OAM Tests (Attestation)</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
-                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+                <p id="section-toc.1-1.10.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-time-variant-networking-ene" class="internal xref">Time Variant Networking (Energy Efficient)</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1305,14 +1314,12 @@ and operations from unauthorized access and ensuring that only authorized
 entities can create, modify, or retrieve schedules?<a href="#section-1-5.8.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-1-6">This document presents a comprehensive framework that elucidates various
-scheduled resource scenarios and identifies the entities involved in
-requesting resource schedule changes. It also addresses additional
-challenges such as conflict resolution, priority handling, and
-synchronization of scheduled tasks, ultimately enhancing the
-reliability and performance of network services.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-6">Key use cases highlight how the proposed framework can be used for scheduling
+scenarios. The document presents the required data models and protocols to
+provide function. The applicable IETF YANG modules are described, as well as
+other dependencies that are needed.<a href="#section-1-6" class="pilcrow">¶</a></p>
 <p id="section-1-7">[Editors Note] In future versions of this document, an appendix will also
-provide JSON running code examples.<a href="#section-1-7" class="pilcrow">¶</a></p>
+provide JSON examples.<a href="#section-1-7" class="pilcrow">¶</a></p>
 <div id="problem-statement">
 <section id="section-1.1">
         <h3 id="name-problem-statement">
@@ -1393,11 +1400,48 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-terminology">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
       </h2>
-<p id="section-3-1">The following terminology is used in this document.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">Schedule Service Requester:
-Schedule Service Responder:
-Schedule Manager:
-Policy Engine:<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-1">The following terminology is used in this document:<a href="#section-3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3-2.1">
+          <span class="break"></span><dl class="dlParallel" id="section-3-2.1.1">
+            <dt id="section-3-2.1.1.1">Schedule Service Requester:</dt>
+            <dd style="margin-left: 1.5em" id="section-3-2.1.1.2">
+              <p id="section-3-2.1.1.2.1">The entity making the scheduling requests of network events, policies, services
+and resources.<a href="#section-3-2.1.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</li>
+        <li class="normal" id="section-3-2.2">
+          <span class="break"></span><dl class="dlParallel" id="section-3-2.2.1">
+            <dt id="section-3-2.2.1.1">Schedule Service Responder:</dt>
+            <dd style="margin-left: 1.5em" id="section-3-2.2.1.2">
+              <p id="section-3-2.2.1.2.1">The entity accepting and reacting the scheduling Requests from Schedule
+Service Request.<a href="#section-3-2.2.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</li>
+        <li class="normal" id="section-3-2.3">
+          <span class="break"></span><dl class="dlParallel" id="section-3-2.3.1">
+            <dt id="section-3-2.3.1.1">Schedule Manager:</dt>
+            <dd style="margin-left: 1.5em" id="section-3-2.3.1.2">
+              <p id="section-3-2.3.1.2.1">The component managing the scheduling.<a href="#section-3-2.3.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</li>
+        <li class="normal" id="section-3-2.4">
+          <span class="break"></span><dl class="dlParallel" id="section-3-2.4.1">
+            <dt id="section-3-2.4.1.1">Policy Engine:</dt>
+            <dd style="margin-left: 1.5em" id="section-3-2.4.1.2">
+              <p id="section-3-2.4.1.2.1">The component that is responsible for enforcing a set of polices or rules
+in the network.<a href="#section-3-2.4.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</li>
+      </ul>
 </section>
 </div>
 <div id="architecture">
@@ -1664,15 +1708,25 @@ in any scheduling contexts.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
         </h3>
 <p id="section-5.2-1">This sections presents some outstanding dependencies that need to be considered
 when deploying the scheduling mechanism. This may not be exhaustive.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2-2">### Access Control<a href="#section-5.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.2-3">Access control ensures only authorized control entities can have access to schedule
+<div id="access-control">
+<section id="section-5.2.1">
+          <h4 id="name-access-control">
+<a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-access-control" class="section-name selfRef">Access Control</a>
+          </h4>
+<p id="section-5.2.1-1">Access control ensures only authorized control entities can have access to schedule
 information, including querying, creation, modification, and deletion of schedules.
-Unauthorized access may lead to unintended consequences.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
-<p id="section-5.2-4">The Network Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span> provides standard mechanisms
+Unauthorized access may lead to unintended consequences.<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-2">The Network Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span> provides standard mechanisms
 to restrict access for particular uses to a preconfigured subset of all available
-NETCONF or RESTCONF protocol operations and content.<a href="#section-5.2-4" class="pilcrow">¶</a></p>
-<p id="section-5.2-5">### Atomic Operations<a href="#section-5.2-5" class="pilcrow">¶</a></p>
-<p id="section-5.2-6">Atomic operations are guaranteed to be either executed completely or not executed
+NETCONF or RESTCONF protocol operations and content.<a href="#section-5.2.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="atomic-operations">
+<section id="section-5.2.2">
+          <h4 id="name-atomic-operations">
+<a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-atomic-operations" class="section-name selfRef">Atomic Operations</a>
+          </h4>
+<p id="section-5.2.2-1">Atomic operations are guaranteed to be either executed completely or not executed
 at all. Deployments based on scheduling must ensure schedule changes based on
 recurrence rules are applied as atomic transactions. Either all changes are
 successfully applied, or none at all. For example, a network policy may be
@@ -1680,149 +1734,77 @@ scheduled to be active every Tuesday in January of 2025. If the schedule is chan
 to every Wednesday in January 2025, the recurrence set is changed from
 January 7, 14, 21, 28 to January 1, 8, 15, 22, 29. If some occurrences can
 not be applied successfully (e.g., January 1 cannot be scheduled because of conflict),
-the others in the recurrence set will not be applied as well.<a href="#section-5.2-6" class="pilcrow">¶</a></p>
-<p id="section-5.2-7">In addition, the scheduling management of network events, policies, services, and
+the others in the recurrence set will not be applied as well.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-2">In addition, the scheduling management of network events, policies, services, and
 resources may involve operations that are performed at particular future time(s).
 Multiple operations might be involved for each instance in the recurrence set,
-either all operations are successfully performed, or none at all.<a href="#section-5.2-7" class="pilcrow">¶</a></p>
-<p id="section-5.2-8">### Rollback Mechanism<a href="#section-5.2-8" class="pilcrow">¶</a></p>
-<p id="section-5.2-9">Rollback mechanism is useful to ensure that in case of an error, the system can
+either all operations are successfully performed, or none at all.<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="rollback-mechanism">
+<section id="section-5.2.3">
+          <h4 id="name-rollback-mechanism">
+<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-rollback-mechanism" class="section-name selfRef">Rollback Mechanism</a>
+          </h4>
+<p id="section-5.2.3-1">Rollback mechanism is useful to ensure that in case of an error, the system can
 revert back to its previous state. Deployments are required to save the
 checkpoints (manually or automatically) of network scheduling activities that
-can be used for rollback when necessary, to maintain network stability.<a href="#section-5.2-9" class="pilcrow">¶</a></p>
+can be used for rollback when necessary, to maintain network stability.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-</section>
-</div>
-<div id="use-cases-with-detailed-code-examples">
-<section id="section-6">
-      <h2 id="name-use-cases-with-detailed-cod">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-use-cases-with-detailed-cod" class="section-name selfRef">Use Cases with detailed Code Examples</a>
-      </h2>
-<div id="scheduling-oam-tests-attestation">
-<section id="section-6.1">
-        <h3 id="name-scheduling-oam-tests-attest">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-scheduling-oam-tests-attest" class="section-name selfRef">Scheduling OAM Tests (Attestation)</a>
-        </h3>
-<p id="section-6.1-1">Operations, Administration, and Maintenance (OAM) are important networking functions
-for network monitoring and troubleshooting, as well as service-level agreements
-and performance monitoring. Some actions might need to be executed repeatedly or
-at a specific future time to carry out diagnostics. Scheduling-based OAM tools
-are able to invoke a specific OAM unitary test or a sequence of OAM tests based
-on some time-varying parameters, e.g., at a precise future time or repeatedly
-occur at specific intervals.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.1-2">Suppose the following fictional module is used:<a href="#section-6.1-2" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.1-3">
-<pre>
-module example-oam-tests {
-  yang-version 1.1;
-  namespace "urn:example:oam-tests";
-  prefix "ex-oam";
-
-  import ietf-schedule {
-    prefix "schedule";
-  }
-  list oam-test {
-    key "test-name";
-    leaf test-name {
-      type string;
-    }
-    uses schedule:recurrence-utc;
-  }
-}
-</pre><a href="#section-6.1-3" class="pilcrow">¶</a>
-</div>
-<p id="section-6.1-4">The following indicates the example of a scheduling OAM traceroute test that is
-executed at 3:00 AM, every other day, from December 1, 2025 in UTC.
-The JSON encoding is used only for illustration purposes.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.1-5">
-<pre>
-{
-    "example-oam-tests:oam-test": [
-        {
-            "test-name": "traceroute",
-            "recurrence-first": {
-                "utc-start-time": "2025-12-01T03:00:00Z"
-            },
-            "frequency": "ietf-schedule:daily",
-            "interval": 2
-        }
-    ]
-}
-</pre><a href="#section-6.1-5" class="pilcrow">¶</a>
-</div>
-</section>
-</div>
-<div id="time-variant-networking-energy-efficient">
-<section id="section-6.2">
-        <h3 id="name-time-variant-networking-ene">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-time-variant-networking-ene" class="section-name selfRef">Time Variant Networking (Energy Efficient)</a>
-        </h3>
-<p id="section-6.2-1">The tidal network means the volume of traffic in the network changes
-periodically like the ocean tide. This changes are mainly affected by
-human activities. Therefore, this tidal effect is obvious in human-populated
-areas, such as campuses and airport.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.2-2">In the context of a tidal network, If the network maintains all the devices
-up to guarantee the maximum throughput all the time, a lot of power will be
-wasted. The energy-saving methods may include the deactivation of some or all
-components of network nodes. These activities have the potential to alter
-network topology and impact data routing in a variety of ways.  Ports on
-network nodes can be selectively disabled or enabled based on traffic patterns,
-thereby reducing the energy consumption of nodes during periods of low network
-traffic.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="manageability-considerations">
-<section id="section-7">
+<section id="section-6">
       <h2 id="name-manageability-consideration">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-manageability-consideration" class="section-name selfRef">Manageability Considerations</a>
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-manageability-consideration" class="section-name selfRef">Manageability Considerations</a>
       </h2>
 <div id="multiple-schedule-service-requesters">
-<section id="section-7.1">
+<section id="section-6.1">
         <h3 id="name-multiple-schedule-service-r">
-<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-multiple-schedule-service-r" class="section-name selfRef">Multiple Schedule Service Requesters</a>
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-multiple-schedule-service-r" class="section-name selfRef">Multiple Schedule Service Requesters</a>
         </h3>
-<p id="section-7.1-1">This document does not make any assumption about the number of schedule service
+<p id="section-6.1-1">This document does not make any assumption about the number of schedule service
 requester entities that interact with schedule service responder. This means that
 multiple schedule service requesters may send requests to the responder to schedule
 the same network resources, which may lead to conflicts. If scheduling conflicts
 occur, some predefined policies or priorities may be useful to reflect how
-schedules from different sources should be prioritized.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+schedules from different sources should be prioritized.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="security-considerations">
-<section id="section-8">
+<section id="section-7">
       <h2 id="name-security-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-8-1">Time synchronization may potentially lead to security threats, e.g., attackers
+<p id="section-7-1">Time synchronization may potentially lead to security threats, e.g., attackers
 may modify the system time and it thus causes time inconsistencies and affects the
 normal functionalities for managing and coordinating network scheduling activities.
 In addition, care must be taken when defining recurrences occurring very often and
 frequent that can be an additional source of attacks by keeping the
-system permanently busy with the management of scheduling.<a href="#section-8-1" class="pilcrow">¶</a></p>
+system permanently busy with the management of scheduling.<a href="#section-7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-9">
+<section id="section-8">
       <h2 id="name-iana-considerations">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-9-1">This document has no IANA actions.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<p id="section-8-1">This document has no IANA actions.<a href="#section-8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<section id="section-10">
+<section id="section-9">
       <h2 id="name-references">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
 <div id="sec-normative-references">
-<section id="section-10.1">
+<section id="section-9.1">
         <h3 id="name-normative-references">
-<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
@@ -1837,9 +1819,9 @@ system permanently busy with the management of scheduling.<a href="#section-8-1"
 </section>
 </div>
 <div id="sec-informative-references">
-<section id="section-10.2">
+<section id="section-9.2">
         <h3 id="name-informative-references">
-<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="I-D.contreras-opsawg-scheduling-oam-tests">[I-D.contreras-opsawg-scheduling-oam-tests]</dt>
@@ -1878,16 +1860,96 @@ system permanently busy with the management of scheduling.<a href="#section-8-1"
 </section>
 </div>
 </section>
-<div id="acknowledgments">
+<div id="use-cases-with-detailed-code-examples">
 <section id="appendix-A">
+      <h2 id="name-use-cases-with-detailed-cod">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-use-cases-with-detailed-cod" class="section-name selfRef">Use Cases with detailed Code Examples</a>
+      </h2>
+<div id="scheduling-oam-tests-attestation">
+<section id="appendix-A.1">
+        <h3 id="name-scheduling-oam-tests-attest">
+<a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-scheduling-oam-tests-attest" class="section-name selfRef">Scheduling OAM Tests (Attestation)</a>
+        </h3>
+<p id="appendix-A.1-1">Operations, Administration, and Maintenance (OAM) are important networking functions
+for network monitoring and troubleshooting, as well as service-level agreements
+and performance monitoring. Some actions might need to be executed repeatedly or
+at a specific future time to carry out diagnostics. Scheduling-based OAM tools
+are able to invoke a specific OAM unitary test or a sequence of OAM tests based
+on some time-varying parameters, e.g., at a precise future time or repeatedly
+occur at specific intervals.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-2">Suppose the following fictional module is used:<a href="#appendix-A.1-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.1-3">
+<pre>
+module example-oam-tests {
+  yang-version 1.1;
+  namespace "urn:example:oam-tests";
+  prefix "ex-oam";
+
+  import ietf-schedule {
+    prefix "schedule";
+  }
+  list oam-test {
+    key "test-name";
+    leaf test-name {
+      type string;
+    }
+    uses schedule:recurrence-utc;
+  }
+}
+</pre><a href="#appendix-A.1-3" class="pilcrow">¶</a>
+</div>
+<p id="appendix-A.1-4">The following indicates the example of a scheduling OAM traceroute test that is
+executed at 3:00 AM, every other day, from December 1, 2025 in UTC.
+The JSON encoding is used only for illustration purposes.<a href="#appendix-A.1-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.1-5">
+<pre>
+{
+    "example-oam-tests:oam-test": [
+        {
+            "test-name": "traceroute",
+            "recurrence-first": {
+                "utc-start-time": "2025-12-01T03:00:00Z"
+            },
+            "frequency": "ietf-schedule:daily",
+            "interval": 2
+        }
+    ]
+}
+</pre><a href="#appendix-A.1-5" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="time-variant-networking-energy-efficient">
+<section id="appendix-A.2">
+        <h3 id="name-time-variant-networking-ene">
+<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-time-variant-networking-ene" class="section-name selfRef">Time Variant Networking (Energy Efficient)</a>
+        </h3>
+<p id="appendix-A.2-1">The tidal network means the volume of traffic in the network changes
+periodically like the ocean tide. This changes are mainly affected by
+human activities. Therefore, this tidal effect is obvious in human-populated
+areas, such as campuses and airport.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-2">In the context of a tidal network, If the network maintains all the devices
+up to guarantee the maximum throughput all the time, a lot of power will be
+wasted. The energy-saving methods may include the deactivation of some or all
+components of network nodes. These activities have the potential to alter
+network topology and impact data routing in a variety of ways.  Ports on
+network nodes can be selectively disabled or enabled based on traffic patterns,
+thereby reducing the energy consumption of nodes during periods of low network
+traffic.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-B">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-A-1">TODO acknowledge.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">TODO acknowledge.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-B">
+<section id="appendix-C">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>

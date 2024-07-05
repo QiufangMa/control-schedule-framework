@@ -18,18 +18,18 @@ Expires: 6 January 2025                                     D. King, Ed.
 Abstract
 
    This document presents a comprehensive framework that elucidates
-   various scheduled resource scenarios and identifies the entities
-   involved in requesting resource schedule changes.  It also addresses
-   additional challenges such as conflict resolution, priority handling,
-   and synchronization of scheduled tasks, ultimately enhancing the
-   reliability and performance of network services.
+   various scheduling scenarios and identifies the entities involved in
+   requesting scheduled changes of network resources or policy/action
+   execution.  It also addresses additional challenges such as conflict
+   resolution, priority handling, and synchronization of scheduled
+   tasks, ultimately enhancing the reliability and performance of
+   network services.
 
-   Key use cases highlight how the framework may be used for scheduled
-   resource scenarios.  The document highlights the required data models
-   and protocols to provide function.  The required IETF YANG model is
-   described where possible, and the specific code needed for function
-   or to report information is also provided.  In future versions of
-   this document, an appendix will also provide JSON running code
+   Key use cases highlight how the proposed framework can be used for
+   scheduling scenarios.  The document presents the required data models
+   and protocols to provide function.  The applicable IETF YANG modules
+   are described, as well as other dependencies that are needed.  In
+   future versions of this document, an appendix will also provide JSON
    examples.
 
 Status of This Memo
@@ -82,16 +82,19 @@ Table of Contents
    5.  Applicable Models, Interfaces and Dependencies
      5.1.  YANG Data Models
      5.2.  Other Dependencies
-   6.  Use Cases with detailed Code Examples
-     6.1.  Scheduling OAM Tests (Attestation)
-     6.2.  Time Variant Networking (Energy Efficient)
-   7.  Manageability Considerations
-     7.1.  Multiple Schedule Service Requesters
-   8.  Security Considerations
-   9.  IANA Considerations
-   10. References
-     10.1.  Normative References
-     10.2.  Informative References
+       5.2.1.  Access Control
+       5.2.2.  Atomic Operations
+       5.2.3.  Rollback Mechanism
+   6.  Manageability Considerations
+     6.1.  Multiple Schedule Service Requesters
+   7.  Security Considerations
+   8.  IANA Considerations
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
+   Appendix A.  Use Cases with detailed Code Examples
+     A.1.  Scheduling OAM Tests (Attestation)
+     A.2.  Time Variant Networking (Energy Efficient)
    Acknowledgments
    Authors' Addresses
 
@@ -141,15 +144,13 @@ Table of Contents
       ensuring that only authorized entities can create, modify, or
       retrieve schedules?
 
-   This document presents a comprehensive framework that elucidates
-   various scheduled resource scenarios and identifies the entities
-   involved in requesting resource schedule changes.  It also addresses
-   additional challenges such as conflict resolution, priority handling,
-   and synchronization of scheduled tasks, ultimately enhancing the
-   reliability and performance of network services.
+   Key use cases highlight how the proposed framework can be used for
+   scheduling scenarios.  The document presents the required data models
+   and protocols to provide function.  The applicable IETF YANG modules
+   are described, as well as other dependencies that are needed.
 
    [Editors Note] In future versions of this document, an appendix will
-   also provide JSON running code examples.
+   also provide JSON examples.
 
 1.1.  Problem Statement
 
@@ -228,10 +229,18 @@ Table of Contents
 
 3.  Terminology
 
-   The following terminology is used in this document.
+   The following terminology is used in this document:
 
-   Schedule Service Requester: Schedule Service Responder: Schedule
-   Manager: Policy Engine:
+   *  Schedule Service Requester:  The entity making the scheduling
+         requests of network events, policies, services and resources.
+
+   *  Schedule Service Responder:  The entity accepting and reacting the
+         scheduling Requests from Schedule Service Request.
+
+   *  Schedule Manager:  The component managing the scheduling.
+
+   *  Policy Engine:  The component that is responsible for enforcing a
+         set of polices or rules in the network.
 
 4.  Architecture
 
@@ -437,7 +446,7 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
    considered when deploying the scheduling mechanism.  This may not be
    exhaustive.
 
-   ### Access Control
+5.2.1.  Access Control
 
    Access control ensures only authorized control entities can have
    access to schedule information, including querying, creation,
@@ -449,7 +458,7 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
    subset of all available NETCONF or RESTCONF protocol operations and
    content.
 
-   ### Atomic Operations
+5.2.2.  Atomic Operations
 
    Atomic operations are guaranteed to be either executed completely or
    not executed at all.  Deployments based on scheduling must ensure
@@ -469,7 +478,7 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
    each instance in the recurrence set, either all operations are
    successfully performed, or none at all.
 
-   ### Rollback Mechanism
+5.2.3.  Rollback Mechanism
 
    Rollback mechanism is useful to ensure that in case of an error, the
    system can revert back to its previous state.  Deployments are
@@ -477,76 +486,9 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
    network scheduling activities that can be used for rollback when
    necessary, to maintain network stability.
 
-6.  Use Cases with detailed Code Examples
+6.  Manageability Considerations
 
-6.1.  Scheduling OAM Tests (Attestation)
-
-   Operations, Administration, and Maintenance (OAM) are important
-   networking functions for network monitoring and troubleshooting, as
-   well as service-level agreements and performance monitoring.  Some
-   actions might need to be executed repeatedly or at a specific future
-   time to carry out diagnostics.  Scheduling-based OAM tools are able
-   to invoke a specific OAM unitary test or a sequence of OAM tests
-   based on some time-varying parameters, e.g., at a precise future time
-   or repeatedly occur at specific intervals.
-
-   Suppose the following fictional module is used:
-
-   module example-oam-tests {
-     yang-version 1.1;
-     namespace "urn:example:oam-tests";
-     prefix "ex-oam";
-
-     import ietf-schedule {
-       prefix "schedule";
-     }
-     list oam-test {
-       key "test-name";
-       leaf test-name {
-         type string;
-       }
-       uses schedule:recurrence-utc;
-     }
-   }
-
-   The following indicates the example of a scheduling OAM traceroute
-   test that is executed at 3:00 AM, every other day, from December 1,
-   2025 in UTC.  The JSON encoding is used only for illustration
-   purposes.
-
-   {
-       "example-oam-tests:oam-test": [
-           {
-               "test-name": "traceroute",
-               "recurrence-first": {
-                   "utc-start-time": "2025-12-01T03:00:00Z"
-               },
-               "frequency": "ietf-schedule:daily",
-               "interval": 2
-           }
-       ]
-   }
-
-6.2.  Time Variant Networking (Energy Efficient)
-
-   The tidal network means the volume of traffic in the network changes
-   periodically like the ocean tide.  This changes are mainly affected
-   by human activities.  Therefore, this tidal effect is obvious in
-   human-populated areas, such as campuses and airport.
-
-   In the context of a tidal network, If the network maintains all the
-   devices up to guarantee the maximum throughput all the time, a lot of
-   power will be wasted.  The energy-saving methods may include the
-   deactivation of some or all components of network nodes.  These
-   activities have the potential to alter network topology and impact
-   data routing in a variety of ways.  Ports on network nodes can be
-   selectively disabled or enabled based on traffic patterns, thereby
-   reducing the energy consumption of nodes during periods of low
-   network traffic.
-
-7.  Manageability Considerations
-
-7.1.  Multiple Schedule Service Requesters
+6.1.  Multiple Schedule Service Requesters
 
    This document does not make any assumption about the number of
    schedule service requester entities that interact with schedule
@@ -557,7 +499,7 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
    to reflect how schedules from different sources should be
    prioritized.
 
-8.  Security Considerations
+7.  Security Considerations
 
    Time synchronization may potentially lead to security threats, e.g.,
    attackers may modify the system time and it thus causes time
@@ -567,13 +509,13 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
    frequent that can be an additional source of attacks by keeping the
    system permanently busy with the management of scheduling.
 
-9.  IANA Considerations
+8.  IANA Considerations
 
    This document has no IANA actions.
 
-10.  References
+9.  References
 
-10.1.  Normative References
+9.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -584,7 +526,7 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-10.2.  Informative References
+9.2.  Informative References
 
    [I-D.contreras-opsawg-scheduling-oam-tests]
               Contreras, L. M. and V. Lopez, "A YANG Data Model for
@@ -638,6 +580,73 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00
               "YANG Data Model for Network Access Control Lists (ACLs)",
               RFC 8519, DOI 10.17487/RFC8519, March 2019,
               <https://www.rfc-editor.org/rfc/rfc8519>.
+
+Appendix A.  Use Cases with detailed Code Examples
+
+A.1.  Scheduling OAM Tests (Attestation)
+
+   Operations, Administration, and Maintenance (OAM) are important
+   networking functions for network monitoring and troubleshooting, as
+   well as service-level agreements and performance monitoring.  Some
+   actions might need to be executed repeatedly or at a specific future
+   time to carry out diagnostics.  Scheduling-based OAM tools are able
+   to invoke a specific OAM unitary test or a sequence of OAM tests
+   based on some time-varying parameters, e.g., at a precise future time
+   or repeatedly occur at specific intervals.
+
+   Suppose the following fictional module is used:
+
+   module example-oam-tests {
+     yang-version 1.1;
+     namespace "urn:example:oam-tests";
+     prefix "ex-oam";
+
+     import ietf-schedule {
+       prefix "schedule";
+     }
+     list oam-test {
+       key "test-name";
+       leaf test-name {
+         type string;
+       }
+       uses schedule:recurrence-utc;
+     }
+   }
+
+   The following indicates the example of a scheduling OAM traceroute
+   test that is executed at 3:00 AM, every other day, from December 1,
+   2025 in UTC.  The JSON encoding is used only for illustration
+   purposes.
+
+   {
+       "example-oam-tests:oam-test": [
+           {
+               "test-name": "traceroute",
+               "recurrence-first": {
+                   "utc-start-time": "2025-12-01T03:00:00Z"
+               },
+               "frequency": "ietf-schedule:daily",
+               "interval": 2
+           }
+       ]
+   }
+
+A.2.  Time Variant Networking (Energy Efficient)
+
+   The tidal network means the volume of traffic in the network changes
+   periodically like the ocean tide.  This changes are mainly affected
+   by human activities.  Therefore, this tidal effect is obvious in
+   human-populated areas, such as campuses and airport.
+
+   In the context of a tidal network, If the network maintains all the
+   devices up to guarantee the maximum throughput all the time, a lot of
+   power will be wasted.  The energy-saving methods may include the
+   deactivation of some or all components of network nodes.  These
+   activities have the potential to alter network topology and impact
+   data routing in a variety of ways.  Ports on network nodes can be
+   selectively disabled or enabled based on traffic patterns, thereby
+   reducing the energy consumption of nodes during periods of low
+   network traffic.
 
 Acknowledgments
 
