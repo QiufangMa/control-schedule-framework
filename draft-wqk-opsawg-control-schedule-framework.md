@@ -330,7 +330,8 @@ Policies are a set of rules to administer, manage, and control access to network
 resources. For example, the following shows an example of a scheduled ACL policy:
 
 ~~~~
-drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z/2025-12-15T18:00:00Z
+drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z
+/2025-12-15T18:00:00Z
 ~~~~
 
 A set of scheduling policies and rules are maintained in the policy engine,
