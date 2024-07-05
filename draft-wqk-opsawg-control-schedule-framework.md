@@ -184,12 +184,12 @@ outlined in this document.
 
 # Terminology
 
-The following terminology is used in this document. 
+The following terminology is used in this document.
 
-Schedule Service Requester: 
+Schedule Service Requester:
 Schedule Service Responder:
-Schedule Manager: 
-Policy Engine: 
+Schedule Manager:
+Policy Engine:
 
 # Architecture
 
