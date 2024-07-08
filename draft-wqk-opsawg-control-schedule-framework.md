@@ -179,9 +179,7 @@ outlined in this document.
 
 {::boilerplate bcp14-tagged}
 
-# Terminology
-
-The following terminology is used in this document:
+The following definitions are used throughout this document:
 
 * Schedule Service Requester:
 : The entity making the scheduling requests of network events, policies, services
@@ -276,7 +274,7 @@ functional interfaces are required. These interfaces facilitate
 communication between different components of the network scheduling
 system, ensuring seamless integration and operation, these include:
 
- * Schedule Service Requestor and Responder API: Schedule resource creation,
+ * Schedule Service Requester and Responder API: Schedule resource creation,
    modification, and deletion requests and responses. Querying of
    current and upcoming schedules, conflict and alert notifications.
 
@@ -289,7 +287,7 @@ system, ensuring seamless integration and operation, these include:
 
 When scheduling network resources, a variety of data sources are
 required to accurately assess the network state and make informed
-scheduling decisions. Here are examples data sources that will be
+scheduling decisions. Here are some example data sources that will be
 required:
 
  * Network Topology Information: Connection details about the physical
