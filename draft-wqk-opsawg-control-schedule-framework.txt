@@ -24,10 +24,9 @@ Abstract
    network services.
 
    Key use cases highlight how the proposed framework can be used for
-   scheduling scenarios.  The document presents the required data models
-   and protocols to provide function.  The applicable IETF YANG modules
-   are described, as well as other dependencies that are needed.  In
-   future versions of this document, an appendix will also provide JSON
+   scheduling scenarios.  The applicable IETF YANG modules are
+   described, as well as other dependencies that are needed.  In future
+   versions of this document, an appendix will also provide JSON
    examples.
 
 Status of This Memo
@@ -94,6 +93,7 @@ Table of Contents
      A.1.  Scheduling OAM Tests (Attestation)
      A.2.  Time Variant Networking (Energy Efficient)
    Acknowledgments
+   Contributors
    Authors' Addresses
 
 1.  Introduction
@@ -143,9 +143,8 @@ Table of Contents
       retrieve schedules?
 
    Key use cases highlight how the proposed framework can be used for
-   scheduling scenarios.  The document presents the required data models
-   and protocols to provide function.  The applicable IETF YANG modules
-   are described, as well as other dependencies that are needed.
+   scheduling scenarios.  The applicable IETF YANG modules are
+   described, as well as other dependencies that are needed.
 
    [Editors Note] In future versions of this document, an appendix will
    also provide JSON examples.
@@ -435,9 +434,9 @@ Table of Contents
 
    Additionally, [I-D.ietf-netmod-schedule-yang] defines "ietf-schedule"
    YANG module for scheduling that works as common building blocks for
-   YANG modules described in Section 5.1.  The module doesn't define any
-   protocol-accessible nodes but a set of reusable groupings applicable
-   to be used in any scheduling contexts.
+   YANG modules described in this section.  The module doesn't define
+   any protocol-accessible nodes but a set of reusable groupings
+   applicable to be used in any scheduling contexts.
 
 5.2.  Other Dependencies
 
@@ -642,6 +641,13 @@ A.2.  Time Variant Networking (Energy Efficient)
 Acknowledgments
 
    TODO acknowledge.
+
+Contributors
+
+   Li Zhang
+   Huawei
+   Email: zhangli344@huawei.com
+
 
 Authors' Addresses
 
