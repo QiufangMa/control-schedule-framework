@@ -41,6 +41,12 @@ author:
   country: United Kingdom
   email: d.king@lancaster.ac.uk
 
+contributor:
+-
+  fullname: Li Zhang
+  organization: Huawei
+  email: zhangli344@huawei.com
+
 normative:
 
 informative:
@@ -56,8 +62,7 @@ handling, and synchronization of scheduled tasks, ultimately enhancing the
 reliability and performance of network services.
 
 Key use cases highlight how the proposed framework can be used for scheduling
-scenarios. The document presents the required data models and protocols to
-provide function. The applicable IETF YANG modules are described, as well as
+scenarios. The applicable IETF YANG modules are described, as well as
 other dependencies that are needed. In future versions of this document,
 an appendix will also provide JSON examples.
 
@@ -105,8 +110,7 @@ deploying control mechanisms for scheduling of network resources, including:
    entities can create, modify, or retrieve schedules?
 
 Key use cases highlight how the proposed framework can be used for scheduling
-scenarios. The document presents the required data models and protocols to
-provide function. The applicable IETF YANG modules are described, as well as
+scenarios. The applicable IETF YANG modules are described, as well as
 other dependencies that are needed.
 
 [Editors Note] In future versions of this document, an appendix will also
@@ -375,7 +379,7 @@ service requester and responder:
 
 Additionally, {{?I-D.ietf-netmod-schedule-yang}} defines "ietf-schedule" YANG
 module for scheduling that works as common building blocks for YANG modules
-described in {{schedule-modules}}. The module doesn't define any
+described in this section. The module doesn't define any
 protocol-accessible nodes but a set of reusable groupings applicable to be used
 in any scheduling contexts.
 
