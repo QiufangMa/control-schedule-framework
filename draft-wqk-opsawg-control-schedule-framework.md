@@ -40,10 +40,6 @@ author:
   role: editor
   country: United Kingdom
   email: d.king@lancaster.ac.uk
--
-  fullname: Li Zhang
-  organization: Huawei
-  email: zhangli344@huawei.com
 
 normative:
 
