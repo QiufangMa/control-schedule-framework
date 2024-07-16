@@ -578,8 +578,8 @@ The JSON encoding is used only for illustration purposes.
                     "available":true,
                   }
                 ]
-                
               }
+          ]
         }
     ]
 }
