@@ -517,10 +517,9 @@ network nodes can be selectively disabled or enabled based on traffic patterns,
 thereby reducing the energy consumption of nodes during periods of low network
 traffic.
 
-The network management devices need to control the state of interfaces of each node
-by the ietf-tvr-node model defined in {{?I-D.ietf-tvr-schedule-yang}}.
+The controlling of the interface states of each node can be achieved by using the ietf-tvr-node YANG module defined in {{?I-D.ietf-tvr-schedule-yang}}.
 
-The following indicates the example of a scheduling node interface that enabled at 7:00 AM and disabled at 1:00 AM, every day, from December 1, 2025 in UTC.
+The following indicates the example of a scheduling node that is powered on from 12 AM, December 1, 2025 to 12 AM, December 1, 2026 in UTC and its interface named interface1 is scheduled to enable at 7:00 AM and disabled at 1:00 AM, every day, from December 1, 2025 to December 1, 2026 in UTC.
 The JSON encoding is used only for illustration purposes.
 
 ~~~~
@@ -529,12 +528,15 @@ The JSON encoding is used only for illustration purposes.
         {
             "node-id": 12345678,
             "node-power-schedule": {
-              "power-default": true
+              "power-default": false
               "schedules": [
                 {
                   "schedule-id": 111111,
                   "period-start": "2025-12-01T00:00:00Z",
-                  "period-end": "2026-12-01T07:00:00Z"
+                  "period-end": "2026-12-01T00:00:00Z",
+                  "attr-value": {
+                    "power-state":true
+                  }
                 }
               ]
             }
@@ -548,19 +550,10 @@ The JSON encoding is used only for illustration purposes.
                     {
                       "schedule-id": 222222,
                       "recurrence-first": {
-                        "utc-start-time": "2025-12-01T07:00:00Z"
+                        "utc-start-time": "2025-12-01T07:00:00Z",
+                        "duration": 60*60*18
                       },
-                      "utc-until": "2026-12-01T07:00:00Z",
-                      "frequency": "ietf-schedule:daily",
-                      "interval": 1,
-                      "available":false,
-                    },
-                    {
-                      "schedule-id": 333333,
-                      "recurrence-first": {
-                        "utc-start-time": "2025-12-01T01:00:00Z"
-                      },
-                      "utc-until": "2026-12-01T07:00:00Z",
+                      "utc-until": "2026-12-01T00:00:00Z",
                       "frequency": "ietf-schedule:daily",
                       "interval": 1,
                       "available":true,
