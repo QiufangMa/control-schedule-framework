@@ -556,7 +556,9 @@ The JSON encoding is used only for illustration purposes.
                       "utc-until": "2026-12-01T00:00:00Z",
                       "frequency": "ietf-schedule:daily",
                       "interval": 1,
-                      "available":true,
+                      "attr-value": {
+                        "available":true,
+                      }
                     }
                   ]
                 }
