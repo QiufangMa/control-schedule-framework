@@ -551,7 +551,7 @@ The JSON encoding is used only for illustration purposes.
                       "schedule-id": 222222,
                       "recurrence-first": {
                         "utc-start-time": "2025-12-01T07:00:00Z",
-                        "duration": 60*60*18
+                        "duration": 64800 //60*60*18
                       },
                       "utc-until": "2026-12-01T00:00:00Z",
                       "frequency": "ietf-schedule:daily",
