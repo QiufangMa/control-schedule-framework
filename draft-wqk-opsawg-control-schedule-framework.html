@@ -1041,7 +1041,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Ma, et al.</td>
-<td class="center">Expires 9 January 2025</td>
+<td class="center">Expires 18 January 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1054,12 +1054,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-wqk-opsawg-control-schedule-framework-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-07-08" class="published">8 July 2024</time>
+<time datetime="2024-07-17" class="published">17 July 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-01-09">9 January 2025</time></dd>
+<dd class="expires"><time datetime="2025-01-18">18 January 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1112,7 +1112,7 @@ an appendix will also provide JSON examples.<a href="#section-abstract-2" class=
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 18 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1812,7 +1812,7 @@ system permanently busy with the management of scheduling.<a href="#section-6-1"
 <dl class="references">
 <dt id="I-D.contreras-opsawg-scheduling-oam-tests">[I-D.contreras-opsawg-scheduling-oam-tests]</dt>
         <dd>
-<span class="refAuthor">Contreras, L. M.</span> and <span class="refAuthor">V. Lopez</span>, <span class="refTitle">"A YANG Data Model for Network Diagnosis by scheduling sequences of OAM tests"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-contreras-opsawg-scheduling-oam-tests-01</span>, <time datetime="2023-07-10" class="refDate">10 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-contreras-opsawg-scheduling-oam-tests-01">https://datatracker.ietf.org/doc/html/draft-contreras-opsawg-scheduling-oam-tests-01</a>&gt;</span>. </dd>
+<span class="refAuthor">Contreras, L. M.</span> and <span class="refAuthor">V. Lopez</span>, <span class="refTitle">"A YANG Data Model for Network Diagnosis by Scheduling Sequences of OAM Tests"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-contreras-opsawg-scheduling-oam-tests-02</span>, <time datetime="2024-07-08" class="refDate">8 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-contreras-opsawg-scheduling-oam-tests-02">https://datatracker.ietf.org/doc/html/draft-contreras-opsawg-scheduling-oam-tests-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-netmod-schedule-yang">[I-D.ietf-netmod-schedule-yang]</dt>
         <dd>
@@ -1906,7 +1906,8 @@ The JSON encoding is used only for illustration purposes.<a href="#appendix-A.1-
         <h3 id="name-time-variant-networking-ene">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-time-variant-networking-ene" class="section-name selfRef">Time Variant Networking (Energy Efficient)</a>
         </h3>
-<p id="appendix-A.2-1">The tidal network means the volume of traffic in the network changes
+<p id="appendix-A.2-1">Tidal network is a typical scenario of Energy Efficient case. The tidal network
+means the volume of traffic in the network changes
 periodically like the ocean tide. This changes are mainly affected by
 human activities. Therefore, this tidal effect is obvious in human-populated
 areas, such as campuses and airport.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
@@ -1914,10 +1915,61 @@ areas, such as campuses and airport.<a href="#appendix-A.2-1" class="pilcrow">¶
 up to guarantee the maximum throughput all the time, a lot of power will be
 wasted. The energy-saving methods may include the deactivation of some or all
 components of network nodes. These activities have the potential to alter
-network topology and impact data routing in a variety of ways.  Ports on
+network topology and impact data routing in a variety of ways.  Interfaces on
 network nodes can be selectively disabled or enabled based on traffic patterns,
 thereby reducing the energy consumption of nodes during periods of low network
 traffic.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-3">The controlling of the interface states of each node can be achieved by using the ietf-tvr-node YANG module defined in <span>[<a href="#I-D.ietf-tvr-schedule-yang" class="cite xref">I-D.ietf-tvr-schedule-yang</a>]</span>.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-4">The following indicates the example of a scheduling node that is powered on from 12 AM, December 1, 2025 to 12 AM, December 1, 2026 in UTC and its interface named interface1 is scheduled to enable at 7:00 AM and disabled at 1:00 AM, every day, from December 1, 2025 to December 1, 2026 in UTC.
+The JSON encoding is used only for illustration purposes.<a href="#appendix-A.2-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.2-5">
+<pre>
+{
+    "ietf-tvr-node:node-schedule": [
+        {
+            "node-id": 12345678,
+            "node-power-schedule": {
+              "power-default": false
+              "schedules": [
+                {
+                  "schedule-id": 111111,
+                  "period-start": "2025-12-01T00:00:00Z",
+                  "period-end": "2026-12-01T00:00:00Z",
+                  "attr-value": {
+                    "power-state":true
+                  }
+                }
+              ]
+            }
+            "interface-schedule": [
+              {
+                "name": "interace1",
+                "default-available": false,
+                "default-bandwidth": 1000000000,
+                "attribute-schedule": {
+                  "schedules":[
+                    {
+                      "schedule-id": 222222,
+                      "recurrence-first": {
+                        "utc-start-time": "2025-12-01T07:00:00Z",
+                        "duration": 64800 //60*60*18
+                      },
+                      "utc-until": "2026-12-01T00:00:00Z",
+                      "frequency": "ietf-schedule:daily",
+                      "interval": 1,
+                      "attr-value": {
+                        "available":true,
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+        }
+    ]
+}
+</pre><a href="#appendix-A.2-5" class="pilcrow">¶</a>
+</div>
 </section>
 </div>
 </section>
