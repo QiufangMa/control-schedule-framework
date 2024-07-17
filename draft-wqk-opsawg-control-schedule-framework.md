@@ -502,7 +502,8 @@ The JSON encoding is used only for illustration purposes.
 
 ## Time Variant Networking (Energy Efficient)
 
-The tidal network means the volume of traffic in the network changes
+Tidal network is a typical scenario of Energy Efficient case. The tidal network
+means the volume of traffic in the network changes
 periodically like the ocean tide. This changes are mainly affected by
 human activities. Therefore, this tidal effect is obvious in human-populated
 areas, such as campuses and airport.
@@ -511,10 +512,63 @@ In the context of a tidal network, If the network maintains all the devices
 up to guarantee the maximum throughput all the time, a lot of power will be
 wasted. The energy-saving methods may include the deactivation of some or all
 components of network nodes. These activities have the potential to alter
-network topology and impact data routing in a variety of ways.  Ports on
+network topology and impact data routing in a variety of ways.  Interfaces on
 network nodes can be selectively disabled or enabled based on traffic patterns,
 thereby reducing the energy consumption of nodes during periods of low network
 traffic.
+
+The controlling of the interface states of each node can be achieved by using the ietf-tvr-node YANG module defined in {{?I-D.ietf-tvr-schedule-yang}}.
+
+The following indicates the example of a scheduling node that is powered on from 12 AM, December 1, 2025 to 12 AM, December 1, 2026 in UTC and its interface named interface1 is scheduled to enable at 7:00 AM and disabled at 1:00 AM, every day, from December 1, 2025 to December 1, 2026 in UTC.
+The JSON encoding is used only for illustration purposes.
+
+~~~~
+{
+    "ietf-tvr-node:node-schedule": [
+        {
+            "node-id": 12345678,
+            "node-power-schedule": {
+              "power-default": false
+              "schedules": [
+                {
+                  "schedule-id": 111111,
+                  "period-start": "2025-12-01T00:00:00Z",
+                  "period-end": "2026-12-01T00:00:00Z",
+                  "attr-value": {
+                    "power-state":true
+                  }
+                }
+              ]
+            }
+            "interface-schedule": [
+              {
+                "name": "interace1",
+                "default-available": false,
+                "default-bandwidth": 1000000000,
+                "attribute-schedule": {
+                  "schedules":[
+                    {
+                      "schedule-id": 222222,
+                      "recurrence-first": {
+                        "utc-start-time": "2025-12-01T07:00:00Z",
+                        "duration": 64800 //60*60*18
+                      },
+                      "utc-until": "2026-12-01T00:00:00Z",
+                      "frequency": "ietf-schedule:daily",
+                      "interval": 1,
+                      "attr-value": {
+                        "available":true,
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+        }
+    ]
+}
+~~~~
+
 
 # Acknowledgments
 {:numbered="false"}
