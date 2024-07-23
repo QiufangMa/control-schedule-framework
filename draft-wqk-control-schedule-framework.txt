@@ -717,11 +717,6 @@ Contributors
    Email: liupengyjy@chinamobile.com
 
 
-   Tony Li
-   Juniper Networks
-   Email: tony.li@tony.li
-
-
 Authors' Addresses
 
    Qiufang Ma (editor)
