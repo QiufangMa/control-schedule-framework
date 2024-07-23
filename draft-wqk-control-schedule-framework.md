@@ -395,11 +395,11 @@ in any scheduling contexts.
 
 TODO
 
-### Distributing Schedule 
+### Distributing Schedule
 
 TODO
 
-### Executing Schedule  
+### Executing Schedule
 
 TODO
 
