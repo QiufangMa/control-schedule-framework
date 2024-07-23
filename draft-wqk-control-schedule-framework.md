@@ -45,7 +45,7 @@ contributor:
 -
   fullname: Charalampos (Haris) Rotsos
   organization: Lancaster University
-  email: TBD
+  email: c.rotsos@lancaster.ac.uk
 -
   fullname: Li Zhang
   organization: Huawei
