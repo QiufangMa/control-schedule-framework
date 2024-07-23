@@ -75,11 +75,15 @@ Table of Contents
      3.6.  Synchronization
    4.  Applicable Models, Interfaces and Dependencies
      4.1.  YANG Data Models
-     4.2.  Other Dependencies
-       4.2.1.  Access Control
-       4.2.2.  Atomic Operations
-       4.2.3.  Rollback Mechanism
-       4.2.4.  Inter-dependency
+     4.2.  Procedures
+       4.2.1.  Generating Schedule
+       4.2.2.  Distributing Schedule
+       4.2.3.  Executing Schedule
+     4.3.  Other Dependencies
+       4.3.1.  Access Control
+       4.3.2.  Atomic Operations
+       4.3.3.  Rollback Mechanism
+       4.3.4.  Inter-dependency
    5.  Manageability Considerations
      5.1.  Multiple Schedule Service Requesters
    6.  Security Considerations
@@ -455,13 +459,27 @@ Table of Contents
       a collection of OAM unitary tests based on date and time
       constraints.
 
-4.2.  Other Dependencies
+4.2.  Procedures
+
+4.2.1.  Generating Schedule
+
+   TODO
+
+4.2.2.  Distributing Schedule
+
+   TODO
+
+4.2.3.  Executing Schedule
+
+   TODO
+
+4.3.  Other Dependencies
 
    This sections presents some outstanding dependencies that need to be
    considered when deploying the scheduling mechanism.  This may not be
    exhaustive.
 
-4.2.1.  Access Control
+4.3.1.  Access Control
 
    Access control ensures only authorized control entities can have
    access to schedule information, including querying, creation,
@@ -473,7 +491,7 @@ Table of Contents
    subset of all available NETCONF or RESTCONF protocol operations and
    content.
 
-4.2.2.  Atomic Operations
+4.3.2.  Atomic Operations
 
    Atomic operations are guaranteed to be either executed completely or
    not executed at all.  Deployments based on scheduling must ensure
@@ -493,7 +511,7 @@ Table of Contents
    each instance in the recurrence set, either all operations are
    successfully performed, or none at all.
 
-4.2.3.  Rollback Mechanism
+4.3.3.  Rollback Mechanism
 
    Rollback mechanism is useful to ensure that in case of an error, the
    system can revert back to its previous state.  Deployments are
@@ -501,7 +519,7 @@ Table of Contents
    network scheduling activities that can be used for rollback when
    necessary, to maintain network stability.
 
-4.2.4.  Inter-dependency
+4.3.4.  Inter-dependency
 
    Enfrocement of some secheduled actions may depend on other schedules
    actions.  Means to identify such dependency are needed.
@@ -731,7 +749,7 @@ Contributors
 
    Charalampos (Haris) Rotsos
    Lancaster University
-   Email: TBD
+   Email: c.rotsos@lancaster.ac.uk
 
 
    Li Zhang
