@@ -34,7 +34,10 @@ author:
    code: 210012
    country: China
    email: bill.wu@huawei.com
-
+-
+   fullname: Mohamed Boucadair
+   organization: Orange
+   email: mohamed.boucadair@orange.com
 
 contributor:
 -
@@ -45,7 +48,7 @@ contributor:
 -
   fullname: Charalampos (Haris) Rotsos
   organization: Lancaster University
-  email: c.rotsos@lancaster.ac.uk
+  email: TBD
 -
   fullname: Li Zhang
   organization: Huawei
@@ -69,92 +72,102 @@ It also addresses additional challenges such as conflict resolution, priority
 handling, and synchronization of scheduled tasks, ultimately enhancing the
 reliability and performance of network services.
 
-Key use cases highlight how the proposed framework can be used for scheduling
+Key use cases highlight how the framework can be used for scheduling
 scenarios. The applicable IETF YANG modules are described, as well as
-other dependencies that are needed. In future versions of this document,
-an appendix will also provide JSON examples.
+other dependencies that are needed.
 
 --- middle
 
 # Introduction
 
-This document presents a comprehensive framework for the scheduled use of
+Scheduling-related tasks are usually considered for efficient and deterministic
+network management. Such scheduling may be characterized as simple recurrent tasks
+such as planned activation/deactivation of some network accesses, or can be
+more complex such as scheduling placement of requests and planned invocation
+of resources to satisfy service demands or adhere to local networks policies.
+Many common building blocks are required for all these cases for adequate
+management of schedules and related scheduled actions.
+
+This document presents a framework for the scheduled use of
 resources within network environments, utilizing the IETF YANG models
 designed for scheduling of network resources.
 
-The framework aims to show how the emerging IETF data models can streamline
+The framework describes how IETF data models (e.g., {{?I-D.ietf-netmod-schedule-yang}}) can streamline
 the management and orchestration of network events, policies, services,
-and resources based on precise date and time parameters. By leveraging the
-defined YANG modules, this framework facilitates interoperable and
+and resources based on precise date and time parameters. By leveraging these
+YANG modules, this framework facilitates interoperable and
 efficient scheduling mechanisms that enhance the predictability,
 coordination, and optimization of network operations.
 
-The document also provides guidelines and best practices for implementing
+The document also provides guidelines for implementing
 scheduling capabilities across diverse network architectures, ensuring
 that resources are allocated and utilized in a timely and effective manner.
 
-The document also outlines several challenges that must be considered when
-deploying control mechanisms for scheduling of network resources, including:
+In addition, the document outlines several challenges that must be considered when
+deploying control mechanisms for scheduling network resources, including:
 
- * Where and what scheduling state is held?
+ * Discover where and what scheduling state is held.
 
- * How to apply policy and detect and resolve conflicts?
+ * Specify to apply schedule policies and detect and resolve conflicts.
 
- * Ensuring synchronization of scheduled resources across distributed systems.
+ * Ensure synchronization of scheduled resources across distributed systems.
 
- * Establishing a scalable and resilient scheduling system.
+ * Establish a scalable and resilient scheduling system.
 
- * How to ensure a scheduling system can scale to accommodate complex networks
-   with numerous resources and scheduling requests?
+ * Ensure that a scheduling system can scale to accommodate complex networks
+   with numerous resources and scheduling requests.
 
- * How to ensure the scheduling system remains operational and can recover from
+ * Ensure that the a scheduling system remains operational and can recover from
    failures or disruptions, providing redundancy, failover mechanisms, and
-   robust error handling?
+   robust error handling.
 
- * How to secure scheduled resources?
+ * Secure scheduled resources.
 
- * What mechanisms and policies could be applied to protect scheduling data
+ * Identify what mechanisms and policies could be applied to protect scheduling data
    and operations from unauthorized access and ensuring that only authorized
-   entities can create, modify, or retrieve schedules?
+   entities can create, modify, or retrieve schedules.
+
+> Editors Note: pointers to sections where each of these items is described will
+> be provided in future version.
 
 Key use cases highlight how the proposed framework can be used for scheduling
 scenarios. The applicable IETF YANG modules are described, as well as
 other dependencies that are needed.
 
-[Editors Note] In future versions of this document, an appendix will also
+> [Editors Note] In future versions of this document, an appendix will also
 provide JSON examples.
 
 ## Problem Statement
 
-In modern network environments, the efficient and coordinated use of resources
-is paramount for maintaining optimal performance and reliability. Networks are
-increasingly complex, supporting a wide array of services and applications that
-require precise timing and resource allocation. Despite advancements in network
-technology, there is a notable lack of standardized mechanisms for scheduling
+Efficient and coordinated use of resources
+is paramount for maintaining optimal performance and reliability of many network environments. Networks are
+increasingly complex, supporting a wide variety of services and applications that
+require precise timing and resource allocation. Despite advancements in networking
+techniques and the richness of protocols machinery, there is still a lack of reference architectures for scheduling
 resources based on specific date and time parameters. This gap often leads to
 inefficiencies, conflicts, and suboptimal utilization of network capabilities.
 
-Currently, network administrators rely on disparate and often proprietary tools
+Typically, network administrators rely upon disparate and often proprietary tools
 to manage scheduling for various network activities such as maintenance events,
-policy enforcement, and resource allocation. These tools frequently operate in
+policy enforcement, and resource allocation. These tools genrally operate in
 isolation, lacking interoperability and integration with other network management
 systems. As a result, administrators face significant challenges in coordinating
 schedules, resolving conflicts, and ensuring that critical tasks are executed
 without disruption. The absence of a unified scheduling framework exacerbates
 these issues, leading to increased operational overhead and potential service
-degradation.
+degradation (e.g., lack of integration with service impact analysis).
 
-Furthermore, the dynamic nature of modern networks demands a flexible and adaptive
+Furthermore, the dynamic nature of some networks demands a flexible and adaptive
 scheduling solution that can respond to changing conditions and requirements.
 Existing scheduling approaches are often rigid and static, unable to accommodate
 the fluid demands of network services and applications. This rigidity hinders the
 ability to optimize resource use and respond proactively to network events,
-ultimately impacting the overall efficiency and effectiveness of network
+impacting the overall efficiency and effectiveness of network
 operations.
 
 To address these challenges, there is a clear need for a standardized framework
 that can provide a cohesive approach to scheduling network resources. Such a
-framework should leverage existing YANG models to ensure compatibility and ease
+framework leverages existing YANG models to ensure compatibility and ease
 of integration with current network management practices. By standardizing the
 scheduling process, network operators can achieve greater predictability,
 reduce conflicts, and optimize the use of network resources, thereby
@@ -187,24 +200,23 @@ outlined in this document.
 
 {::boilerplate bcp14-tagged}
 
-The following definitions are used throughout this document:
+The following terms are used in this document:
 
 * Schedule Service Requester:
-: The entity making the scheduling requests of network events, policies, services
+: An entity that issues a scheduling request of network events, policies, services,
   and resources.
 
 * Schedule Service Responder:
-: The entity accepting and reacting the scheduling Requests from Schedule
-  Service Request.
+: An entity that handles scheduling requests from a Schedule Service Requester.
 
 * Schedule Manager:
-: The component managing the scheduling.
+: A functional entity that is managing the scheduling operations.
 
 * Policy Engine:
-: The component that is responsible for enforcing a set of polices or rules
+: A functional entity that is responsible for enforcing a set of polices or rules
   in the network.
 
-# Architecture
+# An Architecture
 
 {{arch}} presents the referenced architecture for the control scheduling of
 network resources.
@@ -244,7 +256,7 @@ network resources.
 ~~~~
 {: #arch title="An Architecture for the Scheduled Network Scenarios" artwork-align="center"}
 
-## Functional components
+## Functional Components
 
 ### Scheduled Service Requester
 
@@ -252,7 +264,7 @@ The entity requesting a resource schedule change can vary widely. For example,
 a network administrator may seek to restrict or limit access to specific network
 resources based on day or time to optimize performance and enhance security.
 
-Additionally, higher-layer OSS (Operations Support System) components may impose
+Additionally, higher-layer Operations Support System (OSS) components may impose
 restrictions on network resources in response to changing network conditions,
 ensuring service continuity and compliance with operational policies. Automated
 systems and AI-driven components can also request dynamic adjustments based on
@@ -261,15 +273,22 @@ usage to maintain peak network efficiency.
 
 ### Scheduled Service Responder
 
-The function of this central component is responsibility for managing and coordinating
-all network scheduling activities. There are several sub-components within this entity,
-including:
+This component is responsibile handling scheduling orders. That is, this entity manages and coordinates
+all network scheduling activities. The extact internal structure of this entity is deployment-specific; however this
+document describes an example internla decomposition of this entity:
 
- * Resource Manager: Manages the network resources that are subject to scheduling.
- * Schedule Manager: Handles creation, modification, deletion, and querying of schedules.
- * Conflict Resolver: Detects and resolves scheduling conflicts based on predefined
+ * Resource Manager:
+ : Manages the network resources that are subject to scheduling.
+
+ * Schedule Manager:
+ : Handles creation, modification, deletion, and querying of schedules.
+
+ * Conflict Resolver:
+ : Detects and resolves scheduling conflicts based on predefined
    policies and priorities.
- * Policy Engine: Enforces scheduling policies and rules, ensuring compliance with
+
+ * Policy Engine:
+   : Enforces scheduling policies and rules, ensuring compliance with
    organizational requirements.
 
 Examples of a schedule service responder may be a network controller, network
@@ -278,16 +297,18 @@ management system or the network device itself.
 ## Functional Interfaces
 
 To support the scheduling of network resources effectively, several
-functional interfaces are required. These interfaces facilitate
-communication between different components of the network scheduling
+functional interfaces are required. These interfaces interconnect
+different components of the network scheduling
 system, ensuring seamless integration and operation, these include:
 
- * Schedule Service Requester and Responder API: Schedule resource creation,
-   modification, and deletion requests and responses. Querying of
+ * Schedule Service Requester and Responder API:
+ : Schedule resource order creation,
+   order modification, and deletion requests and responses. Querying of
    current and upcoming schedules, conflict and alert notifications.
 
- * Schedule Service Responder and Network API: Manages interactions with
-   the network resources and inventory systems. Capable of querying
+ * Schedule Service Responder and Network API:
+ : Manages interactions with
+   the network resources, inventory systems, planning systems, etc. Capable of querying
    available resources, allocating and deallocating resources based on
    current schedule plan, and monitoring resource utilization.
 
@@ -298,23 +319,28 @@ required to accurately assess the network state and make informed
 scheduling decisions. Here are some example data sources that will be
 required:
 
- * Network Topology Information: Connection details about the physical
+ * Network Topology Information:
+ : Connection details about the physical
    and logical layout of the network, including nodes, ports/links,
    and interconnections.
 
- * Network Resource Inventory: A comprehensive list of deployed network
+ * Network Resource Inventory:
+ : A comprehensive list of deployed network
    resources that are not currently in service, but may be available if
    enabled.
 
- * Current Network Utilization: Real-time data on the current usage of
+ * Current Network Utilization:
+ : Real-time data on the current usage of
    network resources, including bandwidth consumption, CPU load,
    memory usage, and power consumption.
 
- * Historic Network Utilization: Past data on the current usage of network
+ * Historic Network Utilization:
+ : Past data on the current usage of network
    resources, including bandwidth consumption, CPU load, memory usage,
    and power consumption.
 
- * Scheduled Maintenance and Planned Outages: Information on planned
+ * Scheduled Maintenance and Planned Outages:
+ : Information on planned
    maintenance activities, scheduled downtimes, and service windows.
 
 It is critical to leverage these diverse data sources, so network
@@ -326,9 +352,10 @@ performance, and ensure service reliability.
 
 The scheduling state is maintained in the schedule manager, which is responsible
 for the creation, deletion, modification, and query of scheduling information.
+
 Groupings "schedule-status" and "schedule-status-with-name" in the "ietf-schedule"
-yang module {{?I-D.ietf-netmod-schedule-yang}} define common parameters for scheduling
-management/status exposure.
+YANG module {{?I-D.ietf-netmod-schedule-yang}} define common parameters for scheduling
+management, including status exposure.
 
 ## Policy and Enforcement
 
@@ -340,7 +367,7 @@ drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z
 /2025-12-15T18:00:00Z
 ~~~~
 
-A set of scheduling policies and rules are maintained in the policy engine,
+A set of scheduling policies and rules are maintained by the policy engine,
 which is responsible for the policy enforcement. Policies are triggered to execute
 at a certain time based on the scheduling parameters. Each policy might be executed
 multiple times, depending on the its scheduling type (one-shot vs. recurrence).
@@ -363,45 +390,32 @@ schedule-related YANG modules could fit into this framework. The following provi
 a list of applicable YANG modules that can be used to exchange data between schedule
 service requester and responder:
 
- * The "ietf-ucl-acl" YANG module defined in {{?I-D.ietf-opsawg-ucl-acl}} augments
-   the IETF ACL model {{?RFC8519}} with schedule parameters to allow each access
-   control entry (ACE) to be activated based on date and time conditions.
 
- * The "ietf-tvr-node" YANG module in {{?I-D.ietf-tvr-schedule-yang}} which works
-   as a device model, is designed to manage a single node with scheduled
+  * {{?I-D.ietf-netmod-schedule-yang}} defines "ietf-schedule" YANG
+    module for scheduling that works as common building blocks for YANG modules
+    described in this section. The module doesn't define any
+    protocol-accessible nodes but a set of reusable groupings applicable to be used
+    in any scheduling contexts.
+
+ * The "ietf-ucl-acl" YANG module defined in {{?I-D.ietf-opsawg-ucl-acl}} augments
+   the IETF Access Ccontrol List (ACL) model {{?RFC8519}} with schedule parameters to allow each Access
+   Control Entry (ACE) to be activated based on date and time conditions.
+
+ * The "ietf-tvr-node" YANG module in {{?I-D.ietf-tvr-schedule-yang}} which is
+   a device model, is designed to manage a single node with scheduled
    attributes (e.g., powered on/off).
 
- * The "ietf-tvr-topology" YANG module in {{?I-D.ietf-tvr-schedule-yang}} is designed
+ * The "ietf-tvr-topology" YANG module in {{?I-D.ietf-tvr-schedule-yang}} is used
    to manage the network topology with time-varying attributes
-   (e.g., node/link availability, link bandwidth or delay).
+   (e.g., node/link availability, link bandwidth, or delay).
 
  * The "ietf-oam-unitary-test" in {{?I-D.contreras-opsawg-scheduling-oam-tests}}
-   is defined to perform scheduled network diagnosis using
+   defines how to perform scheduled network diagnosis using
    (Operations, Administration, and Maintenance) OAM unitary test.
 
  * The "ietf-oam-test-sequence" in {{?I-D.contreras-opsawg-scheduling-oam-tests}}
    is defined to perform a collection of OAM unitary tests based on date and time
    constraints.
-
-Additionally, {{?I-D.ietf-netmod-schedule-yang}} defines "ietf-schedule" YANG
-module for scheduling that works as common building blocks for YANG modules
-described in this section. The module doesn't define any
-protocol-accessible nodes but a set of reusable groupings applicable to be used
-in any scheduling contexts.
-
-## Procedures
-
-### Generating Schedule
-
-TODO
-
-### Distributing Schedule
-
-TODO
-
-### Executing Schedule
-
-TODO
 
 ## Other Dependencies
 
@@ -442,6 +456,10 @@ revert back to its previous state. Deployments are required to save the
 checkpoints (manually or automatically) of network scheduling activities that
 can be used for rollback when necessary, to maintain network stability.
 
+### Inter-dependency
+
+Enfrocement of some secheduled actions may depend on other schedules actions.
+Means to identify such dependency are needed.
 
 # Manageability Considerations
 
