@@ -48,7 +48,7 @@ contributor:
 -
   fullname: Charalampos (Haris) Rotsos
   organization: Lancaster University
-  email: TBD
+  email: c.rotsos@lancaster.ac.uk
 -
   fullname: Li Zhang
   organization: Huawei
@@ -416,6 +416,20 @@ service requester and responder:
  * The "ietf-oam-test-sequence" in {{?I-D.contreras-opsawg-scheduling-oam-tests}}
    is defined to perform a collection of OAM unitary tests based on date and time
    constraints.
+
+## Procedures
+
+### Generating Schedule
+
+TODO
+
+### Distributing Schedule
+
+TODO
+
+### Executing Schedule
+
+TODO
 
 ## Other Dependencies
 
