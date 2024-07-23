@@ -54,10 +54,6 @@ contributor:
   fullname: Peng Liu
   organization: China Mobile
   email: liupengyjy@chinamobile.com
--
-  fullname: Tony Li
-  organization: Juniper Networks
-  email: tony.li@tony.li
 
 normative:
 
