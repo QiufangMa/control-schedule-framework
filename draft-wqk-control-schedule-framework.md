@@ -389,6 +389,20 @@ described in this section. The module doesn't define any
 protocol-accessible nodes but a set of reusable groupings applicable to be used
 in any scheduling contexts.
 
+## Procedures
+
+### Generating Schedule
+
+TODO
+
+### Distributing Schedule
+
+TODO
+
+### Executing Schedule
+
+TODO
+
 ## Other Dependencies
 
 This sections presents some outstanding dependencies that need to be considered
