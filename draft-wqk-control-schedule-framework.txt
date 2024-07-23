@@ -5,13 +5,11 @@
 OPSAWG                                                        Q. Ma, Ed.
 Internet-Draft                                                     Q. Wu
 Intended status: Informational                                    Huawei
-Expires: 18 January 2025                                    D. King, Ed.
-                                                    Lancaster University
-                                                            17 July 2024
+Expires: 24 January 2025                                    23 July 2024
 
 
       A Framework for the Control Scheduling of Network Resources
-           draft-wqk-opsawg-control-schedule-framework-latest
+              draft-wqk-control-schedule-framework-latest
 
 Abstract
 
@@ -44,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 January 2025.
+   This Internet-Draft will expire on 24 January 2025.
 
 Copyright Notice
 
@@ -550,8 +548,8 @@ Table of Contents
               Qu, Y., Lindem, A., Kinzie, E., Fedyk, D., and M.
               Blanchet, "YANG Data Model for Scheduled Attributes", Work
               in Progress, Internet-Draft, draft-ietf-tvr-schedule-yang-
-              01, 6 July 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-tvr-schedule-yang-01>.
+              02, 22 July 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-tvr-schedule-yang-02>.
 
    [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
               Access Control Model", STD 91, RFC 8341,
@@ -698,9 +696,30 @@ Acknowledgments
 
 Contributors
 
+   Daniel King
+   Lancaster University
+   United Kingdom
+   Email: d.king@lancaster.ac.uk
+
+
+   Charalampos (Haris) Rotsos
+   Lancaster University
+   Email: TBD
+
+
    Li Zhang
    Huawei
    Email: zhangli344@huawei.com
+
+
+   Peng Liu
+   China Mobile
+   Email: liupengyjy@chinamobile.com
+
+
+   Tony Li
+   Juniper Networks
+   Email: tony.li@tony.li
 
 
 Authors' Addresses
@@ -721,9 +740,3 @@ Authors' Addresses
    210012
    China
    Email: bill.wu@huawei.com
-
-
-   Daniel King (editor)
-   Lancaster University
-   United Kingdom
-   Email: d.king@lancaster.ac.uk
