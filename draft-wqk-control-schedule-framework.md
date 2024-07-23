@@ -65,16 +65,15 @@ informative:
 
 --- abstract
 
-This document presents a comprehensive framework that elucidates various
+This document presents a framework that elucidates various
 scheduling scenarios and identifies the entities involved in
 requesting scheduled changes of network resources or policy/action execution.
 It also addresses additional challenges such as conflict resolution, priority
 handling, and synchronization of scheduled tasks, ultimately enhancing the
 reliability and performance of network services.
 
-Key use cases highlight how the framework can be used for scheduling
-scenarios. The applicable IETF YANG modules are described, as well as
-other dependencies that are needed.
+This document also describes the applicability of various network management tools and data models may be used,
+to meet the requirements of a set of representative use cases.
 
 --- middle
 
