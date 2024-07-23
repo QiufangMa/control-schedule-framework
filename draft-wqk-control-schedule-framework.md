@@ -3,7 +3,7 @@ title: "A Framework for the Control Scheduling of Network Resources"
 abbrev: "Schedule Framework"
 category: info
 
-docname: draft-wqk-opsawg-control-schedule-framework-latest
+docname: draft-wqk-control-schedule-framework-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
@@ -34,18 +34,30 @@ author:
    code: 210012
    country: China
    email: bill.wu@huawei.com
+
+
+contributor:
 -
   fullname: Daniel King
   organization: Lancaster University
-  role: editor
   country: United Kingdom
   email: d.king@lancaster.ac.uk
-
-contributor:
+-
+  fullname: Charalampos (Haris) Rotsos
+  organization: Lancaster University
+  email: TBD
 -
   fullname: Li Zhang
   organization: Huawei
   email: zhangli344@huawei.com
+-
+  fullname: Peng Liu
+  organization: China Mobile
+  email: liupengyjy@chinamobile.com
+-
+  fullname: Tony Li
+  organization: Juniper Networks
+  email: tony.li@tony.li
 
 normative:
 
