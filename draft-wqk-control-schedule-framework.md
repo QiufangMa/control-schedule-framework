@@ -428,7 +428,28 @@ TODO
 
 ### Executing Schedule
 
-TODO
+Schedules execution means that a device allocates and deallocates resources at a specified
+time point. However, when a schedule's execution affects the network topology, the addition
+and deletion of the topology need to be considered separately.
+ 
+There is very little reaction that the network should do in response to a topological addition.
+A link coming up or a node joining the topology should not have any functional change until the
+change is proven to be fully operational. The routing table or paths could be pre-computated
+but should not be installed before all of the topology changes are confired to be operational.
+The benefits of this pre-computation appear to be very small. The network may choose to not do
+any pre-installation or pre-computation in reaction to topological additions, at a small cost
+of some operational efficiency.
+
+Topological deletions are an entirely different matter. If a link or node is to be removed from
+the topology, then the network should act before the anticipated change to route traffic around
+the expected topological loss. Specifically, at some point before the topology change, the routing
+table or paths should be pre-computated and installed before the topology change take place.
+The time necessary will vary depending on the exact network and configuration. When using IGP or other
+distribut routing protocols, the affected links are recommended to be set to a high metric to direct traffic
+to alternate paths. This type of change does require some time to propagate through the network,
+so the metric change should be initiated far enough in advance that the network converges before the
+actual topological change.
+
 
 ## Other Dependencies
 
