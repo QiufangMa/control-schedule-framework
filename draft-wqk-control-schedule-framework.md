@@ -429,7 +429,7 @@ TODO
 ### Executing Schedule
 
 Schedules execution means that a component (e.g., device) undertakes an action (e.g., allocates and deallocates resources) at specified
-time points. When a schedule's execution affects the network topology, the addition
+time points. The schedule executor should fully understand the consequences of the schedule execution. For example, when a schedule's execution affects the network topology, the addition
 and deletion of the topology need to be considered carefully.
 
 There is very little reaction that a network should do in response to a topological addition.
