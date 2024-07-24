@@ -1810,7 +1810,7 @@ constraints.<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
 <a href="#section-4.2.3" class="section-number selfRef">4.2.3. </a><a href="#name-executing-schedule" class="section-name selfRef">Executing Schedule</a>
           </h4>
 <p id="section-4.2.3-1">Schedules execution means that a component (e.g., device) undertakes an action (e.g., allocates and deallocates resources) at specified
-time points. When a schedule's execution affects the network topology, the addition
+time points. The schedule executor should fully understand the consequences of the schedule execution. For example, when a schedule's execution affects the network topology, the addition
 and deletion of the topology need to be considered carefully.<a href="#section-4.2.3-1" class="pilcrow">¶</a></p>
 <p id="section-4.2.3-2">There is very little reaction that a network should do in response to a topological addition.
 A link coming up or a node joining a topology should not have any functional change until the
