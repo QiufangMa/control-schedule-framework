@@ -431,7 +431,7 @@ TODO
 Schedules execution means that a device allocates and deallocates resources at a specified
 time point. However, when a schedule's execution affects the network topology, the addition
 and deletion of the topology need to be considered separately.
- 
+
 There is very little reaction that the network should do in response to a topological addition.
 A link coming up or a node joining the topology should not have any functional change until the
 change is proven to be fully operational. The routing table or paths could be pre-computated
