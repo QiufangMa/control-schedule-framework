@@ -598,48 +598,48 @@ The JSON encoding is used only for illustration purposes.
 
 ~~~~
 {
-    "ietf-tvr-node:node-schedule": [
-        {
-            "node-id": 12345678,
-            "node-power-schedule": {
-              "power-default": false
-              "schedules": [
-                {
-                  "schedule-id": 111111,
-                  "period-start": "2025-12-01T00:00:00Z",
-                  "period-end": "2026-12-01T00:00:00Z",
-                  "attr-value": {
-                    "power-state":true
+   "ietf-tvr-node:node-schedule":[
+      {
+         "node-id":12345678,
+         "node-power-schedule":{
+            "power-default":false,
+            "schedules":[
+               {
+                  "schedule-id":111111,
+                  "period-start":"2025-12-01T00:00:00Z",
+                  "period-end":"2026-12-01T00:00:00Z",
+                  "attr-value":{
+                     "power-state":true
                   }
-                }
-              ]
-            }
-            "interface-schedule": [
-              {
-                "name": "interace1",
-                "default-available": false,
-                "default-bandwidth": 1000000000,
-                "attribute-schedule": {
-                  "schedules":[
-                    {
-                      "schedule-id": 222222,
-                      "recurrence-first": {
-                        "utc-start-time": "2025-12-01T07:00:00Z",
-                        "duration": 64800 //60*60*18
-                      },
-                      "utc-until": "2026-12-01T00:00:00Z",
-                      "frequency": "ietf-schedule:daily",
-                      "interval": 1,
-                      "attr-value": {
-                        "available":true,
-                      }
-                    }
-                  ]
-                }
-              }
+               }
             ]
-        }
-    ]
+         },
+         "interface-schedule":[
+            {
+               "name":"interace1",
+               "default-available":false,
+               "default-bandwidth":1000000000,
+               "attribute-schedule":{
+                  "schedules":[
+                     {
+                        "schedule-id":222222,
+                        "recurrence-first":{
+                           "utc-start-time":"2025-12-01T07:00:00Z",
+                           "duration":64800
+                        },
+                        "utc-until":"2026-12-01T00:00:00Z",
+                        "frequency":"ietf-schedule:daily",
+                        "interval":1,
+                        "attr-value":{
+                           "available":true
+                        }
+                     }
+                  ]
+               }
+            }
+         ]
+      }
+   ]
 }
 ~~~~
 
