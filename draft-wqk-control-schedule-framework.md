@@ -432,7 +432,6 @@ Schedules execution means that a component (e.g., device) undertakes an action (
 time points. The schedule executor should fully understand the consequences of the schedule execution. For example, when a schedule's execution affects the network topology, the addition
 and deletion of the topology need to be considered carefully.
 
-There is very little reaction that a network should do in response to a topological addition.
 A link coming up or a node joining a topology should not have any functional change until the
 change is proven to be fully operational. The routing tables or paths could be pre-computed
 but should not be installed before all of the topology changes are confired to be operational.
