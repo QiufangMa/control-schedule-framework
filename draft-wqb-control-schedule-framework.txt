@@ -5,13 +5,13 @@
 OPSAWG                                                        Q. Ma, Ed.
 Internet-Draft                                                     Q. Wu
 Intended status: Informational                                    Huawei
-Expires: 25 January 2025                                    M. Boucadair
+Expires: 26 January 2025                                    M. Boucadair
                                                                   Orange
-                                                            24 July 2024
+                                                            25 July 2024
 
 
       A Framework for the Control Scheduling of Network Resources
-              draft-wqk-control-schedule-framework-latest
+              draft-wqb-control-schedule-framework-latest
 
 Abstract
 
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 January 2025.
+   This Internet-Draft will expire on 26 January 2025.
 
 Copyright Notice
 
@@ -768,6 +768,11 @@ Acknowledgments
 
 Contributors
 
+   Li Zhang
+   Huawei
+   Email: zhangli344@huawei.com
+
+
    Daniel King
    Lancaster University
    United Kingdom
@@ -779,14 +784,14 @@ Contributors
    Email: c.rotsos@lancaster.ac.uk
 
 
-   Li Zhang
-   Huawei
-   Email: zhangli344@huawei.com
-
-
    Peng Liu
    China Mobile
    Email: liupengyjy@chinamobile.com
+
+
+   Tony Li
+   Juniper Networks
+   Email: tony.li@tony.li
 
 
 Authors' Addresses
