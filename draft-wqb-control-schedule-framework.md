@@ -428,7 +428,14 @@ TODO
 
 ### Distributing Schedule
 
-TODO
+Schedules distribution means that network schedules are distributed to the execution
+devices by YANG model. Schedules distribution is not mandatory. This depends on the
+location where the schedules are executed. If the schedules are generated and executed
+on the same device, schedules distribution is not required. If schedules are generated
+and executed on different devices, the schedules distribution is needed. Note that if
+a schedule affects topology and a distributed routing protocol is used, then the schedule
+needs to be distributed to all the nodes in the topology, so that other nodes can consider
+the impact of the schedule when calculating routes.
 
 ### Executing Schedule
 
