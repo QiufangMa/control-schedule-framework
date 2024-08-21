@@ -3,7 +3,7 @@ title: "A Framework for the Control Scheduling of Network Resources"
 abbrev: "Schedule Framework"
 category: info
 
-docname: draft-tvr-wqb-control-schedule-framework-latest
+docname: draft-wqb-tvr-control-schedule-framework-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
