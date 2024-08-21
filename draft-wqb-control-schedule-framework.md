@@ -3,14 +3,14 @@ title: "A Framework for the Control Scheduling of Network Resources"
 abbrev: "Schedule Framework"
 category: info
 
-docname: draft-wqb-control-schedule-framework-latest
+docname: draft-tvr-wqb-control-schedule-framework-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
 consensus: true
 v: 3
 area: AREA
-workgroup: "OPSAWG"
+workgroup: "TVR"
 keyword:
  - schedule
  - framework
@@ -504,6 +504,38 @@ can be used for rollback when necessary, to maintain network stability.
 
 Enfrocement of some secheduled actions may depend on other schedules actions.
 Means to identify such dependency are needed.
+
+# Example of Tidal Network
+
+Brief introduction to tidal network...
+
+## Yang Model Examples
+
+TODO
+
+## Example Process 
+
+TODO
+
+### Building traffic profiles
+
+TODO
+
+### Estabilish Minimum and Peak Topology
+
+TODO
+
+### Generating Network Schedules
+
+TODO
+
+### Distributing Network Schedules
+
+TODO
+
+### Executing Schedules
+
+TODO
 
 # Manageability Considerations
 
