@@ -5,9 +5,9 @@
 OPSAWG                                                        Q. Ma, Ed.
 Internet-Draft                                                     Q. Wu
 Intended status: Informational                                    Huawei
-Expires: 26 January 2025                                    M. Boucadair
+Expires: 22 February 2025                                   M. Boucadair
                                                                   Orange
-                                                            25 July 2024
+                                                          21 August 2024
 
 
       A Framework for the Control Scheduling of Network Resources
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 January 2025.
+   This Internet-Draft will expire on 22 February 2025.
 
 Copyright Notice
 
@@ -466,7 +466,16 @@ Table of Contents
 
 4.2.2.  Distributing Schedule
 
-   TODO
+   Schedules distribution means that network schedules are distributed
+   to the execution devices by YANG model.  Schedules distribution is
+   not mandatory.  This depends on the location where the schedules are
+   executed.  If the schedules are generated and executed on the same
+   device, schedules distribution is not required.  If schedules are
+   generated and executed on different devices, the schedules
+   distribution is needed.  Note that if a schedule affects topology and
+   a distributed routing protocol is used, then the schedule needs to be
+   distributed to all the nodes in the topology, so that other nodes can
+   consider the impact of the schedule when calculating routes.
 
 4.2.3.  Executing Schedule
 

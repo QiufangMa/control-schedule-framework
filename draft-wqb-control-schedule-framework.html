@@ -35,7 +35,7 @@ to meet the requirements of a set of representative use cases.
     pycountry 22.3.5
     PyYAML 6.0.1
     requests 2.32.3
-    setuptools 69.5.1
+    setuptools 70.3.0
     wcwidth 0.2.13
 -->
 <link href="draft-wqb-control-schedule-framework.xml" rel="alternate" type="application/rfc+xml">
@@ -1035,11 +1035,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Schedule Framework</td>
-<td class="right">July 2024</td>
+<td class="right">August 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Ma, et al.</td>
-<td class="center">Expires 26 January 2025</td>
+<td class="center">Expires 22 February 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1052,12 +1052,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-wqb-control-schedule-framework-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-07-25" class="published">25 July 2024</time>
+<time datetime="2024-08-21" class="published">21 August 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-01-26">26 January 2025</time></dd>
+<dd class="expires"><time datetime="2025-02-22">22 February 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1107,7 +1107,7 @@ to meet the requirements of a set of representative use cases.<a href="#section-
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 26 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 February 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1801,7 +1801,14 @@ constraints.<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
           <h4 id="name-distributing-schedule">
 <a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-distributing-schedule" class="section-name selfRef">Distributing Schedule</a>
           </h4>
-<p id="section-4.2.2-1">TODO<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.2-1">Schedules distribution means that network schedules are distributed to the execution
+devices by YANG model. Schedules distribution is not mandatory. This depends on the
+location where the schedules are executed. If the schedules are generated and executed
+on the same device, schedules distribution is not required. If schedules are generated
+and executed on different devices, the schedules distribution is needed. Note that if
+a schedule affects topology and a distributed routing protocol is used, then the schedule
+needs to be distributed to all the nodes in the topology, so that other nodes can consider
+the impact of the schedule when calculating routes.<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="executing-schedule">
