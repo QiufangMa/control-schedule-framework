@@ -513,7 +513,7 @@ Brief introduction to tidal network...
 
 TODO
 
-## Example Process 
+## Example Process
 
 TODO
 
