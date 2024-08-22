@@ -525,7 +525,7 @@ traffic.
 
 ## Architecture Example in Tidal Network
 
-As described in secion 3.1.2 of {{ ?I-D.ietf-tvr-requirements }},the locality of
+As described in secion 3.1.2 of {{?I-D.ietf-tvr-requirements}},the locality of
 schedule generation can be Centralized Generation or Distributed Generation. Both
 of these two generation methods are applicable in Tidal Network.
 
@@ -535,7 +535,7 @@ In the centralized schedule generation, the Schedule Service Requester in {{arch
 can be network administrator, and the Scheduled Service Responder can be a network
 controller or network management system. After generated schedules, the controller
 or management system need to determine whether to distribute these schedules based
-on the schedule Execution Locality defined in section 3.1.3 of{{ ?I-D.ietf-tvr-requirements }}.
+on the schedule Execution Locality defined in section 3.1.3 of{{?I-D.ietf-tvr-requirements}}.
 
 ### Architecture Example in Distributed Generation
 
