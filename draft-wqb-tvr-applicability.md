@@ -1,26 +1,30 @@
 ---
-title: "A Framework for the Control Scheduling of Network Resources"
+title: "Applicability of YANG Data Models for Scheduling of Network Resources"
 abbrev: "Schedule Framework"
 category: info
 
-docname: draft-wqb-control-schedule-framework-latest
+docname: draft-wqb-tvr-applicability-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
 consensus: true
 v: 3
 area: AREA
-workgroup: "OPSAWG"
+workgroup: "TVR"
 keyword:
  - schedule
  - framework
  - YANG module
+ - applicability
 
 author:
 -
+  fullname: Li Zhang
+  organization: Huawei
+  email: zhangli344@huawei.com
+-
    fullname: Qiufang Ma
    organization: Huawei
-   role: editor
    street: 101 Software Avenue, Yuhua District
    city: Nanjing, Jiangsu
    code: 210012
@@ -40,10 +44,6 @@ author:
    email: mohamed.boucadair@orange.com
 
 contributor:
--
-  fullname: Li Zhang
-  organization: Huawei
-  email: zhangli344@huawei.com
 -
   fullname: Daniel King
   organization: Lancaster University
@@ -69,15 +69,14 @@ informative:
 
 --- abstract
 
-This document presents a framework that elucidates various
-scheduling scenarios and identifies the entities involved in
-requesting scheduled changes of network resources or policy/action execution.
-It also addresses additional challenges such as conflict resolution, priority
-handling, and synchronization of scheduled tasks, ultimately enhancing the
-reliability and performance of network services.
+This document describes the applicability of various network management tools
+and data models may be used for scheduling, to meet the requirements of a set
+of representative use cases described in {{?I-D.ietf-tvr-use-cases}}.
 
-This document also describes the applicability of various network management tools and data models may be used,
-to meet the requirements of a set of representative use cases.
+It also presents a framework that elucidates various scheduling scenarios
+and identifies the entities involved in requesting scheduled changes of
+network resources.
+
 
 --- middle
 
@@ -91,16 +90,12 @@ of resources to satisfy service demands or adhere to local networks policies.
 Many common building blocks are required for all these cases for adequate
 management of schedules and related scheduled actions.
 
-This document presents a framework for the scheduled use of
-resources within network environments, utilizing the IETF YANG models
-designed for scheduling of network resources.
-
-The framework describes how IETF data models (e.g., {{?I-D.ietf-netmod-schedule-yang}}) can streamline
-the management and orchestration of network events, policies, services,
-and resources based on precise date and time parameters. By leveraging these
-YANG modules, this framework facilitates interoperable and
-efficient scheduling mechanisms that enhance the predictability,
-coordination, and optimization of network operations.
+This document describes the applicability of various network management tools
+and data models may be used for scheduling, to meet the requirements of a set
+of representative use cases described in {{?I-D.ietf-tvr-use-cases}}. By leveraging
+a reference framework presented in this document, it shows how IETF data models in
+{{?I-D.ietf-tvr-schedule-yang}} can fit into this framework and streamline the management and
+orchestration of network resources based on precise date and time parameters.
 
 The document also provides guidelines for implementing
 scheduling capabilities across diverse network architectures, ensuring
@@ -137,9 +132,10 @@ Key use cases highlight how the proposed framework can be used for scheduling
 scenarios. The applicable IETF YANG modules are described, as well as
 other dependencies that are needed.
 
-> [Editors Note] In future versions of this document, an appendix will also
+> Editors Note: In future versions of this document, an appendix will also
 provide JSON examples.
 
+<!--
 ## Problem Statement
 
 Efficient and coordinated use of resources
@@ -198,6 +194,7 @@ it (e.g., {{?I-D.ietf-opsawg-ucl-acl}}, {{?I-D.contreras-opsawg-scheduling-oam-t
 and {{?I-D.ietf-tvr-schedule-yang}}) provide powerful capabilities for the control and
 scheduling of network resources for several use cases, including key examples
 outlined in this document.
+-->
 
 # Conventions and Definitions
 
@@ -219,9 +216,9 @@ The following terms are used in this document:
 : A functional entity that is responsible for enforcing a set of polices or rules
   in the network.
 
-# An Architecture
+# An Reference Architecture {#architecture}
 
-{{arch}} presents the referenced architecture for the control scheduling of
+{{arch}} presents a reference architecture for the control scheduling of
 network resources.
 
 ~~~~
@@ -384,7 +381,9 @@ there is any time inconsistencies between entities that request/respond to
 policies or events based on time-varying parameters. Several methods are
 available to achieve this.
 
-# Applicable Models, Interfaces and Dependencies
+<!--
+# Procedures and Other Dependencies
+
 
 ## YANG Data Models {#schedule-modules}
 
@@ -460,7 +459,6 @@ to alternate paths. This type of change does require some time to propagate thro
 so the metric change should be initiated far enough in advance that the network converges before the
 actual topological change.
 
-
 ## Other Dependencies
 
 This sections presents some outstanding dependencies that need to be considered
@@ -504,6 +502,137 @@ can be used for rollback when necessary, to maintain network stability.
 
 Enfrocement of some secheduled actions may depend on other schedules actions.
 Means to identify such dependency are needed.
+-->
+
+# TVR Use Cases with Code Example {#uc}
+
+## Energy Efficient
+
+Tidal network is a typical scenario of Energy Efficient case. The tidal network
+means the volume of traffic in the network changes
+periodically like the ocean tide. This changes are mainly affected by
+human activities. Therefore, this tidal effect is obvious in human-populated
+areas, such as campuses and airport.
+
+In the context of a tidal network, If the network maintains all the devices
+up to guarantee the maximum throughput all the time, a lot of power will be
+wasted. The energy-saving methods may include the deactivation of some or all
+components of network nodes. These activities have the potential to alter
+network topology and impact data routing in a variety of ways.  Interfaces on
+network nodes can be selectively disabled or enabled based on traffic patterns,
+thereby reducing the energy consumption of nodes during periods of low network
+traffic.
+
+### Applicable Models
+
+The following provides a list of applicable YANG modules that can be used to
+exchange data between schedule service requester and responder specified in {{architecture}}:
+
+ * The "ietf-tvr-node" YANG module in {{?I-D.ietf-tvr-schedule-yang}} which is
+   a device model, is designed to manage a single node with scheduled
+   attributes (e.g., powered on/off).
+
+ * {{?I-D.ietf-netmod-schedule-yang}} defines "ietf-schedule" YANG
+   module for scheduling that works as common building blocks for YANG modules
+   described in this section. The module doesn't define any
+   protocol-accessible nodes but a set of reusable groupings applicable to be used
+   in any scheduling contexts.
+
+### Code Examples
+
+The following indicates the example of a scheduling node that is powered on from 12 AM, December 1, 2025 to 12 AM, December 1, 2026 in UTC and its interface named interface1 is scheduled to enable at 7:00 AM and disabled at 1:00 AM, every day, from December 1, 2025 to December 1, 2026 in UTC.
+The JSON encoding is used only for illustration purposes.
+
+~~~~
+{
+   "ietf-tvr-node:node-schedule":[
+      {
+         "node-id":12345678,
+         "node-power-schedule":{
+            "power-default":false,
+            "schedules":[
+               {
+                  "schedule-id":111111,
+                  "period-start":"2025-12-01T00:00:00Z",
+                  "period-end":"2026-12-01T00:00:00Z",
+                  "attr-value":{
+                     "power-state":true
+                  }
+               }
+            ]
+         },
+         "interface-schedule":[
+            {
+               "name":"interace1",
+               "default-available":false,
+               "default-bandwidth":1000000000,
+               "attribute-schedule":{
+                  "schedules":[
+                     {
+                        "schedule-id":222222,
+                        "recurrence-first":{
+                           "utc-start-time":"2025-12-01T07:00:00Z",
+                           "duration":64800
+                        },
+                        "utc-until":"2026-12-01T00:00:00Z",
+                        "frequency":"ietf-schedule:daily",
+                        "interval":1,
+                        "attr-value":{
+                           "available":true
+                        }
+                     }
+                  ]
+               }
+            }
+         ]
+      }
+   ]
+}
+~~~~
+
+# Other Dependencies
+
+This sections presents some outstanding dependencies that need to be considered
+when deploying the scheduling mechanism. This may not be exhaustive.
+
+## Access Control
+
+Access control ensures only authorized control entities can have access to schedule
+information, including querying, creation, modification, and deletion of schedules.
+Unauthorized access may lead to unintended consequences.
+
+The Network Access Control Model (NACM) {{?RFC8341}} provides standard mechanisms
+to restrict access for particular uses to a preconfigured subset of all available
+NETCONF or RESTCONF protocol operations and content.
+
+## Atomic Operations
+
+Atomic operations are guaranteed to be either executed completely or not executed
+at all. Deployments based on scheduling must ensure schedule changes based on
+recurrence rules are applied as atomic transactions. Either all changes are
+successfully applied, or none at all. For example, a network policy may be
+scheduled to be active every Tuesday in January of 2025. If the schedule is changed
+to every Wednesday in January 2025, the recurrence set is changed from
+January 7, 14, 21, 28 to January 1, 8, 15, 22, 29. If some occurrences can
+not be applied successfully (e.g., January 1 cannot be scheduled because of conflict),
+the others in the recurrence set will not be applied as well.
+
+In addition, the scheduling management of network events, policies, services, and
+resources may involve operations that are performed at particular future time(s).
+Multiple operations might be involved for each instance in the recurrence set,
+either all operations are successfully performed, or none at all.
+
+## Rollback Mechanism
+
+Rollback mechanism is useful to ensure that in case of an error, the system can
+revert back to its previous state. Deployments are required to save the
+checkpoints (manually or automatically) of network scheduling activities that
+can be used for rollback when necessary, to maintain network stability.
+
+## Inter-dependency
+
+Enfrocement of some secheduled actions may depend on other schedules actions.
+Means to identify such dependency are needed.
 
 # Manageability Considerations
 
@@ -532,6 +661,7 @@ This document has no IANA actions.
 
 --- back
 
+<!--
 # Use Cases with detailed Code Examples
 
 ## Scheduling OAM Tests (Attestation)
@@ -652,7 +782,7 @@ The JSON encoding is used only for illustration purposes.
    ]
 }
 ~~~~
-
+-->
 
 # Acknowledgments
 {:numbered="false"}
