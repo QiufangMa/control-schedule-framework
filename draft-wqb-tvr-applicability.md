@@ -506,7 +506,7 @@ Means to identify such dependency are needed.
 
 # TVR Use Cases with Code Example {#uc}
 
-## Overview of Tidal Network 
+## Overview of Tidal Network
 
 Tidal network is a typical scenario of Energy Efficient case. The tidal network
 means the volume of traffic in the network changes
@@ -543,7 +543,7 @@ In the distributed schedule generation，the Schedule Service Requester in {{arc
 can be network administrator, and the Scheduled Service Responders are the network
 devices, the relationship of network administrator and network devices are shown in
 {{arch-example}}. In this mode, the generation and execution of schedules are both
-on the same devices，so it does not involve the schedule distribution process. 
+on the same devices，so it does not involve the schedule distribution process.
 
 ~~~~
           +-----------------------------------------------------+
