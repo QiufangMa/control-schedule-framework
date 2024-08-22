@@ -25,7 +25,6 @@ author:
 -
    fullname: Qiufang Ma
    organization: Huawei
-   role: editor
    street: 101 Software Avenue, Yuhua District
    city: Nanjing, Jiangsu
    code: 210012
@@ -382,9 +381,10 @@ there is any time inconsistencies between entities that request/respond to
 policies or events based on time-varying parameters. Several methods are
 available to achieve this.
 
+<!--
 # Procedures and Other Dependencies
 
-<!--
+
 ## YANG Data Models {#schedule-modules}
 
 This document is not intended to define any YANG modules, but shows how existing
@@ -418,7 +418,6 @@ service requester and responder:
  * The "ietf-oam-test-sequence" in {{?I-D.contreras-opsawg-scheduling-oam-tests}}
    is defined to perform a collection of OAM unitary tests based on date and time
    constraints.
--->
 
 ## Procedures
 
@@ -459,7 +458,6 @@ distributed routing protocols, the affected links may be set to a high metric to
 to alternate paths. This type of change does require some time to propagate through the network,
 so the metric change should be initiated far enough in advance that the network converges before the
 actual topological change.
-
 
 ## Other Dependencies
 
@@ -504,6 +502,7 @@ can be used for rollback when necessary, to maintain network stability.
 
 Enfrocement of some secheduled actions may depend on other schedules actions.
 Means to identify such dependency are needed.
+-->
 
 # TVR Use Cases with Code Example {#uc}
 
@@ -591,7 +590,49 @@ The JSON encoding is used only for illustration purposes.
 }
 ~~~~
 
-##
+# Other Dependencies
+
+This sections presents some outstanding dependencies that need to be considered
+when deploying the scheduling mechanism. This may not be exhaustive.
+
+## Access Control
+
+Access control ensures only authorized control entities can have access to schedule
+information, including querying, creation, modification, and deletion of schedules.
+Unauthorized access may lead to unintended consequences.
+
+The Network Access Control Model (NACM) {{?RFC8341}} provides standard mechanisms
+to restrict access for particular uses to a preconfigured subset of all available
+NETCONF or RESTCONF protocol operations and content.
+
+## Atomic Operations
+
+Atomic operations are guaranteed to be either executed completely or not executed
+at all. Deployments based on scheduling must ensure schedule changes based on
+recurrence rules are applied as atomic transactions. Either all changes are
+successfully applied, or none at all. For example, a network policy may be
+scheduled to be active every Tuesday in January of 2025. If the schedule is changed
+to every Wednesday in January 2025, the recurrence set is changed from
+January 7, 14, 21, 28 to January 1, 8, 15, 22, 29. If some occurrences can
+not be applied successfully (e.g., January 1 cannot be scheduled because of conflict),
+the others in the recurrence set will not be applied as well.
+
+In addition, the scheduling management of network events, policies, services, and
+resources may involve operations that are performed at particular future time(s).
+Multiple operations might be involved for each instance in the recurrence set,
+either all operations are successfully performed, or none at all.
+
+## Rollback Mechanism
+
+Rollback mechanism is useful to ensure that in case of an error, the system can
+revert back to its previous state. Deployments are required to save the
+checkpoints (manually or automatically) of network scheduling activities that
+can be used for rollback when necessary, to maintain network stability.
+
+## Inter-dependency
+
+Enfrocement of some secheduled actions may depend on other schedules actions.
+Means to identify such dependency are needed.
 
 # Manageability Considerations
 
