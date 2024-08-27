@@ -1,11 +1,11 @@
-# A Framework for the Control Scheduling of Network Resources
+# Applicability of YANG Data Models for Scheduling of Network Resources
 
-This is the working area for the individual Internet-Draft, "A Framework for the Control Scheduling of Network Resources".
+This is the working area for the individual Internet-Draft, "Applicability of YANG Data Models for Scheduling of Network Resources".
 
-* [Editor's Copy](https://QiufangMa.github.io/control-schedule-framework/#go.draft-wqb-control-schedule-framework.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-wqb-control-schedule-framework)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-wqb-control-schedule-framework)
-* [Compare Editor's Copy to Individual Draft](https://QiufangMa.github.io/control-schedule-framework/#go.draft-wqb-control-schedule-framework.diff)
+* [Editor's Copy](https://QiufangMa.github.io/control-schedule-framework/#go.draft-wqb-tvr-applicability.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-wqb-tvr-applicability)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-wqb-tvr-applicability)
+* [Compare Editor's Copy to Individual Draft](https://QiufangMa.github.io/control-schedule-framework/#go.draft-wqb-tvr-applicability.diff)
 
 
 ## Contributing
