@@ -613,7 +613,7 @@ Service Requester may update or delete the schedules by this identifier in the f
 the detail interfaces related to the links) based on the schedule and stores the
 allocated resources and its corresponding schedule identifier in a resource database.
 The allocation of network resources requires a variety of data resources, such as
-network topology information，network resource inventory，current network utilization, etc.
+network topology information, network resource inventory, current network utilization, etc.
 
 -	The Policy Engine’s responsibility needs to be future discussed.
 
