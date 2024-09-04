@@ -523,7 +523,7 @@ network nodes can be selectively disabled or enabled based on traffic patterns,
 thereby reducing the energy consumption of nodes during periods of low network
 traffic.
 
-## Architecture Example in Tidal Network
+## Architecture Example
 
 As described in secion 3.1.2 of {{?I-D.ietf-tvr-requirements}},the locality of
 schedule generation can be Centralized Generation or Distributed Generation. Both
