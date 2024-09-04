@@ -508,7 +508,7 @@ Means to identify such dependency are needed.
 
 ## Tidal Network
 
-Tidal network is a typical scenario of Energy Efficient case. The tidal network
+Tidal network is a typical scenario of Energy Efficient case {{Section 3 of ?I-D.ietf-tvr-use-cases}}. The tidal network
 means that the volume of traffic in the network changes
 periodically like the ocean tide. This changes are mainly affected by
 human activities. Therefore, this tidal effect is obvious in human-populated
