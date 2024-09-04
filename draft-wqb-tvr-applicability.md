@@ -525,7 +525,7 @@ traffic.
 
 ## Architecture Example
 
-As described in secion 3.1.2 of {{?I-D.ietf-tvr-requirements}},the locality of
+As described in {{Section 3.1.2 of ?I-D.ietf-tvr-requirements}}, the locality of
 schedule generation can be Centralized Generation or Distributed Generation. Both
 of these two generation methods are applicable in Tidal Network.
 
