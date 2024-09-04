@@ -71,7 +71,7 @@ informative:
 
 This document describes the applicability of various network management tools
 and data models may be used for scheduling, to meet the requirements of a set
-of representative use cases described in {{?I-D.ietf-tvr-requirements}}.
+of representative use cases described in the "TVR (Time-Variant Routing) Requirements" (I-D.ietf-tvr-requirements).
 
 It also presents a framework that elucidates various scheduling scenarios
 and identifies the entities involved in requesting scheduled changes of
@@ -92,7 +92,7 @@ management of schedules and related scheduled actions.
 
 This document describes the applicability of various network management tools
 and data models may be used for scheduling, to meet the requirements of a set
-of representative use cases described in {{?I-D.ietf-tvr-use-cases}}. By leveraging
+of representative Time-Variant Routing (TVR) use cases described in {{?I-D.ietf-tvr-use-cases}}. By leveraging
 a reference framework presented in this document, it shows how IETF data models in
 {{?I-D.ietf-tvr-schedule-yang}} can fit into this framework and streamline the management and
 orchestration of network resources based on precise date and time parameters.
@@ -509,16 +509,16 @@ Means to identify such dependency are needed.
 ## Tidal Network
 
 Tidal network is a typical scenario of Energy Efficient case. The tidal network
-means the volume of traffic in the network changes
+means that the volume of traffic in the network changes
 periodically like the ocean tide. This changes are mainly affected by
 human activities. Therefore, this tidal effect is obvious in human-populated
-areas, such as campuses and airport.
+areas, such as campuses and airports.
 
-In the context of a tidal network, If the network maintains all the devices
-up to guarantee the maximum throughput all the time, a lot of power will be
+In the context of a tidal network, if the network maintains all the devices
+up to guarantee a maximum throughput all the time, a lot of power will be
 wasted. The energy-saving methods may include the deactivation of some or all
 components of network nodes. These activities have the potential to alter
-network topology and impact data routing in a variety of ways.  Interfaces on
+network topology and impact data routing/forwarding in a variety of ways.  Interfaces on
 network nodes can be selectively disabled or enabled based on traffic patterns,
 thereby reducing the energy consumption of nodes during periods of low network
 traffic.
@@ -532,22 +532,22 @@ of these two generation methods are applicable in Tidal Network.
 ### Centralized Generation
 
 In the centralized schedule generation, the Schedule Service Requester in {{arch}}
-can be network administrator, and the Scheduled Service Responder can be a network
-controller or network management system. After generated schedules, the controller
-or management system need to determine whether to distribute these schedules based
-on the schedule Execution Locality defined in section 3.1.3 of{{?I-D.ietf-tvr-requirements}}.
+can be a network administrator, and the Scheduled Service Responder can be a network
+controller or network management system. After generating schedules, the controller
+(or management system) needs to determine whether to distribute these schedules based
+on the schedule Execution Locality defined in {{Section 3.1.3 of ?I-D.ietf-tvr-requirements}}.
 
 ### Distributed Generation
 
 In the distributed schedule generation，the Schedule Service Requester in {{arch}}
-can be network controller, and the Scheduled Service Responders are the network
-devices, the relationship between network controller and network devices is shown in
+can be a network controller, and the Scheduled Service Responders are the network
+devices, the relationship between network controllers and network devices is shown in
 {{arch-example}}. In this mode, the generation and execution of schedules are both
 on the same devices, so it does not involve the schedule distribution process.
 
 ~~~~
           +-----------------------------------------------------+
-          |              Network Administrator                  |
+          |              Network Controller(s)                  |
           +-+--------------^------------------+---------------^-+
             |              |                  |               |
             |Request       |Response          |Request        |Response
@@ -572,25 +572,25 @@ on the same devices, so it does not involve the schedule distribution process.
 ### Example Procedures
 
 
-#### Building traffic profiles
+#### Building Traffic Profiles
 
 The first step to perform schedules in a tidal network is to analysis the traffic patterns at different
-network devices and links comprehensively and then establishing clear tidal points for lower and upper
-network traffic. It should be noted that the change regularity of traffic may different at different time
-(for example the traffic regularity in workday and weekend may totally different), the selection of tidal
+network devices and links comprehensively and then establish clear tidal points for lower and upper
+network traffic. It should be noted that the change regularity of traffic may be different at different time
+(for example, the traffic regularity in workday and weekend may totally be different), the selection of tidal
 points should take full count of these factors. How to analyze the traffic patterns and determine the
 tidal points are outside the scope of this document.
 
 #### Estabilish Minimum and Peak Topology
 
 An algorithm is required to calculate the minimum and peak topology to service expected demand at different
-time slot. The calculation algorithm for the topology is outside the scope of this document.
+time slot. Such calculation algorithm for the topology is outside the scope of this document.
 
 #### Generating Schedule
 
 The schedule request is generated by the Schedule Service Requester according to the switching regularity
-of the minimum and peak topology. For example, the minimum topology enables from 1am to 7am everyday, then
-the network administrator need to shutdown some links or devices from 1 am to 7am.
+of the minimum and peak topology. For example, the minimum topology enables from 1 AM to 7 AM everyday, then
+the network administrator need to shutdown some links or devices from 1 AM to 7 AM.
 
 When the Scheduled Service Responder receives this schedule request, it will generate
 a schedule with the following procedures:
@@ -598,22 +598,22 @@ a schedule with the following procedures:
 -	The Conflict Resolver checks whether the current schedule request conflicts with other
 schedules. If there is no conflict, then go to the next step. Otherwise, a message is
 returned to the Schedule Service Requester, indicating that the conflict check fails.
-A typical failed scenario is that the resource requested by the current schedule is
-occupied by another existing schedule. For example, there is an existing schedule
-requests the same links up from 5 am to 10am every day, then there is a conflict with
+A typical failure scenario is that the resource triggered by the current schedule is
+occupied by another schedule. For example, there is an existing schedule
+that requests the same links up from 5 AM to 10 AM every day, then there is a conflict with
 this request and the existing schedule.
 
 -	The Schedule Manager creates one schedule according to the request, and then store
-it in the schedule database。It should be noted that the Schedule Manager SHOULD
-allocate a unique identifier for this schedule，and return the identifier to the
-Schedule Service Requester after created this schedule successfully. The Schedule
-Service Requester could update or delete the schedules by this identifier in the future.
+it in the schedule database. The Schedule Manager
+allocates a unique identifier for this schedule and returns that identifier to the
+Schedule Service Requester after creating this schedule successfully. The Schedule
+Service Requester may update or delete the schedules by this identifier in the future.
 
--	The Resource Manager allocates network resources(in this example the resources are
-the detail interfaces related to the links) based on the schedule，and store the
-allocated resources and its corresponding schedule identifier to the resource database.
+-	The Resource Manager allocates network resources (in this example the resources are
+the detail interfaces related to the links) based on the schedule and stores the
+allocated resources and its corresponding schedule identifier in a resource database.
 The allocation of network resources requires a variety of data resources, such as
-network topology Information，Network Resource Inventory，Current Network Utilization, etc.
+network topology information，network resource inventory，current network utilization, etc.
 
 -	The Policy Engine’s responsibility needs to be future discussed.
 
@@ -621,27 +621,27 @@ network topology Information，Network Resource Inventory，Current Network Util
 #### Distributing Schedule
 
 Schedules distribution means that network schedules are distributed to the execution
-devices by management interfaces. Schedules distribution is not mandatory. This depends on the
+devices via dedicated management interfaces. Schedules distribution is not mandatory. This depends on the
 location where the schedules are executed. If the schedules are generated and executed
 on the same device, schedules distribution is not required. If schedules are generated
-and executed on different devices, the schedules distribution is needed. Note that if
+and executed on different devices, the schedules distribution is then needed. Note that if
 a schedule affects topology and a distributed routing protocol is used, then the schedule
 needs to be distributed to all the nodes in the topology, so that other nodes can consider
-the impact of the schedule when calculating routes.
+the impact of the schedule when calculating and selecting routes.
 
 #### Executing Schedule
 
 Schedules execution means that a component (e.g., device) undertakes an action
-(e.g., allocates and deallocates resources) at specified time points. In the tidal network,
-the schedule execution indicates to power-down or power-up specific network components
+(e.g., allocates and deallocates resources) at specified time points. In a tidal network,
+the schedule execution indicates to power on/off specific network components
 (such as interfaces or entire network devices) directly or by commands.
 
-The schedule executor should fully understand the consequences of the schedule execution.
-The power-down or power-up of network components usually affects the network topology, the
+The schedule executor should understand the consequences of the schedule execution.
+The power on/off of network components usually affects the network topology, the
 addition and deletion of the topology need to be considered separately.
 
 A link coming up or a node joining a topology should not have any functional change until the
-change is proven to be fully operational. The routing tables or paths could be pre-computed
+change is proven to be fully operational. The routing paths may be pre-computed
 but should not be installed before all of the topology changes are confired to be operational.
 The benefits of this pre-computation appear to be very small. The network may choose to not do
 any pre-installation or pre-computation in reaction to topological additions, at a small cost
@@ -649,9 +649,9 @@ of some operational efficiency.
 
 Topological deletions are an entirely different matter. If a link or node is to be removed from
 the topology, then the network should act before the anticipated change to route traffic around
-the expected topological loss. Specifically, at some point before the topology change, the routing
-tables or paths should be pre-computated and installed before the topology change take place.
-The time necessary will vary depending on the exact network and configuration. When using IGP or other
+the expected topological change. Specifically, at some point before the planned topology change, the routing
+paths should be pre-computated and installed before the topology change takes place.
+The required time to perform such planned action will vary depending on the exact network and configuration. When using an IGP or other
 distributed routing protocols, the affected links may be set to a high metric to direct traffic
 to alternate paths. This type of change does require some time to propagate through the network,
 so the metric change should be initiated far enough in advance that the network converges before the
@@ -674,7 +674,7 @@ exchange data between schedule service requester and responder specified in {{ar
 
 ### Code Examples
 
-The following indicates the example of a scheduling node that is powered on from 12 AM, December 1, 2025 to 12 AM, December 1, 2026 in UTC and its interface named interface1 is scheduled to enable at 7:00 AM and disabled at 1:00 AM, every day, from December 1, 2025 to December 1, 2026 in UTC.
+{{ex-inf}} indicates the example of a scheduling node that is powered on from 12 AM, December 1, 2025 to 12 AM, December 1, 2026 in UTC and its interface named "interface1" is scheduled to be enabled at 7:00 AM and disabled at 1:00 AM, every day, from December 1, 2025 to December 1, 2026 in UTC.
 The JSON encoding is used only for illustration purposes.
 
 ~~~~
@@ -723,11 +723,12 @@ The JSON encoding is used only for illustration purposes.
    ]
 }
 ~~~~
+{: #ex-inf title="An Example of Interface Activation Scheduling" artwork-align="center"}
 
 # Other Dependencies
 
 This sections presents some outstanding dependencies that need to be considered
-when deploying the scheduling mechanism. This may not be exhaustive.
+when deploying the scheduling mechanism.
 
 ## Access Control
 
