@@ -506,7 +506,7 @@ Means to identify such dependency are needed.
 
 # TVR Use Cases with Code Example {#uc}
 
-## Overview of Tidal Network
+## Tidal Network
 
 Tidal network is a typical scenario of Energy Efficient case. The tidal network
 means the volume of traffic in the network changes
