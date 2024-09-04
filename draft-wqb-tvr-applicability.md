@@ -91,7 +91,7 @@ Many common building blocks are required for all these cases for adequate
 management of schedules and related scheduled actions.
 
 This document describes the applicability of various network management tools
-and data models may be used for scheduling, to meet the requirements of a set
+and data models that may be used for scheduling, to meet the requirements of a set
 of representative Time-Variant Routing (TVR) use cases described in {{?I-D.ietf-tvr-use-cases}}. By leveraging
 a reference framework presented in this document, it shows how IETF data models in
 {{?I-D.ietf-tvr-schedule-yang}} can fit into this framework and streamline the management and
