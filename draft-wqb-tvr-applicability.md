@@ -529,7 +529,7 @@ As described in {{Section 3.1.2 of ?I-D.ietf-tvr-requirements}}, the locality of
 schedule generation can be centralized or distributed. Both
 of these two generation methods are applicable in Tidal Network.
 
-### Architecture Example in Centralized Generation
+### Centralized Generation
 
 In the centralized schedule generation, the Schedule Service Requester in {{arch}}
 can be network administrator, and the Scheduled Service Responder can be a network
