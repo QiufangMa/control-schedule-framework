@@ -61,7 +61,7 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  An Reference Architecture
+   3.  A Reference Architecture
      3.1.  Functional Components
        3.1.1.  Scheduled Service Requester
        3.1.2.  Scheduled Service Responder
@@ -70,8 +70,8 @@ Table of Contents
      3.4.  State Management
      3.5.  Policy and Enforcement
      3.6.  Synchronization
-   4.  TVR Use Cases with Code Example
-     4.1.  Tidal Network
+   4.  TVR Use Case: Tidal Network
+     4.1.  Overview
      4.2.  Architecture Example
        4.2.1.  Centralized Generation
        4.2.2.  Distributed Generation
@@ -179,7 +179,7 @@ Table of Contents
    *  Policy Engine:  A functional entity that is responsible for
          enforcing a set of polices or rules in the network.
 
-3.  An Reference Architecture
+3.  A Reference Architecture
 
    Figure 1 presents a reference architecture for the control scheduling
    of network resources.
@@ -343,9 +343,9 @@ Table of Contents
    respond to policies or events based on time-varying parameters.
    Several methods are available to achieve this.
 
-4.  TVR Use Cases with Code Example
+4.  TVR Use Case: Tidal Network
 
-4.1.  Tidal Network
+4.1.  Overview
 
    Tidal network is a typical scenario of Energy Efficient case
    Section 3 of [I-D.ietf-tvr-use-cases].  The tidal network means that
@@ -389,29 +389,29 @@ Table of Contents
    the generation and execution of schedules are both on the same
    devices, so it does not involve the schedule distribution process.
 
-          +-----------------------------------------------------+
-          |              Network Controller(s)                  |
-          +-+--------------^------------------+---------------^-+
-            |              |                  |               |
-            |Request       |Response          |Request        |Response
-            |              |                  |               |
-    +-------v--------------+-------+    +-----v---------------+--------+
-    |       Network Device A       |    |       Network Device B       |
-    |                              |    |                              |
-    |   +---------+  +---------+   |    |   +---------+  +---------+   |
-    |   | Schedule|  | Conflict|   |    |   |         |  |         |   |
-    |   | Manager |  | Resolver|   |    |   | Manager |  | Resolver|   |
-    |   +---------+  +---------+   |    |   +---------+  +---------+   |  …
-    |                              |    |                              |
-    |   +---------+  +---------+   |    |   +---------+  +---------+   |
-    |   | Resource|  | Policy  |   |    |   | Resource|  | Policy  |   |
-    |   | Manager |  | Engine  |   |    |   | Manager |  | Engine  |   |
-    |   +---------+  +---------+   |    |   +---------+  +---------+   |
-    |                              |    |                              |
-    +------------------------------+    +------------------------------+
+       +-----------------------------------------------------+
+       |              Network Controller(s)                  |
+       +-+--------------^------------------+---------------^-+
+         |              |                  |               |
+         |Request       |Response          |Request        |Response
+         |              |                  |               |
+ +-------v--------------+-------+    +-----v---------------+--------+
+ |       Network Device A       |    |       Network Device B       |
+ |                              |    |                              |
+ |   +---------+  +---------+   |    |   +---------+  +---------+   |
+ |   | Schedule|  | Conflict|   |    |   | Schedule|  | Conflict|   |
+ |   | Manager |  | Resolver|   |    |   | Manager |  | Resolver|   |
+ |   +---------+  +---------+   |    |   +---------+  +---------+   |  …
+ |                              |    |                              |
+ |   +---------+  +---------+   |    |   +---------+  +---------+   |
+ |   | Resource|  | Policy  |   |    |   | Resource|  | Policy  |   |
+ |   | Manager |  | Engine  |   |    |   | Manager |  | Engine  |   |
+ |   +---------+  +---------+   |    |   +---------+  +---------+   |
+ |                              |    |                              |
+ +------------------------------+    +------------------------------+
 
-      Figure 2: An Architecture Example for Distributed Schedule
-                         Generation Scenario
+       Figure 2: An Architecture Example for Distributed Schedule
+                          Generation Scenario
 
 4.2.3.  Example Procedures
 
