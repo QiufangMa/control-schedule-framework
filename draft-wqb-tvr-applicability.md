@@ -543,7 +543,7 @@ In the distributed schedule generation，the Schedule Service Requester in {{arc
 can be network controller, and the Scheduled Service Responders are the network
 devices, the relationship between network controller and network devices is shown in
 {{arch-example}}. In this mode, the generation and execution of schedules are both
-on the same devices，so it does not involve the schedule distribution process.
+on the same devices, so it does not involve the schedule distribution process.
 
 ~~~~
           +-----------------------------------------------------+
