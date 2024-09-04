@@ -540,7 +540,7 @@ on the schedule Execution Locality defined in section 3.1.3 of{{?I-D.ietf-tvr-re
 ### Distributed Generation
 
 In the distributed schedule generation，the Schedule Service Requester in {{arch}}
-can be network administrator, and the Scheduled Service Responders are the network
+can be network controller, and the Scheduled Service Responders are the network
 devices, the relationship of network administrator and network devices are shown in
 {{arch-example}}. In this mode, the generation and execution of schedules are both
 on the same devices，so it does not involve the schedule distribution process.
