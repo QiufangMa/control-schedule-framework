@@ -347,11 +347,12 @@ Table of Contents
 
 4.1.  Tidal Network
 
-   Tidal network is a typical scenario of Energy Efficient case.  The
-   tidal network means that the volume of traffic in the network changes
-   periodically like the ocean tide.  This changes are mainly affected
-   by human activities.  Therefore, this tidal effect is obvious in
-   human-populated areas, such as campuses and airports.
+   Tidal network is a typical scenario of Energy Efficient case
+   Section 3 of [I-D.ietf-tvr-use-cases].  The tidal network means that
+   the volume of traffic in the network changes periodically like the
+   ocean tide.  This changes are mainly affected by human activities.
+   Therefore, this tidal effect is obvious in human-populated areas,
+   such as campuses and airports.
 
    In the context of a tidal network, if the network maintains all the
    devices up to guarantee a maximum throughput all the time, a lot of
