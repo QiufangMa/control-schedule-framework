@@ -216,7 +216,7 @@ The following terms are used in this document:
 : A functional entity that is responsible for enforcing a set of polices or rules
   in the network.
 
-# An Reference Architecture {#architecture}
+# A Reference Architecture {#architecture}
 
 {{arch}} presents a reference architecture for the control scheduling of
 network resources.
@@ -504,9 +504,9 @@ Enfrocement of some secheduled actions may depend on other schedules actions.
 Means to identify such dependency are needed.
 -->
 
-# TVR Use Cases with Code Example {#uc}
+# TVR Use Case: Tidal Network {#uc}
 
-## Tidal Network
+## Overview
 
 Tidal network is a typical scenario of Energy Efficient case {{Section 3 of ?I-D.ietf-tvr-use-cases}}. The tidal network
 means that the volume of traffic in the network changes
@@ -546,26 +546,26 @@ devices, the relationship between network controllers and network devices is sho
 on the same devices, so it does not involve the schedule distribution process.
 
 ~~~~
-          +-----------------------------------------------------+
-          |              Network Controller(s)                  |
-          +-+--------------^------------------+---------------^-+
-            |              |                  |               |
-            |Request       |Response          |Request        |Response
-            |              |                  |               |
-    +-------v--------------+-------+    +-----v---------------+--------+
-    |       Network Device A       |    |       Network Device B       |
-    |                              |    |                              |
-    |   +---------+  +---------+   |    |   +---------+  +---------+   |
-    |   | Schedule|  | Conflict|   |    |   |         |  |         |   |
-    |   | Manager |  | Resolver|   |    |   | Manager |  | Resolver|   |
-    |   +---------+  +---------+   |    |   +---------+  +---------+   |  …
-    |                              |    |                              |
-    |   +---------+  +---------+   |    |   +---------+  +---------+   |
-    |   | Resource|  | Policy  |   |    |   | Resource|  | Policy  |   |
-    |   | Manager |  | Engine  |   |    |   | Manager |  | Engine  |   |
-    |   +---------+  +---------+   |    |   +---------+  +---------+   |
-    |                              |    |                              |
-    +------------------------------+    +------------------------------+
+      +-----------------------------------------------------+
+      |              Network Controller(s)                  |
+      +-+--------------^------------------+---------------^-+
+        |              |                  |               |
+        |Request       |Response          |Request        |Response
+        |              |                  |               |
++-------v--------------+-------+    +-----v---------------+--------+
+|       Network Device A       |    |       Network Device B       |
+|                              |    |                              |
+|   +---------+  +---------+   |    |   +---------+  +---------+   |
+|   | Schedule|  | Conflict|   |    |   |         |  |         |   |
+|   | Manager |  | Resolver|   |    |   | Manager |  | Resolver|   |
+|   +---------+  +---------+   |    |   +---------+  +---------+   |  …
+|                              |    |                              |
+|   +---------+  +---------+   |    |   +---------+  +---------+   |
+|   | Resource|  | Policy  |   |    |   | Resource|  | Policy  |   |
+|   | Manager |  | Engine  |   |    |   | Manager |  | Engine  |   |
+|   +---------+  +---------+   |    |   +---------+  +---------+   |
+|                              |    |                              |
++------------------------------+    +------------------------------+
 ~~~~
 {: #arch-example title="An Architecture Example for Distributed Schedule Generation Scenario" artwork-align="center"}
 
