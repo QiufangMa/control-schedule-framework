@@ -556,7 +556,7 @@ on the same devices, so it does not involve the schedule distribution process.
 |       Network Device A       |    |       Network Device B       |
 |                              |    |                              |
 |   +---------+  +---------+   |    |   +---------+  +---------+   |
-|   | Schedule|  | Conflict|   |    |   |         |  |         |   |
+|   | Schedule|  | Conflict|   |    |   | Schedule|  | Conflict|   |
 |   | Manager |  | Resolver|   |    |   | Manager |  | Resolver|   |
 |   +---------+  +---------+   |    |   +---------+  +---------+   |  …
 |                              |    |                              |
