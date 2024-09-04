@@ -537,7 +537,7 @@ controller or network management system. After generated schedules, the controll
 or management system need to determine whether to distribute these schedules based
 on the schedule Execution Locality defined in section 3.1.3 of{{?I-D.ietf-tvr-requirements}}.
 
-### Architecture Example in Distributed Generation
+### Distributed Generation
 
 In the distributed schedule generation，the Schedule Service Requester in {{arch}}
 can be network administrator, and the Scheduled Service Responders are the network
