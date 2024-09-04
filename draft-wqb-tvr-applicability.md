@@ -70,7 +70,7 @@ informative:
 --- abstract
 
 This document describes the applicability of various network management tools
-and data models may be used for scheduling, to meet the requirements of a set
+and data models that may be used for scheduling, to meet the requirements of a set
 of representative use cases described in the "TVR (Time-Variant Routing) Requirements" (I-D.ietf-tvr-requirements).
 
 It also presents a framework that elucidates various scheduling scenarios
