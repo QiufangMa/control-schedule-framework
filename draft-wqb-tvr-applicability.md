@@ -1,6 +1,6 @@
 ---
 title: "Applicability of YANG Data Models for Scheduling of Network Resources"
-abbrev: "Schedule Framework"
+abbrev: "Applicability Statement"
 category: info
 
 docname: draft-wqb-tvr-applicability-latest
@@ -132,8 +132,6 @@ Key use cases highlight how the proposed framework can be used for scheduling
 scenarios. The applicable IETF YANG modules are described, as well as
 other dependencies that are needed.
 
-> Editors Note: In future versions of this document, an appendix will also
-provide JSON examples.
 
 <!--
 ## Problem Statement
@@ -360,10 +358,10 @@ management, including status exposure.
 ## Policy and Enforcement
 
 Policies are a set of rules to administer, manage, and control access to network
-resources. For example, the following shows an example of a scheduled ACL policy:
+resources. For example, the following shows an example of a scheduled interface policy:
 
 ~~~~
-drop TCP traffic source-port 16384 time 2025-12-01T08:00:00Z
+Disable interface ethernet0/1/1 time 2025-12-01T08:00:00Z
 /2025-12-15T18:00:00Z
 ~~~~
 
@@ -508,9 +506,9 @@ Means to identify such dependency are needed.
 
 ## Overview
 
-Tidal network is a typical scenario of Energy Efficient case {{Section 3 of ?I-D.ietf-tvr-use-cases}}. The tidal network
+Tidal network is a typical scenario of Energy Efficient case ({{Section 3 of ?I-D.ietf-tvr-use-cases}}). The tidal network
 means that the volume of traffic in the network changes
-periodically like the ocean tide. This changes are mainly affected by
+periodically like the ocean tide. These changes are mainly affected by
 human activities. Therefore, this tidal effect is obvious in human-populated
 areas, such as campuses and airports.
 
@@ -523,25 +521,57 @@ network nodes can be selectively disabled or enabled based on traffic patterns,
 thereby reducing the energy consumption of nodes during periods of low network
 traffic.
 
-## Architecture Example
+## Architecture Example {#tvr-arch}
 
 As described in {{Section 3.1.2 of ?I-D.ietf-tvr-requirements}}, the locality of
-schedule generation can be centralized or distributed. Both
-of these two generation methods are applicable in Tidal Network.
+schedule generation can be centralized or distributed. Depending on different
+localities of schedule generation, the architecture depicted in {{arch}}
+may be applicable in tidal network in two different ways, described in {{centralized}}
+and {{distributed}}, respectively.
 
-### Centralized Generation
+### Centralized Architecture {#centralized}
 
 In the centralized schedule generation, the Schedule Service Requester in {{arch}}
-can be a network administrator, and the Scheduled Service Responder can be a network
-controller or network management system. After generating schedules, the controller
-(or management system) needs to determine whether to distribute these schedules based
+can be a network orchestrator, and the Scheduled Service Responder can be network
+controller(s), the applied architecture with the orchestrator and controller(s) is
+shown in {{arch-cen-example}}. The readers may refer to {{Section 4 of ?RFC8309}} for an overview
+of "orchestrator" and "controller" in an SDN system.
+After generating schedules, the controller needs to determine whether to distribute these schedules based
 on the schedule Execution Locality defined in {{Section 3.1.3 of ?I-D.ietf-tvr-requirements}}.
 
-### Distributed Generation
+~~~~
+ +-------------------------------------------------+
+ |                  Orchestrator                   |
+ +-----+------------------------------------^------+
+       |                                    |
+       |Request                             |Response
+       |                                    |
+ +-----v------------------------------------+------+
+ |               Network Controller(s)             |
+ |                                                 |
+ |   +---------+                     +---------+   |
+ |   |         |                     |         |   |
+ |   | Schedule|                     | Conflict|   |
+ |   | Manager |                     | Resolver|   |
+ |   |         |                     |         |   |
+ |   +---------+                     +---------+   |
+ |                                                 |
+ |   +---------+                     +---------+   |
+ |   |         |                     |         |   |
+ |   | Resource|                     | Policy  |   |
+ |   | Manager |                     | Engine  |   |
+ |   |         |                     |         |   |
+ |   +---------+                     +---------+   |
+ |                                                 |
+ +-------------------------------------------------+
+~~~~
+{: #arch-cen-example title="An Architecture Example for Centralized Schedule Generation Scenario" artwork-align="center"}
+
+### Distributed Architecture {#distributed}
 
 In the distributed schedule generation，the Schedule Service Requester in {{arch}}
 can be a network controller, and the Scheduled Service Responders are the network
-devices, the relationship between network controllers and network devices is shown in
+devices, the applied architecture with the network controller and devices is shown in
 {{arch-example}}. In this mode, the generation and execution of schedules are both
 on the same devices, so it does not involve the schedule distribution process.
 
@@ -569,56 +599,57 @@ on the same devices, so it does not involve the schedule distribution process.
 ~~~~
 {: #arch-example title="An Architecture Example for Distributed Schedule Generation Scenario" artwork-align="center"}
 
-### Example Procedures
+## Example Procedures
 
 
-#### Building Traffic Profiles
+### Building Traffic Profiles
 
-The first step to perform schedules in a tidal network is to analysis the traffic patterns at different
+The first step to perform schedules in a tidal network is to analyze the traffic patterns at different
 network devices and links comprehensively and then establish clear tidal points for lower and upper
 network traffic. It should be noted that the change regularity of traffic may be different at different time
 (for example, the traffic regularity in workday and weekend may totally be different), the selection of tidal
 points should take full count of these factors. How to analyze the traffic patterns and determine the
 tidal points are outside the scope of this document.
 
-#### Estabilish Minimum and Peak Topology
+### Establish Minimum and Peak Topology
 
 An algorithm is required to calculate the minimum and peak topology to service expected demand at different
 time slot. Such calculation algorithm for the topology is outside the scope of this document.
 
-#### Generating Schedule
+### Generating Schedule
 
 The schedule request is generated by the Schedule Service Requester according to the switching regularity
-of the minimum and peak topology. For example, the minimum topology enables from 1 AM to 7 AM everyday, then
+of the minimum and peak topology and sent to the Schedule Service Responder.
+For example, the minimum topology enables from 1 AM to 7 AM everyday, then
 the network administrator need to shutdown some links or devices from 1 AM to 7 AM.
 
-When the Scheduled Service Responder receives this schedule request, it will generate
-a schedule with the following procedures:
+When the Scheduled Service Responder receives the schedule request, it handles
+it with following procedures:
 
 -	The Conflict Resolver checks whether the current schedule request conflicts with other
-schedules. If there is no conflict, then go to the next step. Otherwise, a message is
+schedules. If there is no conflict, then go to the next step. Otherwise, an error message is
 returned to the Schedule Service Requester, indicating that the conflict check fails.
 A typical failure scenario is that the resource triggered by the current schedule is
 occupied by another schedule. For example, there is an existing schedule
-that requests the same links up from 5 AM to 10 AM every day, then there is a conflict with
-this request and the existing schedule.
+that requests a link to be available from 5 AM to 10 AM every day, but the new schedule
+disconnects it from 2 AM to 6 AM every two days.
 
--	The Schedule Manager creates one schedule according to the request, and then store
-it in the schedule database. The Schedule Manager
-allocates a unique identifier for this schedule and returns that identifier to the
-Schedule Service Requester after creating this schedule successfully. The Schedule
-Service Requester may update or delete the schedules by this identifier in the future.
+-	The Schedule Manager creates a list of schedule and holds it in a schedule database.
+For a recurrence schedule, the effective range of occurrence instances will be generated
+by Schedule Manager. It also handles the modification, deletion, and querying of schedule information.
 
--	The Resource Manager allocates network resources (in this example the resources are
-the detail interfaces related to the links) based on the schedule and stores the
-allocated resources and its corresponding schedule identifier in a resource database.
-The allocation of network resources requires a variety of data resources, such as
+-	The Policy Engine maintains the received scheduling policies and rules. It enforces
+the predefined policies when a time trigger maintained in the schedule database
+indicates each scheduled time occurs. Policy enforcement may also require the
+interaction with other components, e.g., the Resource Manager.
+
+-	The Resource Manager allocates or reclaims network resources (in this example the resources are
+the detailed interfaces related to the links) when a request from Policy Engine
+is received, and it also holds the network resource in a resource database.
+The allocation of network resources may require a variety of data resources, such as
 network topology information, network resource inventory, current network utilization, etc.
 
--	The Policy Engine’s responsibility needs to be future discussed.
-
-
-#### Distributing Schedule
+### Distributing Schedule
 
 Schedules distribution means that network schedules are distributed to the execution
 devices via dedicated management interfaces. Schedules distribution is not mandatory. This depends on the
@@ -629,7 +660,7 @@ a schedule affects topology and a distributed routing protocol is used, then the
 needs to be distributed to all the nodes in the topology, so that other nodes can consider
 the impact of the schedule when calculating and selecting routes.
 
-#### Executing Schedule
+### Executing Schedule
 
 Schedules execution means that a component (e.g., device) undertakes an action
 (e.g., allocates and deallocates resources) at specified time points. In a tidal network,
@@ -657,10 +688,14 @@ to alternate paths. This type of change does require some time to propagate thro
 so the metric change should be initiated far enough in advance that the network converges before the
 actual topological change.
 
-### Applicable Models
+## Applicable Models
 
 The following provides a list of applicable YANG modules that can be used to
-exchange data between schedule service requester and responder specified in {{architecture}}:
+exchange data between schedule service requester and responder specified in {{tvr-arch}}:
+
+*  The "ietf-tvr-topology" YANG module in {{?I-D.ietf-tvr-schedule-yang}} is used
+   to manage the network topology with time-varying attributes
+   (e.g., node/link availability, link bandwidth, or delay).  
 
  * The "ietf-tvr-node" YANG module in {{?I-D.ietf-tvr-schedule-yang}} which is
    a device model, is designed to manage a single node with scheduled
@@ -672,7 +707,7 @@ exchange data between schedule service requester and responder specified in {{ar
    protocol-accessible nodes but a set of reusable groupings applicable to be used
    in any scheduling contexts.
 
-### Code Examples
+## Code Examples
 
 {{ex-inf}} indicates the example of a scheduling node that is powered on from 12 AM, December 1, 2025 to 12 AM, December 1, 2026 in UTC and its interface named "interface1" is scheduled to be enabled at 7:00 AM and disabled at 1:00 AM, every day, from December 1, 2025 to December 1, 2026 in UTC.
 The JSON encoding is used only for illustration purposes.
