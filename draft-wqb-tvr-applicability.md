@@ -695,7 +695,7 @@ exchange data between schedule service requester and responder specified in {{tv
 
 *  The "ietf-tvr-topology" YANG module in {{?I-D.ietf-tvr-schedule-yang}} is used
    to manage the network topology with time-varying attributes
-   (e.g., node/link availability, link bandwidth, or delay).  
+   (e.g., node/link availability, link bandwidth, or delay).
 
  * The "ietf-tvr-node" YANG module in {{?I-D.ietf-tvr-schedule-yang}} which is
    a device model, is designed to manage a single node with scheduled
