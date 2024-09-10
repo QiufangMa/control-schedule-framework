@@ -69,9 +69,10 @@ informative:
 
 --- abstract
 
-This document describes the applicability of various network management tools
-and data models that may be used for scheduling, to meet the requirements of a set
-of representative use cases described in the "TVR (Time-Variant Routing) Requirements" (I-D.ietf-tvr-requirements).
+This document provides an applicability statement on how the Time-Variant Routing (TVR)
+data model may be used for scheduling in specific time variant network cases, to meet
+the requirements of a set of representative use cases described in the
+"TVR (Time-Variant Routing) Requirements" (I-D.ietf-tvr-requirements).
 
 It also presents a framework that elucidates various scheduling scenarios
 and identifies the entities involved in requesting scheduled changes of
@@ -90,12 +91,13 @@ of resources to satisfy service demands or adhere to local networks policies.
 Many common building blocks are required for all these cases for adequate
 management of schedules and related scheduled actions.
 
-This document describes the applicability of various network management tools
-and data models that may be used for scheduling, to meet the requirements of a set
-of representative Time-Variant Routing (TVR) use cases described in {{?I-D.ietf-tvr-use-cases}}. By leveraging
-a reference framework presented in this document, it shows how IETF data models in
-{{?I-D.ietf-tvr-schedule-yang}} can fit into this framework and streamline the management and
-orchestration of network resources based on precise date and time parameters.
+This document provides an applicability statement on how the Time-Variant Routing (TVR) data model may
+be used for scheduling in specific time variant network cases, to meet the requirements
+of a set of representative TVR use cases described in
+{{?I-D.ietf-tvr-requirements}}. By leveraging a reference framework presented in this
+document, it shows how IETF data models in {{?I-D.ietf-tvr-schedule-yang}} can fit into
+this framework and streamline the management and orchestration of network resources
+based on precise date and time parameters.
 
 The document also provides guidelines for implementing
 scheduling capabilities across diverse network architectures, ensuring
