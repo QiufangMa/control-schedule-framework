@@ -5,10 +5,10 @@
 TVR                                                             L. Zhang
 Internet-Draft                                                     Q. Ma
 Intended status: Informational                                     Q. Wu
-Expires: 10 March 2025                                            Huawei
+Expires: 14 March 2025                                            Huawei
                                                             M. Boucadair
                                                                   Orange
-                                                        6 September 2024
+                                                       10 September 2024
 
 
  Applicability of YANG Data Models for Scheduling of Network Resources
@@ -16,11 +16,11 @@ Expires: 10 March 2025                                            Huawei
 
 Abstract
 
-   This document describes the applicability of various network
-   management tools and data models that may be used for scheduling, to
-   meet the requirements of a set of representative use cases described
-   in the "TVR (Time-Variant Routing) Requirements" (I-D.ietf-tvr-
-   requirements).
+   This document provides an applicability statement on how the Time-
+   Variant Routing (TVR) data model may be used for scheduling in
+   specific time variant network cases, to meet the requirements of a
+   set of representative use cases described in the "TVR (Time-Variant
+   Routing) Requirements" (I-D.ietf-tvr-requirements).
 
    It also presents a framework that elucidates various scheduling
    scenarios and identifies the entities involved in requesting
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 March 2025.
+   This Internet-Draft will expire on 14 March 2025.
 
 Copyright Notice
 
@@ -110,14 +110,15 @@ Table of Contents
    Many common building blocks are required for all these cases for
    adequate management of schedules and related scheduled actions.
 
-   This document describes the applicability of various network
-   management tools and data models that may be used for scheduling, to
-   meet the requirements of a set of representative Time-Variant Routing
-   (TVR) use cases described in [I-D.ietf-tvr-use-cases].  By leveraging
-   a reference framework presented in this document, it shows how IETF
-   data models in [I-D.ietf-tvr-schedule-yang] can fit into this
-   framework and streamline the management and orchestration of network
-   resources based on precise date and time parameters.
+   This document provides an applicability statement on how the Time-
+   Variant Routing (TVR) data model may be used for scheduling in
+   specific time variant network cases, to meet the requirements of a
+   set of representative TVR use cases described in
+   [I-D.ietf-tvr-requirements].  By leveraging a reference framework
+   presented in this document, it shows how IETF data models in
+   [I-D.ietf-tvr-schedule-yang] can fit into this framework and
+   streamline the management and orchestration of network resources
+   based on precise date and time parameters.
 
    The document also provides guidelines for implementing scheduling
    capabilities across diverse network architectures, ensuring that
