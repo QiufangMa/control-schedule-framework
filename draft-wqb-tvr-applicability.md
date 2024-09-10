@@ -91,7 +91,7 @@ of resources to satisfy service demands or adhere to local networks policies.
 Many common building blocks are required for all these cases for adequate
 management of schedules and related scheduled actions.
 
-This document provides the applicability statement on how the TVR (Time-Variant Routing) data model may
+This document provides an applicability statement on how the Time-Variant Routing (TVR) data model may
 be used for scheduling in specific time variant network cases, to meet the requirements
 of a set of representative TVR use cases described in
 {{?I-D.ietf-tvr-requirements}}. By leveraging a reference framework presented in this
