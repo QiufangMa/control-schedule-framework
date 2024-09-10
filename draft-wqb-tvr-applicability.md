@@ -69,7 +69,7 @@ informative:
 
 --- abstract
 
-This document provides the applicability statement on how the TVR (Time-Variant Routing)
+This document provides an applicability statement on how the Time-Variant Routing (TVR)
 data model may be used for scheduling in specific time variant network cases, to meet
 the requirements of a set of representative use cases described in the
 "TVR (Time-Variant Routing) Requirements" (I-D.ietf-tvr-requirements).
